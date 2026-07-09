@@ -1,17 +1,15 @@
 import { gsap } from '@/lib/gsap';
-import { prefersReducedMotion } from './shared';
 
 export function initCursorAnimation() {
-  if (prefersReducedMotion() || window.matchMedia('(hover: none)').matches) {
-    return; // Do not initialize on touch devices or if reduced motion is preferred
-  }
-
+  // Removed prefersReducedMotion and hover checks as they falsely disabled
+  // the cursor on many Windows laptops and power-saving modes.
+  
   const cursor = document.getElementById('custom-cursor');
   const cursorDot = document.getElementById('custom-cursor-dot');
   
   if (!cursor || !cursorDot) return;
 
-  // Make cursor visible since we're on a non-touch device
+  // Make cursor visible
   gsap.set([cursor, cursorDot], { opacity: 1 });
 
   let mouseX = window.innerWidth / 2;
@@ -54,7 +52,7 @@ export function initCursorAnimation() {
     el.addEventListener('mouseenter', () => {
       gsap.to(cursor, {
         scale: 2,
-        backgroundColor: 'white', // With difference, this will be solid black
+        backgroundColor: 'white',
         borderColor: 'transparent',
         duration: 0.3,
         ease: 'power2.out'
@@ -70,7 +68,7 @@ export function initCursorAnimation() {
       gsap.to(cursor, {
         scale: 1,
         backgroundColor: 'transparent',
-        borderColor: 'white', // With difference, this will be black outline
+        borderColor: 'white',
         duration: 0.3,
         ease: 'power2.out'
       });

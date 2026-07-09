@@ -99,8 +99,8 @@ export function initAroundWorldAnimation() {
     y: 0,
     scale: 1,
     stagger: ANIMATION_CONSTANTS.stagger.slow,
-    onComplete: function() {
-       if(!isReduced) gsap.set(storyCards, { clearProps: 'transform' });
+    onComplete: function () {
+      if (!isReduced) gsap.set(storyCards, { clearProps: 'transform' });
     }
   });
 

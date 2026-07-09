@@ -1,139 +1,119 @@
 import { gsap } from 'gsap';
-import { ANIMATION_CONSTANTS, prefersReducedMotion } from './shared';
-import { splitText } from '@/utils/text';
 
 export function initHeroAnimation() {
   const heroSection = document.getElementById('hero');
   if (!heroSection) return;
 
-  const bgImage = heroSection.querySelector('.hero-bg-image');
-  const title = heroSection.querySelector('.hero-title h1');
-  const subtitleContainer = heroSection.querySelector('.hero-subtitle');
-  const tagline = heroSection.querySelector('.hero-tagline');
-  const scrollIndicator = heroSection.querySelector('.hero-scroll');
+  const bgBase = heroSection.querySelector('.hero-bg-base');
+  const spotlightLayer = heroSection.querySelector('.hero-spotlight-layer') as HTMLElement;
+  const title = heroSection.querySelector('.hero-title');
+  const metaContainer = heroSection.querySelector('.hero-meta');
 
+  // We are removing the reducedMotion check temporarily because it was disabling
+  // the entire interactive experience for users on power-saving modes or touch laptops.
+
+  // 1. Initial Setup
+  gsap.set(metaContainer, { opacity: 0, y: 20 });
+  
+  // Hide and scale up images for the initial "developing" reveal
+  if (bgBase) {
+    gsap.set(bgBase, { scale: 1.15, opacity: 0, filter: 'blur(10px)' });
+  }
+
+  if (title) {
+    const words = title.querySelectorAll('span');
+    gsap.set(words, { opacity: 0, y: 50, rotateX: 20 });
+  }
+
+  // 2. The Grand Reveal Sequence
   const tl = gsap.timeline({
-    defaults: { ease: ANIMATION_CONSTANTS.ease.decelerate },
+    defaults: { ease: 'power3.out' }
   });
 
-  const isReduced = prefersReducedMotion();
-
-  // 1. Split Text Preparation
-  if (title && !isReduced) {
-    // We split into words for the cinematic reveal
-    splitText(title as HTMLElement, { type: 'words', wrapClass: 'split-words' });
-    
-    const words = title.querySelectorAll('.split-words');
-    words.forEach(word => {
-      const innerHtml = word.innerHTML;
-      word.innerHTML = `<span style="display:inline-block; transform:translateY(100%); opacity:0;" class="word-inner">${innerHtml}</span>`;
-      (word as HTMLElement).style.overflow = 'hidden';
-      (word as HTMLElement).style.verticalAlign = 'top';
-    });
+  // Reveal the image beautifully (Cinematic "Darkroom" Entrance)
+  if (bgBase) {
+    tl.to(bgBase, {
+      scale: 1.02,
+      opacity: 0.8,
+      filter: 'blur(0px)',
+      duration: 3.5,
+      ease: 'power2.out'
+    }, 0);
   }
 
-  // Set initial states
-  gsap.set([subtitleContainer, tagline, scrollIndicator], { 
-    opacity: 0, 
-    y: isReduced ? 0 : 20 
-  });
-  
-  if (bgImage && !isReduced) {
-    // Initial clip-path for dramatic reveal
-    gsap.set(bgImage, { 
-      scale: 1.1,
-      clipPath: 'inset(10% 10% 10% 10%)'
-    });
-  } else if (bgImage) {
-    gsap.set(bgImage, { scale: 1 });
-  }
-
-  // 2. Animation Sequence
-  // Very slow continuous zoom for ambient motion + clip path reveal
-  if (bgImage && !isReduced) {
-    tl.to(bgImage, {
-      clipPath: 'inset(0% 0% 0% 0%)',
-      duration: 2.0, // Long majestic reveal
-      ease: ANIMATION_CONSTANTS.ease.clipPath,
-    }, 0.2);
-
-    // After the clip-path finishes, start the ambient scale
-    gsap.to(bgImage, {
-      scale: 1.15,
-      duration: 40, // Even slower than before
-      ease: ANIMATION_CONSTANTS.ease.linear,
-      repeat: -1,
-      yoyo: true,
-      delay: 2.2
-    });
-  }
-
-  // Reveal title words
-  if (title && !isReduced) {
-    gsap.set(title.parentElement, { opacity: 1 });
-    
-    const wordInners = title.querySelectorAll('.word-inner');
-    tl.to(wordInners, {
-      y: '0%',
+  // Fade in the massive typography with an elegant lift
+  if (title) {
+    tl.to(title.querySelectorAll('span'), {
       opacity: 1,
-      duration: 1.8, // Slower
-      stagger: 0.15, // Longer pause between words
-      ease: ANIMATION_CONSTANTS.ease.cinematic
-    }, bgImage ? 0.8 : 0.2); // Start while image is still revealing
-  } else if (title) {
-    gsap.to(title.parentElement, { opacity: 1, duration: ANIMATION_CONSTANTS.duration.fast }, 0.2);
+      y: 0,
+      rotateX: 0,
+      duration: 2.5,
+      stagger: 0.2,
+      ease: 'expo.out'
+    }, 0.5);
   }
 
-  // Reveal subtitle
-  tl.to(subtitleContainer, {
+  // Fade in the metadata (subtitle, indicator)
+  tl.to(metaContainer, {
     opacity: 1,
     y: 0,
-    duration: ANIMATION_CONSTANTS.duration.base,
-  }, "-=1.0");
+    duration: 1.5,
+  }, 1.5);
 
-  // Reveal tagline
-  tl.to(tagline, {
-    opacity: 1,
-    y: 0,
-    duration: ANIMATION_CONSTANTS.duration.base,
-  }, "-=0.8");
+  // 3. The Interactive Spotlight Logic
+  if (spotlightLayer) {
+    // Reveal the spotlight gently
+    gsap.to(spotlightLayer, {
+      opacity: 0.7,
+      duration: 3,
+      ease: 'power2.inOut',
+      delay: 1.0
+    });
 
-  // Reveal scroll indicator
-  tl.to(scrollIndicator, {
-    opacity: 1,
-    y: 0,
-    duration: ANIMATION_CONSTANTS.duration.base,
-  }, "-=0.6");
-  
-  // 3. Scroll-driven handoff to Scene 2
-  if (bgImage && !isReduced) {
-    gsap.to(bgImage, {
-      scale: 1, // Scale down from the ambient 1.15
-      clipPath: 'inset(5% 5% 20% 5% round 12px)', // Mask into a frame
-      yPercent: 15, // Subtle parallax
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    
+    // Set immediate initial position
+    gsap.set(spotlightLayer, { x: mouseX, y: mouseY });
+
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.pageX;
+      mouseY = e.pageY;
+      
+      // Buttery smooth GSAP tracking
+      gsap.to(spotlightLayer, {
+        x: mouseX,
+        y: mouseY,
+        duration: 0.8,
+        ease: 'power3.out',
+        overwrite: 'auto'
+      });
+    });
+
+    // 4. Scroll Transition Setup
+    // Expand the light drastically on scroll down
+    gsap.to(spotlightLayer, {
+      scale: 4,
+      opacity: 0,
       ease: 'none',
       scrollTrigger: {
-        trigger: section,
+        trigger: heroSection,
         start: 'top top',
         end: 'bottom top',
         scrub: true
       }
     });
-    
-    // Fade out title faster than the image
-    if (title) {
-      gsap.to(title.parentElement, {
-        opacity: 0,
-        y: -50,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: section,
-          start: 'top top',
-          end: 'center top',
-          scrub: true
-        }
-      });
-    }
+  }
+
+  // Ambient extremely slow zoom on the photography
+  if (bgBase) {
+    gsap.to(bgBase, {
+      scale: 1,
+      duration: 40,
+      ease: 'none',
+      repeat: -1,
+      yoyo: true
+    });
   }
 
   return tl;
