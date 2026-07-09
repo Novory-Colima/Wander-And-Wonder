@@ -79,4 +79,68 @@ export function initCursorAnimation() {
       });
     });
   });
+
+  // Magnetic Buttons
+  const magneticElements = document.querySelectorAll('.magnetic-button');
+  magneticElements.forEach((el) => {
+    el.addEventListener('mousemove', (e) => {
+      const target = e.currentTarget as HTMLElement;
+      const rect = target.getBoundingClientRect();
+      const h = rect.width / 2;
+      const v = rect.height / 2;
+      const x = ((e as MouseEvent).clientX - rect.left - h) * 0.3;
+      const y = ((e as MouseEvent).clientY - rect.top - v) * 0.3;
+
+      gsap.to(target, {
+        x: x,
+        y: y,
+        duration: 0.4,
+        ease: 'power3.out',
+        overwrite: 'auto'
+      });
+    });
+
+    el.addEventListener('mouseleave', (e) => {
+      const target = e.currentTarget as HTMLElement;
+      gsap.to(target, {
+        x: 0,
+        y: 0,
+        duration: 0.7,
+        ease: 'elastic.out(1, 0.3)',
+        overwrite: 'auto'
+      });
+    });
+  });
+
+  // Image Pan (Cinematic feel on large images)
+  const panImages = document.querySelectorAll('.editorial-image-wrapper');
+  panImages.forEach((wrapper) => {
+    const img = wrapper.querySelector('img');
+    if (!img) return;
+
+    wrapper.addEventListener('mousemove', (e) => {
+      const rect = wrapper.getBoundingClientRect();
+      // Calculate normalized mouse position (-1 to 1)
+      const x = ((e as MouseEvent).clientX - rect.left) / rect.width - 0.5;
+      const y = ((e as MouseEvent).clientY - rect.top) / rect.height - 0.5;
+
+      gsap.to(img, {
+        xPercent: x * -5, // move opposite to mouse
+        yPercent: y * -5,
+        duration: 0.8,
+        ease: 'power2.out',
+        overwrite: 'auto'
+      });
+    });
+
+    wrapper.addEventListener('mouseleave', () => {
+      gsap.to(img, {
+        xPercent: 0,
+        yPercent: 0,
+        duration: 1.2,
+        ease: 'power3.out',
+        overwrite: 'auto'
+      });
+    });
+  });
 }

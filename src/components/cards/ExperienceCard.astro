@@ -13,7 +13,6 @@ const { experience, class: className = '' } = Astro.props;
   <img
     src={experience.image}
     alt={experience.alt}
-    loading="lazy"
     class="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
   />
   <div class="absolute inset-0 bg-gradient-to-b from-midnight/10 via-transparent to-midnight-dark/90 opacity-80 group-hover:opacity-90 transition-opacity duration-500"></div>

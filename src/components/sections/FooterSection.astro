@@ -1,104 +1,80 @@
 ---
 import Container from '@components/common/Container.astro';
-import { NAV_LINKS, SITE_CONFIG } from '@/config/site';
+import { SITE_CONFIG } from '@/config/site';
 
 const currentYear = new Date().getFullYear();
 
-const footerColumns = [
-  {
-    title: 'Explorar',
-    links: [
-      { label: 'Experiencias', href: '#experiences' },
-      { label: 'Destinos', href: '#destinations' },
-      { label: 'Historias', href: '#stories' },
-    ],
-  },
-  {
-    title: 'Nosotros',
-    links: [
-      { label: 'Nuestra filosofía', href: '#about' },
-      { label: 'Contacto', href: '#contact' },
-    ],
-  },
-  {
-    title: 'Contacto',
-    links: [
-      { label: 'hello@wanderandwonder.com', href: 'mailto:hello@wanderandwonder.com' },
-    ],
-  },
-];
-
 const socialLinks = [
-  { label: 'Instagram', href: '#', icon: 'instagram' },
-  { label: 'Twitter', href: '#', icon: 'twitter' },
-  { label: 'YouTube', href: '#', icon: 'youtube' },
+  { label: 'Instagram', href: '#', icon: 'In' },
+  { label: 'Twitter', href: '#', icon: 'Tw' },
+  { label: 'YouTube', href: '#', icon: 'Yt' },
 ];
 ---
 
 <footer
-  class="relative bg-midnight pt-20 pb-8 md:pt-28 md:pb-10"
+  class="relative bg-midnight pt-32 pb-8 overflow-hidden flex flex-col justify-between min-h-[90vh] z-0"
   role="contentinfo"
 >
-  <Container>
-    <!-- Top section -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-8 pb-12 md:pb-16 border-b border-ivory/8">
-      <!-- Brand Column -->
-      <div class="lg:col-span-1">
-        <a href="#hero" class="inline-block mb-5" aria-label="Wander & Wonder — Inicio">
-          <span class="font-serif text-2xl font-semibold text-ivory tracking-tight">
-            Wander<span class="text-sunset">&</span>Wonder
+  <!-- Background Noise -->
+  <div class="absolute inset-0 z-0 pointer-events-none opacity-[0.03] mix-blend-overlay" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E');"></div>
+
+  <Container class="relative z-10 flex flex-col justify-between h-full flex-grow">
+    
+    <!-- Top section: Call to action & Links -->
+    <div class="flex flex-col md:flex-row justify-between items-start gap-16 md:gap-0 mt-12">
+      <div class="max-w-md">
+        <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl text-ivory leading-tight mb-8">
+          ¿Listo para <br/><span class="italic text-sunset">perderte</span> un rato?
+        </h2>
+        <a href="mailto:hello@wanderandwonder.com" class="magnetic-button inline-flex items-center gap-4 group">
+          <span class="w-12 h-12 rounded-full border border-ivory/20 flex items-center justify-center group-hover:bg-sunset group-hover:border-sunset transition-all duration-500">
+            <svg class="w-4 h-4 text-ivory -rotate-45 group-hover:rotate-0 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+          </span>
+          <span class="font-sans text-sm uppercase tracking-widest text-ivory/70 group-hover:text-ivory transition-colors duration-500">
+            hello@wanderandwonder.com
           </span>
         </a>
-        <p class="font-sans text-sm text-ivory/50 leading-relaxed max-w-xs">
-          Colecciona historias que contarás para siempre.
-        </p>
-
-        <!-- Social Links -->
-        <div class="flex items-center gap-4 mt-6">
-          {socialLinks.map((social) => (
-            <a
-              href={social.href}
-              class="w-9 h-9 flex items-center justify-center rounded-full border border-ivory/10 text-ivory/40 hover:text-ivory hover:border-ivory/30 transition-all duration-300"
-              aria-label={social.label}
-            >
-              <span class="text-xs font-sans font-medium uppercase">
-                {social.icon.charAt(0).toUpperCase()}
-              </span>
-            </a>
-          ))}
-        </div>
       </div>
 
-      <!-- Navigation Columns -->
-      {footerColumns.map((column) => (
+      <div class="flex gap-16 md:gap-24">
         <div>
-          <h3 class="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-sunset mb-5">
-            {column.title}
-          </h3>
-          <ul class="space-y-3">
-            {column.links.map((link) => (
+          <h3 class="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-sunset mb-6">Explorar</h3>
+          <ul class="space-y-4">
+            <li><a href="#experiences" class="font-sans text-lg text-ivory/50 hover:text-ivory hover:italic transition-all duration-300">Experiencias</a></li>
+            <li><a href="#destinations" class="font-sans text-lg text-ivory/50 hover:text-ivory hover:italic transition-all duration-300">Destinos</a></li>
+            <li><a href="#stories" class="font-sans text-lg text-ivory/50 hover:text-ivory hover:italic transition-all duration-300">Historias</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-sunset mb-6">Social</h3>
+          <ul class="space-y-4">
+            {socialLinks.map((social) => (
               <li>
-                <a
-                  href={link.href}
-                  class="font-sans text-sm text-ivory/50 hover:text-ivory transition-colors duration-300"
-                >
-                  {link.label}
+                <a href={social.href} class="font-sans text-lg text-ivory/50 hover:text-ivory hover:italic transition-all duration-300">
+                  {social.label}
                 </a>
               </li>
             ))}
           </ul>
         </div>
-      ))}
+      </div>
     </div>
 
-    <!-- Bottom section -->
-    <div class="flex flex-col md:flex-row items-center justify-between gap-4 pt-8">
-      <p class="font-sans text-xs text-ivory/30">
-        &copy; {currentYear} {SITE_CONFIG.name}. Todos los derechos reservados.
-      </p>
-      <p class="font-sans text-xs text-ivory/20">
-        Un proyecto de portafolio creativo.
-      </p>
+    <!-- Massive Typography Bottom -->
+    <div class="mt-32 w-full flex flex-col items-center">
+      <h1 class="font-serif uppercase tracking-tighter text-center text-ivory w-full leading-[0.75] text-[15vw] opacity-90 select-none">
+        WANDER<span class="text-sunset">&</span>WONDER
+      </h1>
+      
+      <div class="w-full flex flex-col md:flex-row items-center justify-between gap-4 pt-12 border-t border-ivory/10 mt-8">
+        <p class="font-sans text-[10px] md:text-xs text-ivory/30 tracking-widest uppercase">
+          &copy; {currentYear} {SITE_CONFIG.name}. Todos los derechos reservados.
+        </p>
+        <p class="font-sans text-[10px] md:text-xs text-ivory/30 tracking-widest uppercase">
+          Diseñado con brutal honestidad.
+        </p>
+      </div>
     </div>
+
   </Container>
 </footer>

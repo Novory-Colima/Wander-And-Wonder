@@ -13,9 +13,10 @@ const { label, href, variant = 'desktop' } = Astro.props;
   class:list={[
     'nav-item relative inline-block font-sans font-medium transition-all',
     variant === 'mobile'
-      ? 'text-2xl text-ivory/90 hover:text-ivory py-2'
-      : 'text-sm text-ivory/75 hover:text-ivory px-3 py-2 tracking-wide uppercase',
+      ? 'text-2xl py-2'
+      : 'text-sm px-3 py-2 tracking-wide uppercase',
   ]}
+  style="color: #F8F6F2; text-shadow: 0 2px 4px rgba(0,0,0,0.4);"
 >
   <span class="relative z-10">{label}</span>
   <span class="nav-item-line" aria-hidden="true"></span>

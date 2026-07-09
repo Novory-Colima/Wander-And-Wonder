@@ -27,31 +27,32 @@ const journeyMoments = [
 ];
 ---
 
-<SectionContainer id="journey" padding="xl" class="bg-ivory">
-  <Container class="max-w-5xl">
-    <div class="space-y-32 md:space-y-48">
+<SectionContainer id="journey" padding="none" class="bg-ivory overflow-hidden">
+  <div class="journey-pin-container h-screen w-full flex items-center">
+    <!-- El track será mucho más ancho que la pantalla -->
+    <div class="journey-track flex items-center gap-[15vw] px-[15vw] h-full w-max">
       {journeyMoments.map((moment, index) => {
         const isEven = index % 2 === 0;
         
         return (
-          <div class={`flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-12 md:gap-20`}>
+          <div class={`journey-moment w-[85vw] md:w-[60vw] flex-shrink-0 flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-12 md:gap-20`}>
             
             {/* Image Column */}
-            <div class="w-full md:w-1/2 overflow-hidden">
+            <div class="journey-image-wrapper w-full md:w-3/5 overflow-hidden relative">
               <EditorialImage 
                 src={moment.image} 
                 alt={moment.alt}
-                aspectRatio={index === 1 ? 'square' : 'portrait'}
+                aspectRatio={index === 1 ? 'square' : 'landscape'}
                 class="rounded-sm w-full"
               />
             </div>
             
             {/* Text Column */}
-            <div class="w-full md:w-1/2 flex flex-col justify-center">
+            <div class="journey-text-wrapper w-full md:w-2/5 flex flex-col justify-center">
               <SectionTitle as="h3" class="text-midnight mb-6">
                 {moment.title}
               </SectionTitle>
-              <p class="font-sans text-base md:text-lg text-cloud-dark leading-relaxed max-w-md">
+              <p class="font-sans text-base md:text-lg text-cloud-dark leading-relaxed">
                 {moment.text}
               </p>
             </div>
@@ -60,7 +61,7 @@ const journeyMoments = [
         );
       })}
     </div>
-  </Container>
+  </div>
 </SectionContainer>
 
 <script>

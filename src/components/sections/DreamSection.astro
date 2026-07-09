@@ -36,29 +36,50 @@ const smallImages = [
     </div>
 
     <!-- Small moments (Editorial blocks, not cards) -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 max-w-5xl mx-auto">
-      {smallImages.map((img, index) => (
-        <div class={`flex flex-col ${index === 1 ? 'md:mt-16' : ''}`}>
-          <EditorialImage 
-            src={img.src} 
-            alt={img.alt} 
-            aspectRatio="square" 
-            class="mb-6 rounded-sm w-full max-w-[280px] mx-auto md:max-w-full"
-          />
-          <div class="px-4 text-center md:text-left">
-            <span class="font-sans text-xs font-semibold uppercase tracking-widest text-sunset block mb-2">
-              {['Preparar', 'Imaginar', 'Empacar'][index]}
-            </span>
-            <p class="font-serif text-xl italic text-midnight/80">
-              {[
-                'El mapa sobre la mesa marcando lugares que aún no puedes pronunciar.',
-                'La lista de canciones perfecta para mirar por la ventana del tren.',
-                'Llevar solo lo necesario para moverte con libertad.'
-              ][index]}
-            </p>
-          </div>
+    <div class="dream-moments-container flex flex-col md:flex-row flex-wrap justify-between items-start max-w-6xl mx-auto mt-24 md:mt-32 gap-y-16 md:gap-y-0 relative z-10">
+      
+      <!-- Preparar -->
+      <div class="dream-moment w-full md:w-[32%] flex flex-col md:mt-0" data-speed="0.9">
+        <EditorialImage 
+          src={smallImages[0].src} 
+          alt={smallImages[0].alt} 
+          aspectRatio="portrait" 
+          class="mb-6 rounded-sm w-full max-w-[280px] mx-auto md:max-w-full shadow-lg"
+        />
+        <div class="px-4 text-center md:text-left">
+          <span class="font-sans text-xs font-semibold uppercase tracking-widest text-sunset block mb-2">Preparar</span>
+          <p class="font-serif text-xl italic text-midnight/80">El mapa sobre la mesa marcando lugares que aún no puedes pronunciar.</p>
         </div>
-      ))}
+      </div>
+
+      <!-- Imaginar -->
+      <div class="dream-moment w-full md:w-[42%] flex flex-col md:mt-[15%] md:ml-auto" data-speed="1.15">
+        <EditorialImage 
+          src={smallImages[1].src} 
+          alt={smallImages[1].alt} 
+          aspectRatio="square" 
+          class="mb-6 rounded-sm w-full max-w-[320px] mx-auto md:max-w-full shadow-lg"
+        />
+        <div class="px-4 text-center md:text-left">
+          <span class="font-sans text-xs font-semibold uppercase tracking-widest text-sunset block mb-2">Imaginar</span>
+          <p class="font-serif text-xl italic text-midnight/80">La lista de canciones perfecta para mirar por la ventana del tren.</p>
+        </div>
+      </div>
+
+      <!-- Empacar -->
+      <div class="dream-moment w-full md:w-[35%] flex flex-col md:-mt-[5%] md:ml-[5%] relative z-20" data-speed="0.8">
+        <EditorialImage 
+          src={smallImages[2].src} 
+          alt={smallImages[2].alt} 
+          aspectRatio="video" 
+          class="mb-6 rounded-sm w-full max-w-[280px] mx-auto md:max-w-full shadow-lg"
+        />
+        <div class="px-4 text-center md:text-left">
+          <span class="font-sans text-xs font-semibold uppercase tracking-widest text-sunset block mb-2">Empacar</span>
+          <p class="font-serif text-xl italic text-midnight/80">Llevar solo lo necesario para moverte con libertad.</p>
+        </div>
+      </div>
+
     </div>
   </Container>
 </SectionContainer>

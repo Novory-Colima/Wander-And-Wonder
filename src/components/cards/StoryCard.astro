@@ -21,7 +21,6 @@ const { story, class: className = '', dark = true } = Astro.props;
     <img
       src={story.image}
       alt={story.alt}
-      loading="lazy"
       class="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
     />
     <div class="absolute inset-0 bg-gradient-to-t from-midnight-dark/80 via-midnight/20 to-transparent pointer-events-none"></div>

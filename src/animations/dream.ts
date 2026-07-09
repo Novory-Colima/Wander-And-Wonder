@@ -8,7 +8,7 @@ export function initDreamAnimation() {
   const mainImage = section.querySelector('.w-full > figure > div > img');
   const title = section.querySelector('h2');
   const paragraph = section.querySelector('h2 + p');
-  const smallMoments = section.querySelectorAll('.grid > div');
+  const smallMoments = section.querySelectorAll('.dream-moment');
 
   const isReduced = prefersReducedMotion();
 
@@ -43,8 +43,9 @@ export function initDreamAnimation() {
     });
   }
 
-  // 3. Staggered reveal for the small moments
+  // 3. Staggered reveal for the small moments + Individual Scroll Parallax
   if (smallMoments.length > 0) {
+    // Initial Reveal Fade
     gsap.set(smallMoments, { opacity: 0, y: isReduced ? 0 : 40 });
     
     gsap.to(smallMoments, {
@@ -53,7 +54,26 @@ export function initDreamAnimation() {
       duration: ANIMATION_CONSTANTS.duration.slow,
       ease: ANIMATION_CONSTANTS.ease.smooth,
       stagger: 0.25, // More pause between images
-      scrollTrigger: createScrollTrigger(smallMoments[0], { start: 'top 85%' }) // Trigger later
+      scrollTrigger: createScrollTrigger(smallMoments[0], { start: 'top 85%' }) 
     });
+
+    // Parallax on Scroll based on data-speed
+    if (!isReduced) {
+      smallMoments.forEach((moment) => {
+        const speed = parseFloat((moment as HTMLElement).dataset.speed || '1');
+        const movement = (1 - speed) * 200; // The difference from base speed creates the offset
+
+        gsap.to(moment, {
+          y: movement,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: true,
+          }
+        });
+      });
+    }
   }
 }

@@ -29,14 +29,12 @@ const aspectClasses = {
 ---
 
 <figure class:list={['group relative', className]}>
-  <div class="overflow-hidden bg-cloud/10">
+  <div class="editorial-image-wrapper overflow-hidden bg-cloud/10 w-full h-full">
     <img
       src={src}
       alt={alt}
-      loading="lazy"
-      decoding="async"
       class:list={[
-        'w-full h-full transition-transform duration-[2s] ease-out group-hover:scale-105',
+        'w-[110%] h-[110%] max-w-none transition-transform duration-[2s] ease-out group-hover:scale-110',
         aspectClasses[aspectRatio],
       ]}
     />
