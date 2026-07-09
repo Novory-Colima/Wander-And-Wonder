@@ -1,0 +1,44 @@
+---
+interface Props {
+  label: string;
+  href: string;
+  variant?: 'desktop' | 'mobile';
+}
+
+const { label, href, variant = 'desktop' } = Astro.props;
+---
+
+<a
+  href={href}
+  class:list={[
+    'nav-item relative inline-block font-sans font-medium transition-all',
+    variant === 'mobile'
+      ? 'text-2xl text-ivory/90 hover:text-ivory py-2'
+      : 'text-sm text-ivory/75 hover:text-ivory px-3 py-2 tracking-wide uppercase',
+  ]}
+>
+  <span class="relative z-10">{label}</span>
+  <span class="nav-item-line" aria-hidden="true"></span>
+</a>
+
+<style>
+  .nav-item {
+    overflow: hidden;
+  }
+
+  .nav-item-line {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 1px;
+    background: var(--color-sunset);
+    transform: translateX(-50%);
+    transition: width var(--duration-300) var(--ease-smooth);
+  }
+
+  .nav-item:hover .nav-item-line,
+  .nav-item:focus-visible .nav-item-line {
+    width: 60%;
+  }
+</style>

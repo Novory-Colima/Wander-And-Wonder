@@ -1,0 +1,71 @@
+---
+import SectionContainer from '@components/layout/SectionContainer.astro';
+import Container from '@components/common/Container.astro';
+import DisplayTitle from '@components/common/DisplayTitle.astro';
+import Quote from '@components/common/Quote.astro';
+import EditorialImage from '@components/blocks/EditorialImage.astro';
+
+const memoryImages = [
+  'https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?q=80&w=1470&auto=format&fit=crop', // Nostalgic sunset
+  'https://images.unsplash.com/photo-1499856871958-5b9627545d1a?q=80&w=1420&auto=format&fit=crop', // Paris quiet street
+  'https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?q=80&w=1470&auto=format&fit=crop', // Forest mist
+];
+---
+
+<SectionContainer id="memories" padding="xl" class="bg-midnight" dark>
+  <Container class="max-w-4xl mx-auto text-center px-4">
+    <!-- Huge image -->
+    <div class="mb-20 md:mb-32">
+      <EditorialImage 
+        src={memoryImages[0]}
+        alt="Atardecer nostálgico sobre el agua"
+        aspectRatio="landscape"
+        class="rounded-sm opacity-90"
+        dark
+      />
+    </div>
+
+    <!-- Phrase -->
+    <div class="mb-20 md:mb-32">
+      <Quote author="Grecia, 2022" class="text-left md:text-center md:border-l-0" dark>
+        Volvería únicamente para escuchar otra vez aquel atardecer.
+      </Quote>
+    </div>
+
+    <!-- Smaller layout -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 mb-20 md:mb-32">
+      <div class="mt-0 md:mt-24">
+        <EditorialImage 
+          src={memoryImages[1]}
+          alt="Callejón tranquilo al amanecer"
+          aspectRatio="portrait"
+          class="rounded-sm opacity-90"
+          dark
+        />
+      </div>
+      <div class="flex items-center">
+        <Quote author="París, 2024" dark>
+          No recuerdo el nombre del restaurante. Pero sí recuerdo las risas.
+        </Quote>
+      </div>
+    </div>
+
+    <!-- Final large image -->
+    <div class="mb-20 md:mb-32">
+      <EditorialImage 
+        src={memoryImages[2]}
+        alt="Bosque envuelto en niebla matutina"
+        aspectRatio="video"
+        class="rounded-sm opacity-80"
+        dark
+      />
+    </div>
+
+    <!-- Final phrase -->
+    <div>
+      <DisplayTitle as="h2" class="text-ivory">
+        El viaje terminó.<br />La historia no.
+      </DisplayTitle>
+    </div>
+  </Container>
+</SectionContainer>

@@ -1,0 +1,108 @@
+---
+import ScrollIndicator from '@components/navigation/ScrollIndicator.astro';
+import DisplayTitle from '@components/common/DisplayTitle.astro';
+import Lead from '@components/common/Lead.astro';
+
+// High quality editorial image for the hero background
+const heroBgUrl = 'https://images.unsplash.com/photo-1682687982501-1e58f8147228?q=80&w=2070&auto=format&fit=crop';
+---
+
+<section
+  id="hero"
+  class="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
+  aria-label="Bienvenida"
+>
+  <!-- Background Image with Overlay -->
+  <div class="absolute inset-0 z-0 bg-midnight">
+    <img
+      src={heroBgUrl}
+      alt="Paisaje montañoso majestuoso"
+      class="w-full h-full object-cover opacity-60 hero-bg-image"
+    />
+    <!-- Gradient overlay for depth and text legibility -->
+    <div class="absolute inset-0 bg-gradient-to-b from-midnight-dark/60 via-midnight/30 to-midnight z-10"></div>
+  </div>
+
+  <!-- Content -->
+  <div class="relative z-20 text-center px-6 max-w-5xl mx-auto w-full flex flex-col items-center">
+    <!-- Brand Name -->
+    <div class="mb-6 opacity-0 hero-title text-ivory">
+      <DisplayTitle as="h1" class="text-ivory">
+        Wander<span class="text-sunset">&</span>Wonder
+      </DisplayTitle>
+    </div>
+
+    <!-- Primary phrase -->
+    <div class="mb-4 opacity-0 hero-subtitle">
+      <Lead dark>
+        Collect stories you'll tell forever.
+      </Lead>
+    </div>
+
+    <!-- Secondary phrase -->
+    <p class="font-sans text-sm md:text-base text-ivory/60 tracking-[0.2em] uppercase opacity-0 hero-tagline mt-2">
+      Colecciona historias que contarás para siempre.
+    </p>
+  </div>
+
+  <!-- Scroll Indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 opacity-0 hero-scroll">
+    <ScrollIndicator />
+  </div>
+</section>
+
+<style>
+  .hero-bg-image {
+    animation: slowZoom 20s ease-out forwards;
+  }
+
+  @keyframes slowZoom {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.1);
+    }
+  }
+
+  /* Initial reveal animations (CSS only — GSAP in Phase 3) */
+  .hero-title {
+    animation: heroReveal 1.2s var(--ease-decelerate) 0.3s forwards;
+  }
+
+  .hero-subtitle {
+    animation: heroReveal 1.2s var(--ease-decelerate) 0.6s forwards;
+  }
+
+  .hero-tagline {
+    animation: heroReveal 1s var(--ease-decelerate) 0.9s forwards;
+  }
+
+  .hero-scroll {
+    animation: heroReveal 1s var(--ease-decelerate) 1.5s forwards;
+  }
+
+  @keyframes heroReveal {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-bg-image {
+      animation: none;
+    }
+    .hero-title,
+    .hero-subtitle,
+    .hero-tagline,
+    .hero-scroll {
+      opacity: 1;
+      animation: none;
+    }
+  }
+</style>

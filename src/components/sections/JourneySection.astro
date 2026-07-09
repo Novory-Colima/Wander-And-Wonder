@@ -1,0 +1,64 @@
+---
+import SectionContainer from '@components/layout/SectionContainer.astro';
+import Container from '@components/common/Container.astro';
+import SectionTitle from '@components/common/SectionTitle.astro';
+import EditorialImage from '@components/blocks/EditorialImage.astro';
+
+// Sourcing high-quality journey moments
+const journeyMoments = [
+  {
+    image: 'https://images.unsplash.com/photo-1513519107127-1cb339fb73ce?q=80&w=1471&auto=format&fit=crop', // Train journey
+    alt: 'Hombre mirando por la ventana de un tren en movimiento',
+    title: 'El ritmo del camino',
+    text: 'A veces el destino no importa tanto como lo que pasa mientras intentas llegar a él. Ese momento en el que el tren cruza un paisaje que parece irreal y te das cuenta de que estás exactamente donde debías estar.'
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1534008897995-27a23e859048?q=80&w=1470&auto=format&fit=crop', // Local cafe/people
+    alt: 'Café local lleno de gente charlando',
+    title: 'Idiomas sin palabras',
+    text: 'La conexión sucede cuando compartes una sonrisa con alguien que no habla tu idioma. Cuando descubres que un café pequeño en una calle perdida sabe a hogar, aunque estés a diez mil kilómetros de casa.'
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1470&auto=format&fit=crop', // Big landscape
+    alt: 'Cordillera de montañas al amanecer',
+    title: 'Sentirse pequeño',
+    text: 'Esa sensación indescriptible al pararte frente a una montaña inmensa, un océano salvaje o un desierto interminable. Entender lo pequeños que somos es, paradójicamente, lo que nos hace sentir más vivos.'
+  }
+];
+---
+
+<SectionContainer id="journey" padding="xl" class="bg-ivory">
+  <Container class="max-w-5xl">
+    <div class="space-y-32 md:space-y-48">
+      {journeyMoments.map((moment, index) => {
+        const isEven = index % 2 === 0;
+        
+        return (
+          <div class={`flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-12 md:gap-20`}>
+            
+            {/* Image Column */}
+            <div class="w-full md:w-1/2">
+              <EditorialImage 
+                src={moment.image} 
+                alt={moment.alt}
+                aspectRatio={index === 1 ? 'square' : 'portrait'}
+                class="rounded-sm w-full"
+              />
+            </div>
+            
+            {/* Text Column */}
+            <div class="w-full md:w-1/2 flex flex-col justify-center">
+              <SectionTitle as="h3" class="text-midnight mb-6">
+                {moment.title}
+              </SectionTitle>
+              <p class="font-sans text-base md:text-lg text-cloud-dark leading-relaxed max-w-md">
+                {moment.text}
+              </p>
+            </div>
+
+          </div>
+        );
+      })}
+    </div>
+  </Container>
+</SectionContainer>

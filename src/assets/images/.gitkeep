@@ -1,0 +1,6 @@
+/**
+ * Assets directory.
+ * Contains immutable resources: images, videos, fonts, icons.
+ * Organized by context: hero/, stories/, destinations/, experiences/, shared/
+ */
+export {};

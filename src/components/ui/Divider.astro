@@ -1,0 +1,18 @@
+---
+interface Props {
+  variant?: 'subtle' | 'accent';
+  class?: string;
+}
+
+const { variant = 'subtle', class: className = '' } = Astro.props;
+---
+
+<hr
+  class:list={[
+    'border-0 h-px',
+    variant === 'subtle' ? 'bg-cloud/20' : 'bg-sunset/30',
+    'my-8 md:my-12',
+    className,
+  ]}
+  aria-hidden="true"
+/>

@@ -1,0 +1,18 @@
+---
+interface Props {
+  text: string;
+  class?: string;
+}
+
+const { text, class: className = '' } = Astro.props;
+---
+
+<span
+  class:list={[
+    'inline-block font-sans text-xs font-semibold uppercase tracking-[0.2em]',
+    'text-sunset',
+    className,
+  ]}
+>
+  {text}
+</span>

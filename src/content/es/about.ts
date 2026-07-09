@@ -1,0 +1,49 @@
+import type { Statistic } from '@/types';
+
+export const aboutData = {
+  philosophy: 'Nuestra filosofía',
+  title: 'Cada itinerario comienza escuchando.',
+  paragraphs: [
+    'Creemos que un viaje no debe sentirse como una lista de tareas pendientes. No vendemos destinos; diseñamos momentos.',
+    'Nuestro enfoque se basa en entender qué te emociona, qué te inspira y qué ritmo prefieres. A partir de ahí, construimos una experiencia que se siente exclusivamente tuya.'
+  ],
+  image: 'https://images.unsplash.com/photo-1503220317375-aaad61436b1b?q=80&w=1470&auto=format&fit=crop',
+  alt: 'Una persona caminando por un paisaje de montaña nevado'
+};
+
+export const statistics: Statistic[] = [
+  {
+    value: '15+',
+    label: 'Años viajando',
+    description: 'Explorando el mundo para ti.'
+  },
+  {
+    value: '40+',
+    label: 'Países conocidos',
+    description: 'De primera mano, sin intermediarios.'
+  },
+  {
+    value: '100%',
+    label: 'Diseño a medida',
+    description: 'Ningún viaje es igual a otro.'
+  }
+];
+
+export const philosophyReasons = [
+  {
+    title: 'Experiencias Personalizadas',
+    description: 'Ningún viajero es igual. Por eso, diseñamos cada viaje desde cero, asegurándonos de que cada día refleje tus intereses y tu ritmo ideal.'
+  },
+  {
+    title: 'Atención al Detalle',
+    description: 'Desde el asiento del tren hasta el restaurante escondido, cuidamos cada elemento para que tú solo tengas que preocuparte por disfrutar.'
+  },
+  {
+    title: 'Planeación Experta',
+    description: 'Conocemos los destinos de primera mano. Nuestro conocimiento nos permite evitar las multitudes y descubrir la esencia real de cada lugar.'
+  },
+  {
+    title: 'Acompañamiento Constante',
+    description: 'Estamos contigo antes, durante y después de tu viaje. Un soporte discreto pero siempre disponible cuando lo necesites.'
+  }
+];

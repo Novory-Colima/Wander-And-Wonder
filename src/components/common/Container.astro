@@ -1,0 +1,18 @@
+---
+interface Props {
+  class?: string;
+  width?: 'max' | 'editorial' | 'reading';
+}
+
+const { class: className = '', width = 'max' } = Astro.props;
+
+const widthMap = {
+  max: 'container-max',
+  editorial: 'container-editorial',
+  reading: 'container-reading',
+};
+---
+
+<div class:list={[widthMap[width], className]}>
+  <slot />
+</div>

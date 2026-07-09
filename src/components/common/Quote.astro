@@ -1,0 +1,36 @@
+---
+interface Props {
+  author?: string;
+  class?: string;
+  dark?: boolean;
+}
+
+const { author, class: className = '', dark = false } = Astro.props;
+---
+
+<blockquote
+  class:list={[
+    'border-l-2 pl-6 md:pl-8 py-2',
+    dark ? 'border-sunset/60' : 'border-sunset/40',
+    className,
+  ]}
+>
+  <p
+    class:list={[
+      'font-serif text-2xl md:text-3xl italic leading-relaxed text-balance',
+      dark ? 'text-ivory' : 'text-midnight/90',
+    ]}
+  >
+    <slot />
+  </p>
+  {author && (
+    <footer
+      class:list={[
+        'mt-4 font-sans text-sm tracking-wide uppercase',
+        dark ? 'text-cloud-light' : 'text-cloud',
+      ]}
+    >
+      — {author}
+    </footer>
+  )}
+</blockquote>

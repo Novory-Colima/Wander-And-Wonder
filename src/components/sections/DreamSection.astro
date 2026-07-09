@@ -1,0 +1,64 @@
+---
+import SectionContainer from '@components/layout/SectionContainer.astro';
+import Container from '@components/common/Container.astro';
+import DisplayTitle from '@components/common/DisplayTitle.astro';
+import EditorialImage from '@components/blocks/EditorialImage.astro';
+
+// High quality editorial images for Scene 3
+const mainImage = 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=1474&auto=format&fit=crop'; // Airport/Airplane window
+const smallImages = [
+  { src: 'https://images.unsplash.com/photo-1553531384-cc64ac80f931?q=80&w=1664&auto=format&fit=crop', alt: 'Pasaporte sobre mapa' },
+  { src: 'https://images.unsplash.com/photo-1516007204481-b5f7ee281315?q=80&w=1470&auto=format&fit=crop', alt: 'Cámara analógica y diario' },
+  { src: 'https://images.unsplash.com/photo-1512413914565-1d428fa6935c?q=80&w=1470&auto=format&fit=crop', alt: 'Maleta de cuero pequeña' }
+];
+---
+
+<SectionContainer id="dream" padding="xl" class="bg-ivory-warm">
+  <Container>
+    <!-- Huge Editorial Image -->
+    <div class="mb-16 md:mb-24 w-full">
+      <EditorialImage 
+        src={mainImage} 
+        alt="Mirando por la ventana del avión hacia las nubes" 
+        aspectRatio="video"
+        class="w-full rounded-sm"
+      />
+    </div>
+
+    <!-- Phrase -->
+    <div class="max-w-4xl mx-auto text-center mb-24 md:mb-32 px-4">
+      <DisplayTitle as="h2" class="text-midnight leading-[1.1]">
+        El viaje comienza mucho antes <br class="hidden md:block"/> de subir al avión.
+      </DisplayTitle>
+      <p class="mt-8 font-sans text-lg md:text-xl text-cloud-dark max-w-2xl mx-auto leading-relaxed">
+        Comienza en esa primera conversación. En el momento en que decides que es hora de irte. En la emoción de empacar lo indispensable y dejar espacio para lo inesperado.
+      </p>
+    </div>
+
+    <!-- Small moments (Editorial blocks, not cards) -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 max-w-5xl mx-auto">
+      {smallImages.map((img, index) => (
+        <div class={`flex flex-col ${index === 1 ? 'md:mt-16' : ''}`}>
+          <EditorialImage 
+            src={img.src} 
+            alt={img.alt} 
+            aspectRatio="square" 
+            class="mb-6 rounded-sm w-full max-w-[280px] mx-auto md:max-w-full"
+          />
+          <div class="px-4 text-center md:text-left">
+            <span class="font-sans text-xs font-semibold uppercase tracking-widest text-sunset block mb-2">
+              {['Preparar', 'Imaginar', 'Empacar'][index]}
+            </span>
+            <p class="font-serif text-xl italic text-midnight/80">
+              {[
+                'El mapa sobre la mesa marcando lugares que aún no puedes pronunciar.',
+                'La lista de canciones perfecta para mirar por la ventana del tren.',
+                'Llevar solo lo necesario para moverte con libertad.'
+              ][index]}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </Container>
+</SectionContainer>

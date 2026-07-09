@@ -1,0 +1,69 @@
+---
+import SectionContainer from '@components/layout/SectionContainer.astro';
+import Container from '@components/common/Container.astro';
+import SectionTitle from '@components/common/SectionTitle.astro';
+import Eyebrow from '@components/common/Eyebrow.astro';
+import BodyText from '@components/common/BodyText.astro';
+import FeatureCard from '@components/cards/FeatureCard.astro';
+import EditorialImage from '@components/blocks/EditorialImage.astro';
+import { aboutData, philosophyReasons, statistics } from '@/content/es/about';
+---
+
+<SectionContainer id="about" padding="xl" class="bg-ivory">
+  <Container class="max-w-6xl mx-auto px-4 md:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 mb-24">
+      
+      {/* Image Column */}
+      <div class="relative">
+        <EditorialImage 
+          src={aboutData.image}
+          alt={aboutData.alt}
+          aspectRatio="portrait"
+          class="rounded-sm w-full"
+        />
+        
+        {/* Statistics Floating Box */}
+        <div class="hidden md:flex absolute -bottom-10 -right-10 bg-midnight text-ivory p-8 rounded-2xl shadow-xl flex-col gap-6 w-72">
+          {statistics.map(stat => (
+            <div>
+              <div class="font-serif text-4xl mb-1">{stat.value}</div>
+              <div class="font-sans text-xs uppercase tracking-widest text-sunset mb-1">{stat.label}</div>
+              <div class="font-sans text-xs text-cloud-light/80">{stat.description}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+      
+      {/* Content Column */}
+      <div class="flex flex-col justify-center">
+        <Eyebrow text={aboutData.philosophy} class="mb-6" />
+        <SectionTitle as="h2" class="text-midnight mb-8 text-balance">
+          {aboutData.title}
+        </SectionTitle>
+        
+        <div class="space-y-6 mb-16">
+          {aboutData.paragraphs.map(p => (
+            <BodyText>{p}</BodyText>
+          ))}
+        </div>
+        
+        {/* Mobile Statistics */}
+        <div class="md:hidden grid grid-cols-2 gap-8 mb-16">
+          {statistics.map(stat => (
+            <div>
+              <div class="font-serif text-3xl mb-1">{stat.value}</div>
+              <div class="font-sans text-[10px] uppercase tracking-widest text-sunset mb-1">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Reasons Grid */}
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-12">
+          {philosophyReasons.map(reason => (
+            <FeatureCard title={reason.title} description={reason.description} />
+          ))}
+        </div>
+      </div>
+    </div>
+  </Container>
+</SectionContainer>

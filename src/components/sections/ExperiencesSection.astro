@@ -1,0 +1,24 @@
+---
+import SectionContainer from '@components/layout/SectionContainer.astro';
+import Container from '@components/common/Container.astro';
+import SectionHeader from '@components/blocks/SectionHeader.astro';
+import ExperienceCard from '@components/cards/ExperienceCard.astro';
+import { experiences } from '@/content/es/experiences';
+---
+
+<SectionContainer id="experiences" padding="xl" class="bg-ivory">
+  <Container class="max-w-7xl mx-auto px-4 md:px-8">
+    <SectionHeader
+      eyebrow="Experiencias"
+      title="No importa a dónde vayas, sino cómo decides vivirlo."
+      description="El mundo no es una lista de lugares para ver. Es una colección infinita de formas de sentir."
+      class="mb-20"
+    />
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+      {experiences.map((experience) => (
+        <ExperienceCard experience={experience} />
+      ))}
+    </div>
+  </Container>
+</SectionContainer>

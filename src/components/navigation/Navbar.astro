@@ -1,0 +1,109 @@
+---
+import NavLinks from './NavLinks.astro';
+import LanguageSelector from './LanguageSelector.astro';
+import CTAButton from '../ui/CTAButton.astro';
+import MobileMenuToggle from './MobileMenuToggle.astro';
+import { SITE_CONFIG, CTA_TEXT } from '@/config/site';
+---
+
+<header
+  id="navbar"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-[var(--ease-smooth)]"
+  role="banner"
+>
+  <nav
+    class="container-max flex items-center justify-between h-20"
+    aria-label="Navegación principal"
+  >
+    <!-- Logo -->
+    <a
+      href="#hero"
+      class="group flex items-center gap-3 relative z-10"
+      aria-label={`${SITE_CONFIG.name} — Volver al inicio`}
+    >
+      <span class="font-serif text-2xl font-semibold tracking-tight text-ivory transition-opacity duration-300 group-hover:opacity-80">
+        Wander<span class="text-sunset">&</span>Wonder
+      </span>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <div class="hidden lg:flex items-center gap-8">
+      <NavLinks />
+    </div>
+
+    <!-- Right Actions -->
+    <div class="hidden lg:flex items-center gap-6">
+      <LanguageSelector />
+      <CTAButton text={CTA_TEXT} href="#contact" size="sm" />
+    </div>
+
+    <!-- Mobile Menu Toggle -->
+    <div class="lg:hidden">
+      <MobileMenuToggle />
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div
+    id="mobile-menu"
+    class="lg:hidden fixed inset-0 top-20 bg-midnight/98 backdrop-blur-lg opacity-0 pointer-events-none transition-opacity duration-500 ease-[var(--ease-smooth)] z-40"
+    role="dialog"
+    aria-label="Menú de navegación"
+    aria-hidden="true"
+  >
+    <div class="container-max flex flex-col items-center justify-center h-full gap-8 py-12">
+      <NavLinks variant="mobile" />
+      <div class="mt-4">
+        <LanguageSelector />
+      </div>
+      <CTAButton text={CTA_TEXT} href="#contact" size="lg" />
+    </div>
+  </div>
+</header>
+
+<script>
+  function initNavbar(): void {
+    const navbar = document.getElementById('navbar');
+    if (!navbar) return;
+
+    let lastScrollY = 0;
+    let isScrolled = false;
+
+    function updateNavbar(): void {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > 80 && !isScrolled) {
+        isScrolled = true;
+        navbar?.classList.add('navbar-scrolled');
+      } else if (currentScrollY <= 80 && isScrolled) {
+        isScrolled = false;
+        navbar?.classList.remove('navbar-scrolled');
+      }
+
+      lastScrollY = currentScrollY;
+    }
+
+    window.addEventListener('scroll', updateNavbar, { passive: true });
+    updateNavbar();
+  }
+
+  document.addEventListener('astro:page-load', initNavbar);
+</script>
+
+<style>
+  #navbar {
+    background: transparent;
+  }
+
+  #navbar.navbar-scrolled {
+    background: rgba(13, 27, 42, 0.85);
+    backdrop-filter: blur(var(--blur-md));
+    -webkit-backdrop-filter: blur(var(--blur-md));
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  #mobile-menu.is-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+</style>

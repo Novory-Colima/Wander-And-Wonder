@@ -1,0 +1,24 @@
+---
+import SectionContainer from '@components/layout/SectionContainer.astro';
+import Container from '@components/common/Container.astro';
+import SectionHeader from '@components/blocks/SectionHeader.astro';
+import DestinationCard from '@components/cards/DestinationCard.astro';
+import { destinations } from '@/content/es/destinations';
+---
+
+<SectionContainer id="destinations" padding="xl" class="bg-ivory-warm">
+  <Container class="max-w-7xl mx-auto px-4 md:px-8">
+    <SectionHeader
+      eyebrow="Destinos"
+      title="Hay lugares que parecen esperar tu llegada."
+      description="Descubre paisajes que desafían la imaginación y culturas que transforman perspectivas."
+      class="mb-20 md:mb-32"
+    />
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-8 lg:gap-12">
+      {destinations.map((destination) => (
+        <DestinationCard destination={destination} />
+      ))}
+    </div>
+  </Container>
+</SectionContainer>

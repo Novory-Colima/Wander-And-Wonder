@@ -1,0 +1,18 @@
+---
+interface Props {
+  class?: string;
+  dark?: boolean;
+}
+
+const { class: className = '', dark = false } = Astro.props;
+---
+
+<figcaption
+  class:list={[
+    'font-sans text-xs md:text-sm text-balance max-w-md',
+    dark ? 'text-ivory/60' : 'text-midnight/60',
+    className,
+  ]}
+>
+  <slot />
+</figcaption>

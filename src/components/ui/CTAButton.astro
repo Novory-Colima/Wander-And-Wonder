@@ -1,0 +1,60 @@
+---
+interface Props {
+  text: string;
+  href?: string;
+  size?: 'sm' | 'md' | 'lg';
+  variant?: 'primary' | 'secondary';
+}
+
+const { text, href = '#contact', size = 'md', variant = 'primary' } = Astro.props;
+
+const sizeClasses = {
+  sm: 'px-5 py-2.5 text-xs',
+  md: 'px-7 py-3 text-sm',
+  lg: 'px-9 py-4 text-base',
+};
+
+const variantClasses = {
+  primary: 'bg-sunset/90 text-midnight hover:bg-sunset border border-sunset/20',
+  secondary: 'bg-transparent text-ivory border border-ivory/30 hover:border-ivory/60',
+};
+---
+
+<a
+  href={href}
+  class:list={[
+    'cta-button inline-flex items-center justify-center gap-2',
+    'font-sans font-medium tracking-wide uppercase',
+    'rounded-full transition-all duration-300 ease-[var(--ease-smooth)]',
+    'focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-ocean',
+    sizeClasses[size],
+    variantClasses[variant],
+  ]}
+  role="link"
+>
+  <span>{text}</span>
+  <svg
+    class="w-4 h-4 transition-transform duration-300 ease-[var(--ease-smooth)] cta-arrow"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+    aria-hidden="true"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      d="M17 8l4 4m0 0l-4 4m4-4H3"
+    />
+  </svg>
+</a>
+
+<style>
+  .cta-button:hover .cta-arrow {
+    transform: translateX(4px);
+  }
+
+  .cta-button:active {
+    transform: scale(0.98);
+  }
+</style>

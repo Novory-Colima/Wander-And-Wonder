@@ -1,0 +1,30 @@
+---
+import NavItem from './NavItem.astro';
+import { NAV_LINKS } from '@/config/site';
+
+interface Props {
+  variant?: 'desktop' | 'mobile';
+}
+
+const { variant = 'desktop' } = Astro.props;
+---
+
+<ul
+  class:list={[
+    'flex list-none',
+    variant === 'mobile'
+      ? 'flex-col items-center gap-6'
+      : 'flex-row items-center gap-1',
+  ]}
+  role="list"
+>
+  {NAV_LINKS.map((link) => (
+    <li>
+      <NavItem
+        label={link.label}
+        href={link.href}
+        variant={variant}
+      />
+    </li>
+  ))}
+</ul>

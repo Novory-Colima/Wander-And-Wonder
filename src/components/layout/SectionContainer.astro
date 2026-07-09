@@ -1,0 +1,37 @@
+---
+interface Props {
+  as?: 'section' | 'div' | 'article';
+  id?: string;
+  class?: string;
+  padding?: 'sm' | 'md' | 'lg' | 'xl' | 'none';
+  dark?: boolean;
+}
+
+const {
+  as: Tag = 'section',
+  id,
+  class: className = '',
+  padding = 'lg',
+  dark = false,
+} = Astro.props;
+
+const paddingMap = {
+  none: '',
+  sm: 'py-16 md:py-20',
+  md: 'py-20 md:py-28',
+  lg: 'py-24 md:py-32 lg:py-40',
+  xl: 'py-32 md:py-40 lg:py-48',
+};
+---
+
+<Tag
+  id={id}
+  class:list={[
+    'relative w-full overflow-hidden',
+    paddingMap[padding],
+    dark ? 'dark-section' : '',
+    className,
+  ]}
+>
+  <slot />
+</Tag>

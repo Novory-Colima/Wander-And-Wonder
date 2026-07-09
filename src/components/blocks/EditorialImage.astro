@@ -1,0 +1,49 @@
+---
+import Caption from '@components/common/Caption.astro';
+
+interface Props {
+  src: string;
+  alt: string;
+  caption?: string;
+  aspectRatio?: 'auto' | 'square' | 'video' | 'portrait' | 'landscape';
+  class?: string;
+  dark?: boolean;
+}
+
+const {
+  src,
+  alt,
+  caption,
+  aspectRatio = 'auto',
+  class: className = '',
+  dark = false,
+} = Astro.props;
+
+const aspectClasses = {
+  auto: '',
+  square: 'aspect-square object-cover',
+  video: 'aspect-video object-cover',
+  portrait: 'aspect-[3/4] object-cover',
+  landscape: 'aspect-[4/3] object-cover',
+};
+---
+
+<figure class:list={['group relative', className]}>
+  <div class="overflow-hidden bg-cloud/10">
+    <img
+      src={src}
+      alt={alt}
+      loading="lazy"
+      decoding="async"
+      class:list={[
+        'w-full h-full transition-transform duration-[2s] ease-out group-hover:scale-105',
+        aspectClasses[aspectRatio],
+      ]}
+    />
+  </div>
+  {caption && (
+    <Caption dark={dark} class="mt-4">
+      {caption}
+    </Caption>
+  )}
+</figure>

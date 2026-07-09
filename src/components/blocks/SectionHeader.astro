@@ -1,0 +1,51 @@
+---
+import Eyebrow from '@components/common/Eyebrow.astro';
+import SectionTitle from '@components/common/SectionTitle.astro';
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  as?: 'h2' | 'h3' | 'h4';
+  align?: 'left' | 'center';
+  dark?: boolean;
+}
+
+const {
+  eyebrow,
+  title,
+  description,
+  as = 'h2',
+  align = 'center',
+  dark = false,
+} = Astro.props;
+---
+
+<div
+  class:list={[
+    'section-header max-w-3xl',
+    align === 'center' ? 'mx-auto text-center' : 'text-left',
+  ]}
+>
+  {eyebrow && (
+    <div class="mb-4 md:mb-6">
+      <Eyebrow text={eyebrow} />
+    </div>
+  )}
+
+  <SectionTitle as={as} class={dark ? 'text-ivory' : 'text-midnight'}>
+    {title}
+  </SectionTitle>
+
+  {description && (
+    <p
+      class:list={[
+        'mt-5 md:mt-6 text-base md:text-lg leading-relaxed max-w-2xl',
+        align === 'center' ? 'mx-auto' : '',
+        dark ? 'text-cloud-light' : 'text-cloud-dark',
+      ]}
+    >
+      {description}
+    </p>
+  )}
+</div>

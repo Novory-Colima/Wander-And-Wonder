@@ -1,0 +1,79 @@
+---
+import SectionContainer from '@components/layout/SectionContainer.astro';
+import Container from '@components/common/Container.astro';
+import DisplayTitle from '@components/common/DisplayTitle.astro';
+import CTAButton from '@components/ui/CTAButton.astro';
+
+const bgImage = 'https://images.unsplash.com/photo-1472806426350-603610d85659?q=80&w=1470&auto=format&fit=crop'; // Desert/Journey end
+---
+
+<SectionContainer id="start" padding="none" class="relative min-h-[90vh] flex flex-col justify-end">
+  <!-- Background Image -->
+  <div class="absolute inset-0 z-0">
+    <img
+      src={bgImage}
+      alt="Paisaje vasto al atardecer"
+      loading="lazy"
+      class="w-full h-full object-cover"
+    />
+    <div class="absolute inset-0 bg-gradient-to-t from-midnight-dark via-midnight/80 to-transparent"></div>
+  </div>
+
+  <Container class="relative z-10 w-full max-w-4xl mx-auto px-4 pb-24 md:pb-32 text-center">
+    <div class="mb-12">
+      <DisplayTitle as="h2" class="text-ivory mb-6 text-balance">
+        La próxima historia es la tuya.
+      </DisplayTitle>
+      <p class="font-sans text-lg md:text-xl text-ivory/80 max-w-2xl mx-auto leading-relaxed text-balance">
+        Déjanos saber a dónde quieres ir. Nosotros nos encargamos de que el viaje sea inolvidable.
+      </p>
+    </div>
+
+    <!-- Minimalist Form -->
+    <form class="max-w-2xl mx-auto bg-ivory/5 backdrop-blur-md p-8 md:p-10 rounded-3xl border border-ivory/10 shadow-2xl">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 text-left">
+        
+        <!-- Input Group -->
+        <div class="flex flex-col">
+          <label for="name" class="font-sans text-xs uppercase tracking-widest text-cloud-light mb-2 ml-4">Nombre</label>
+          <input 
+            type="text" 
+            id="name" 
+            name="name" 
+            placeholder="¿Cómo te llamas?" 
+            required
+            class="bg-midnight/40 border border-ivory/20 rounded-full px-6 py-4 text-ivory placeholder-cloud-dark focus:outline-none focus:border-sunset focus:ring-1 focus:ring-sunset transition-all"
+          />
+        </div>
+
+        <div class="flex flex-col">
+          <label for="email" class="font-sans text-xs uppercase tracking-widest text-cloud-light mb-2 ml-4">Correo</label>
+          <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            placeholder="tu@correo.com" 
+            required
+            class="bg-midnight/40 border border-ivory/20 rounded-full px-6 py-4 text-ivory placeholder-cloud-dark focus:outline-none focus:border-sunset focus:ring-1 focus:ring-sunset transition-all"
+          />
+        </div>
+
+        <div class="flex flex-col md:col-span-2">
+          <label for="destination" class="font-sans text-xs uppercase tracking-widest text-cloud-light mb-2 ml-4">Destino en mente</label>
+          <input 
+            type="text" 
+            id="destination" 
+            name="destination" 
+            placeholder="Ese lugar que no puedes sacar de tu cabeza..." 
+            class="bg-midnight/40 border border-ivory/20 rounded-full px-6 py-4 text-ivory placeholder-cloud-dark focus:outline-none focus:border-sunset focus:ring-1 focus:ring-sunset transition-all"
+          />
+        </div>
+
+      </div>
+
+      <div class="flex justify-center">
+        <CTAButton text="Comienza tu viaje" href="#submit" size="lg" variant="primary" />
+      </div>
+    </form>
+  </Container>
+</SectionContainer>
