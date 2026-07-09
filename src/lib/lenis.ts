@@ -5,10 +5,12 @@
  * Per IMPLEMENTATION_02_ENGINEERING.md: exactly one instance, never inside components.
  */
 import Lenis from 'lenis';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 let lenisInstance: Lenis | undefined;
 
-/** Initialize Lenis smooth scroll */
+/** Initialize Lenis smooth scroll and synchronize with GSAP */
 export function initLenis(): Lenis {
   if (lenisInstance) return lenisInstance;
 
@@ -23,12 +25,16 @@ export function initLenis(): Lenis {
     infinite: false,
   });
 
-  function raf(time: number): void {
-    lenisInstance?.raf(time);
-    requestAnimationFrame(raf);
-  }
+  // Synchronize Lenis with GSAP ScrollTrigger
+  lenisInstance.on('scroll', ScrollTrigger.update);
 
-  requestAnimationFrame(raf);
+  // Add Lenis's requestAnimationFrame (raf) to GSAP's ticker
+  // This ensures they are perfectly synchronized
+  gsap.ticker.add((time) => {
+    lenisInstance?.raf(time * 1000);
+  });
+  
+  gsap.ticker.lagSmoothing(0);
 
   return lenisInstance;
 }
@@ -40,6 +46,11 @@ export function getLenis(): Lenis | undefined {
 
 /** Destroy the Lenis instance */
 export function destroyLenis(): void {
-  lenisInstance?.destroy();
-  lenisInstance = undefined;
+  if (lenisInstance) {
+    gsap.ticker.remove((time) => {
+      lenisInstance?.raf(time * 1000);
+    });
+    lenisInstance.destroy();
+    lenisInstance = undefined;
+  }
 }

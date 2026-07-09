@@ -77,3 +77,11 @@ const bgImage = 'https://images.unsplash.com/photo-1472806426350-603610d85659?q=
     </form>
   </Container>
 </SectionContainer>
+
+<script>
+  import { initCTAAnimation } from '@/animations/cta';
+
+  document.addEventListener('astro:page-load', () => {
+    initCTAAnimation();
+  });
+</script>

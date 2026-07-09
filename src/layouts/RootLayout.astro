@@ -3,6 +3,8 @@ import '../styles/global.css';
 import type { PageMeta } from '@/types';
 import { SITE_CONFIG } from '@/config/site';
 import { ClientRouter } from 'astro:transitions';
+import NoiseTexture from '@components/ui/NoiseTexture.astro';
+import CustomCursor from '@components/ui/CustomCursor.astro';
 
 interface Props {
   meta?: Partial<PageMeta>;
@@ -69,7 +71,9 @@ const canonicalUrl = meta?.canonicalUrl ?? Astro.url.href;
       })}
     />
   </head>
-  <body>
+  <body class="bg-ivory text-midnight antialiased selection:bg-sunset/20 selection:text-midnight overflow-x-hidden md:cursor-none">
+    <NoiseTexture />
+    <CustomCursor />
     <slot />
   </body>
 </html>

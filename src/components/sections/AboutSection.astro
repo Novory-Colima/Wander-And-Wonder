@@ -9,9 +9,9 @@ import EditorialImage from '@components/blocks/EditorialImage.astro';
 import { aboutData, philosophyReasons, statistics } from '@/content/es/about';
 ---
 
-<SectionContainer id="about" padding="xl" class="bg-ivory">
+<SectionContainer id="about" padding="none" class="bg-ivory pt-32 pb-32">
   <Container class="max-w-6xl mx-auto px-4 md:px-8">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 mb-24">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 lg:gap-32 mb-24">
       
       {/* Image Column */}
       <div class="relative">
@@ -67,3 +67,11 @@ import { aboutData, philosophyReasons, statistics } from '@/content/es/about';
     </div>
   </Container>
 </SectionContainer>
+
+<script>
+  import { initAboutAnimation } from '@/animations/about';
+
+  document.addEventListener('astro:page-load', () => {
+    initAboutAnimation();
+  });
+</script>

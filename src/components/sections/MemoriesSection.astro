@@ -69,3 +69,11 @@ const memoryImages = [
     </div>
   </Container>
 </SectionContainer>
+
+<script>
+  import { initMemoriesAnimation } from '@/animations/memories';
+
+  document.addEventListener('astro:page-load', () => {
+    initMemoriesAnimation();
+  });
+</script>

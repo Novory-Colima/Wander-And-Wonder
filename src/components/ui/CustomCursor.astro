@@ -1,0 +1,12 @@
+---
+---
+<div id="custom-cursor" class="fixed top-0 left-0 w-8 h-8 rounded-full border border-white pointer-events-none z-[100] mix-blend-difference opacity-0 hidden md:block"></div>
+<div id="custom-cursor-dot" class="fixed top-0 left-0 w-1 h-1 bg-white rounded-full pointer-events-none z-[100] opacity-0 hidden md:block"></div>
+
+<script>
+  import { initCursorAnimation } from '@/animations/cursor';
+
+  document.addEventListener('astro:page-load', () => {
+    initCursorAnimation();
+  });
+</script>

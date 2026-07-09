@@ -9,12 +9,12 @@ interface Props {
 const { experience, class: className = '' } = Astro.props;
 ---
 
-<article class:list={['group relative overflow-hidden rounded-2xl aspect-[4/5] md:aspect-square lg:aspect-[3/4]', className]}>
+<article class="group relative overflow-hidden rounded-sm cursor-pointer aspect-[4/5] w-full">
   <img
     src={experience.image}
     alt={experience.alt}
     loading="lazy"
-    class="absolute inset-0 w-full h-full object-cover transition-transform duration-[2s] ease-[var(--ease-smooth)] group-hover:scale-110"
+    class="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
   />
   <div class="absolute inset-0 bg-gradient-to-b from-midnight/10 via-transparent to-midnight-dark/90 opacity-80 group-hover:opacity-90 transition-opacity duration-500"></div>
 

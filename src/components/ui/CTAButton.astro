@@ -3,29 +3,32 @@ interface Props {
   text: string;
   href?: string;
   size?: 'sm' | 'md' | 'lg';
-  variant?: 'primary' | 'secondary';
+  variant?: 'primary' | 'secondary' | 'outline';
 }
 
 const { text, href = '#contact', size = 'md', variant = 'primary' } = Astro.props;
 
+const baseClasses = "inline-flex items-center justify-center font-sans uppercase tracking-[0.15em] transition-all duration-500 ease-out hover:scale-[1.02] active:scale-[0.98]";
+
 const sizeClasses = {
   sm: 'px-5 py-2.5 text-xs',
   md: 'px-7 py-3 text-sm',
-  lg: 'px-9 py-4 text-base',
+  lg: 'px-10 py-4 text-base',
 };
 
 const variantClasses = {
   primary: 'bg-sunset/90 text-midnight hover:bg-sunset border border-sunset/20',
   secondary: 'bg-transparent text-ivory border border-ivory/30 hover:border-ivory/60',
+  outline: 'bg-transparent text-ivory border border-ivory hover:bg-ivory hover:text-midnight',
 };
 ---
 
 <a
   href={href}
   class:list={[
-    'cta-button inline-flex items-center justify-center gap-2',
+    'cta-button magnetic inline-flex items-center justify-center gap-2',
     'font-sans font-medium tracking-wide uppercase',
-    'rounded-full transition-all duration-300 ease-[var(--ease-smooth)]',
+    'rounded-full transition-colors duration-300',
     'focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-ocean',
     sizeClasses[size],
     variantClasses[variant],
@@ -58,3 +61,39 @@ const variantClasses = {
     transform: scale(0.98);
   }
 </style>
+
+<script>
+  import { gsap } from '@/lib/gsap';
+
+  document.addEventListener('astro:page-load', () => {
+    // Only run on hover-capable devices
+    if (window.matchMedia('(hover: none)').matches) return;
+    
+    const magnets = document.querySelectorAll('.magnetic');
+    
+    magnets.forEach((magnet) => {
+      magnet.addEventListener('mousemove', (e: Event) => {
+        const mouseEvent = e as MouseEvent;
+        const boundingRect = (magnet as HTMLElement).getBoundingClientRect();
+        const relX = mouseEvent.clientX - boundingRect.left;
+        const relY = mouseEvent.clientY - boundingRect.top;
+        
+        gsap.to(magnet, {
+          x: (relX - boundingRect.width / 2) * 0.4,
+          y: (relY - boundingRect.height / 2) * 0.4,
+          ease: 'power2.out',
+          duration: 0.3
+        });
+      });
+      
+      magnet.addEventListener('mouseleave', () => {
+        gsap.to(magnet, {
+          x: 0,
+          y: 0,
+          ease: 'elastic.out(1, 0.3)',
+          duration: 1
+        });
+      });
+    });
+  });
+</script>

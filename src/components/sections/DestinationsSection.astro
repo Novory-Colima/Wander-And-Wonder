@@ -22,3 +22,11 @@ import { destinations } from '@/content/es/destinations';
     </div>
   </Container>
 </SectionContainer>
+
+<script>
+  import { initDestinationsAnimation } from '@/animations/destinations';
+
+  document.addEventListener('astro:page-load', () => {
+    initDestinationsAnimation();
+  });
+</script>

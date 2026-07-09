@@ -13,10 +13,10 @@ const smallImages = [
 ];
 ---
 
-<SectionContainer id="dream" padding="xl" class="bg-ivory-warm">
-  <Container>
+<SectionContainer id="dream" padding="none" class="bg-ivory-warm pt-32 pb-32">
+  <Container class="max-w-7xl mx-auto px-4 md:px-8">
     <!-- Huge Editorial Image -->
-    <div class="mb-16 md:mb-24 w-full">
+    <div class="mb-32 md:mb-48 w-full">
       <EditorialImage 
         src={mainImage} 
         alt="Mirando por la ventana del avión hacia las nubes" 
@@ -62,3 +62,11 @@ const smallImages = [
     </div>
   </Container>
 </SectionContainer>
+
+<script>
+  import { initDreamAnimation } from '@/animations/dream';
+
+  document.addEventListener('astro:page-load', () => {
+    initDreamAnimation();
+  });
+</script>

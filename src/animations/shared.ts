@@ -1,31 +1,49 @@
-/**
- * Shared animation utilities.
- *
- * Contains reusable animation patterns used across multiple scenes.
- * Per IMPLEMENTATION_02_ENGINEERING.md: CSS transitions for simple interactions,
- * GSAP reserved for timelines, sequencing, parallax, reveal effects.
- */
+import { gsap } from 'gsap';
 
-/** Check if reduced motion is preferred */
+export const ANIMATION_CONSTANTS = {
+  duration: {
+    base: 1.2,
+    fast: 0.6,
+    slow: 2.0,
+    verySlow: 4.0,
+  },
+  ease: {
+    smooth: 'power2.out',
+    decelerate: 'power3.out',
+    cinematic: 'expo.out',
+    linear: 'none',
+    clipPath: 'power4.inOut',
+  },
+  stagger: {
+    base: 0.1,
+    slow: 0.2,
+  },
+  parallax: {
+    subtle: 30,
+    base: 60,
+    large: 120,
+  }
+};
+
+/**
+ * Helper to check if reduced motion is requested
+ */
 export function prefersReducedMotion(): boolean {
   if (typeof window === 'undefined') return false;
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 }
 
-/** Standard animation durations (seconds) */
-export const DURATIONS = {
-  fast: 0.3,
-  normal: 0.6,
-  slow: 1.0,
-  reveal: 1.2,
-  cinematic: 1.8,
-} as const;
-
-/** Standard easing curves for GSAP */
-export const EASINGS = {
-  standard: 'power2.out',
-  smooth: 'power3.out',
-  emphasis: 'expo.out',
-  decelerate: 'sine.out',
-  entrance: 'power2.inOut',
-} as const;
+/**
+ * Creates a standard ScrollTrigger configuration
+ */
+export function createScrollTrigger(
+  trigger: string | Element,
+  options: ScrollTrigger.Vars = {}
+): ScrollTrigger.Vars {
+  return {
+    trigger,
+    start: 'top 80%',
+    toggleActions: 'play none none none',
+    ...options,
+  };
+}
