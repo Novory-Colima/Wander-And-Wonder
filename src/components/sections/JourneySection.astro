@@ -32,7 +32,7 @@ const journeyMoments = [
 ];
 ---
 
-<SectionContainer id="journey" padding="none" class="bg-ivory overflow-hidden">
+<SectionContainer id="journey" padding="none" class="bg-ivory overflow-hidden relative">
   <div class="journey-pin-container h-screen w-full flex items-center">
     <!-- El track será mucho más ancho que la pantalla -->
     <div class="journey-track flex items-center gap-[15vw] px-[15vw] h-full w-max">
@@ -43,12 +43,12 @@ const journeyMoments = [
           <div class={`journey-moment w-[85vw] md:w-[60vw] flex-shrink-0 flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-12 md:gap-20`}>
             
             {/* Image Column */}
-            <div class="journey-image-wrapper w-full md:w-3/5 overflow-hidden relative">
+            <div class="journey-image-wrapper w-full md:w-3/5 overflow-hidden relative rounded-sm">
               <EditorialImage 
                 src={moment.image} 
                 alt={moment.alt}
                 aspectRatio={index === 1 ? 'square' : 'landscape'}
-                class="rounded-sm w-full"
+                class="journey-image-inner w-full scale-125 origin-center"
               />
             </div>
             
@@ -66,6 +66,11 @@ const journeyMoments = [
         );
       })}
     </div>
+  </div>
+
+  <!-- Progress Track -->
+  <div class="absolute bottom-10 md:bottom-20 left-[10%] right-[10%] h-[1px] bg-midnight/10 z-10">
+    <div id="journey-progress" class="h-full w-0 bg-sunset origin-left"></div>
   </div>
 </SectionContainer>
 
