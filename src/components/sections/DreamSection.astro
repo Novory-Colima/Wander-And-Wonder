@@ -2,7 +2,6 @@
 import SectionContainer from '@components/layout/SectionContainer.astro';
 import Container from '@components/common/Container.astro';
 import DisplayTitle from '@components/common/DisplayTitle.astro';
-import EditorialImage from '@components/blocks/EditorialImage.astro';
 
 import dreamMainImg from '@/assets/images/dream-airplane-window.webp';
 import dreamPassportImg from '@/assets/images/dream-passport-map.webp';
@@ -10,83 +9,51 @@ import dreamCameraImg from '@/assets/images/dream-camera-journal.png';
 import dreamSuitcaseImg from '@/assets/images/dream-small-suitcase.png';
 
 // High quality editorial images for Scene 3
-const mainImage = dreamMainImg.src; // Airport/Airplane window
-const smallImages = [
-  { src: dreamPassportImg.src, alt: 'Pasaporte sobre mapa' },
-  { src: dreamCameraImg.src, alt: 'Cámara analógica y diario' },
-  { src: dreamSuitcaseImg.src, alt: 'Maleta de cuero pequeña' }
+const images = [
+  { src: dreamPassportImg.src, alt: 'Pasaporte sobre mapa', label: 'Preparar', rotate: '-6deg', align: 'left-10 top-1/4' },
+  { src: dreamCameraImg.src, alt: 'Cámara analógica y diario', label: 'Imaginar', rotate: '4deg', align: 'right-10 top-1/4' },
+  { src: dreamSuitcaseImg.src, alt: 'Maleta de cuero pequeña', label: 'Empacar', rotate: '-3deg', align: 'left-20 bottom-10' },
+  { src: dreamMainImg.src, alt: 'Mirando por la ventana del avión', label: 'Partir', rotate: '5deg', align: 'right-20 bottom-10' }
 ];
 ---
 
-<SectionContainer id="dream" padding="none" class="bg-ivory-warm pt-32 pb-32">
-  <Container class="max-w-7xl mx-auto px-4 md:px-8">
-    <!-- Huge Editorial Image -->
-    <div class="mb-32 md:mb-48 w-full">
-      <EditorialImage 
-        src={mainImage} 
-        alt="Mirando por la ventana del avión hacia las nubes" 
-        aspectRatio="video"
-        class="w-full rounded-sm"
-      />
-    </div>
-
-    <!-- Phrase -->
-    <div class="max-w-4xl mx-auto text-center mb-24 md:mb-32 px-4">
-      <DisplayTitle as="h2" class="text-midnight leading-[1.1]">
+<SectionContainer id="dream" padding="none" class="bg-midnight overflow-hidden relative">
+  <!-- Pinned Container -->
+  <div id="dream-pin-container" class="h-screen w-full relative flex items-center justify-center">
+    
+    <!-- Central Text -->
+    <div id="dream-text-center" class="max-w-4xl mx-auto text-center px-4 z-10 pointer-events-none relative">
+      <DisplayTitle as="h2" class="text-ivory leading-[1.1] text-4xl md:text-6xl lg:text-7xl">
         El viaje comienza mucho antes <br class="hidden md:block"/> de subir al avión.
       </DisplayTitle>
-      <p class="mt-8 font-sans text-lg md:text-xl text-cloud-dark max-w-2xl mx-auto leading-relaxed">
+      <p class="mt-8 font-sans text-lg md:text-xl text-ivory/70 max-w-2xl mx-auto leading-relaxed">
         Comienza en esa primera conversación. En el momento en que decides que es hora de irte. En la emoción de empacar lo indispensable y dejar espacio para lo inesperado.
       </p>
     </div>
 
-    <!-- Small moments (Editorial blocks, not cards) -->
-    <div class="dream-moments-container grid grid-cols-1 md:grid-cols-12 gap-16 md:gap-8 max-w-6xl mx-auto mt-24 md:mt-40 relative z-10">
-      
-      <!-- Preparar -->
-      <div class="dream-moment col-span-1 md:col-span-4 md:col-start-1" data-speed="0.9">
-        <EditorialImage 
-          src={smallImages[0].src} 
-          alt={smallImages[0].alt} 
-          aspectRatio="portrait" 
-          class="mb-8 rounded-none w-full shadow-2xl shadow-midnight/10"
-        />
-        <div class="px-2">
-          <span class="font-sans text-xs font-medium uppercase tracking-widest text-sunset/80 block mb-3">Preparar</span>
-          <p class="font-serif text-2xl italic text-midnight/90 leading-snug">El mapa sobre la mesa marcando lugares que aún no puedes pronunciar.</p>
-        </div>
-      </div>
-
-      <!-- Imaginar -->
-      <div class="dream-moment col-span-1 md:col-span-5 md:col-start-7 md:mt-32" data-speed="1.15">
-        <EditorialImage 
-          src={smallImages[1].src} 
-          alt={smallImages[1].alt} 
-          aspectRatio="square" 
-          class="mb-8 rounded-none w-full shadow-2xl shadow-midnight/10"
-        />
-        <div class="px-2">
-          <span class="font-sans text-xs font-medium uppercase tracking-widest text-sunset/80 block mb-3">Imaginar</span>
-          <p class="font-serif text-2xl italic text-midnight/90 leading-snug">La lista de canciones perfecta para mirar por la ventana del tren.</p>
-        </div>
-      </div>
-
-      <!-- Empacar -->
-      <div class="dream-moment col-span-1 md:col-span-6 md:col-start-3 md:-mt-16 relative z-20" data-speed="0.8">
-        <EditorialImage 
-          src={smallImages[2].src} 
-          alt={smallImages[2].alt} 
-          aspectRatio="video" 
-          class="mb-8 rounded-none w-full shadow-2xl shadow-midnight/10"
-        />
-        <div class="px-2">
-          <span class="font-sans text-xs font-medium uppercase tracking-widest text-sunset/80 block mb-3">Empacar</span>
-          <p class="font-serif text-2xl italic text-midnight/90 leading-snug">Llevar solo lo necesario para moverte con libertad.</p>
-        </div>
-      </div>
-
+    <!-- Collage Images -->
+    <div id="dream-collage" class="absolute inset-0 z-20 pointer-events-none overflow-hidden">
+      <Container class="h-full w-full max-w-7xl relative mx-auto">
+        {images.map((img, index) => (
+          <div 
+            class={`collage-item absolute ${img.align} w-48 md:w-64 opacity-0 pointer-events-auto cursor-none group`}
+            data-index={index}
+          >
+            <div class="relative shadow-2xl shadow-midnight/30 p-2 bg-ivory/5 backdrop-blur-sm" style={`transform: rotate(${img.rotate});`}>
+              <div class="overflow-hidden">
+                <img src={img.src} alt={img.alt} class="w-full h-auto object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-700" />
+              </div>
+              <div class="pt-3 pb-1 px-1 flex justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                <span class="font-sans text-[0.65rem] tracking-widest uppercase text-ivory/80">{img.label}</span>
+                <div class="w-1.5 h-1.5 rounded-full bg-sunset shadow-[0_0_8px_rgba(255,165,0,0.6)]"></div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </Container>
     </div>
-  </Container>
+
+  </div>
 </SectionContainer>
 
 <script>
