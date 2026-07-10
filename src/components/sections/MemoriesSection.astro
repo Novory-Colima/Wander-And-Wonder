@@ -20,48 +20,48 @@ const memoryImages = [
 <SectionContainer id="memories" padding="xl" class="bg-midnight" dark>
   <Container class="max-w-4xl mx-auto text-center px-4">
     <!-- Huge image -->
-    <div class="mb-20 md:mb-32">
+    <div class="mb-32 md:mb-48 w-full max-w-5xl mx-auto">
       <EditorialImage 
         src={memoryImages[0]}
         alt="Atardecer nostálgico sobre el agua"
         aspectRatio="landscape"
-        class="rounded-sm opacity-90"
+        class="rounded-none opacity-90 w-full"
         dark
       />
     </div>
 
     <!-- Phrase -->
-    <div class="mb-20 md:mb-32">
-      <Quote author="Grecia, 2022" class="text-left md:text-center md:border-l-0" dark>
+    <div class="mb-32 md:mb-48 max-w-3xl mx-auto">
+      <Quote author="Grecia, 2022" class="text-left md:text-center md:border-l-0 text-3xl md:text-5xl" dark>
         Volvería únicamente para escuchar otra vez aquel atardecer.
       </Quote>
     </div>
 
     <!-- Smaller layout -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 mb-20 md:mb-32">
-      <div class="mt-0 md:mt-24">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-16 md:gap-8 mb-32 md:mb-48 max-w-6xl mx-auto">
+      <div class="col-span-1 md:col-span-5 md:mt-24">
         <EditorialImage 
           src={memoryImages[1]}
           alt="Callejón tranquilo al amanecer"
           aspectRatio="portrait"
-          class="rounded-sm opacity-90"
+          class="rounded-none opacity-90 w-full"
           dark
         />
       </div>
-      <div class="flex items-center">
-        <Quote author="París, 2024" dark>
-          No recuerdo el nombre del restaurante. Pero sí recuerdo las risas.
+      <div class="col-span-1 md:col-span-6 md:col-start-7 flex items-center justify-center">
+        <Quote author="París, 2024" class="text-2xl md:text-4xl leading-relaxed" dark>
+          No recuerdo el nombre del restaurante.<br/>Pero sí recuerdo las risas.
         </Quote>
       </div>
     </div>
 
     <!-- Final large image -->
-    <div class="mb-20 md:mb-32">
+    <div class="mb-32 md:mb-48 max-w-4xl mx-auto">
       <EditorialImage 
         src={memoryImages[2]}
         alt="Bosque envuelto en niebla matutina"
         aspectRatio="video"
-        class="rounded-sm opacity-80"
+        class="rounded-none opacity-80 w-full"
         dark
       />
     </div>

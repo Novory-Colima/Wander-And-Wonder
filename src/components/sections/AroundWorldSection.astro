@@ -1,0 +1,127 @@
+---
+import icelandImg from '@/assets/images/story-iceland-aurora.webp';
+import japanImg from '@/assets/images/story-japan-kyoto.webp';
+import peruImg from '@/assets/images/story-peru-andes.webp';
+import moroccoImg from '@/assets/images/story-morocco-market.png';
+import thailandImg from '@/assets/images/story-thailand-temple.webp';
+import italyImg from '@/assets/images/dest-italy-amalfi.png';
+
+const stories = [
+  {
+    id: 'iceland',
+    lat: 64.9631,
+    lng: -19.0208,
+    country: 'Islandia',
+    place: 'Skógafoss',
+    date: 'OCT 2025',
+    quote: "Jamás había visto un cielo que pareciera respirar.",
+    img: icelandImg.src
+  },
+  {
+    id: 'japan',
+    lat: 35.6762,
+    lng: 139.6503,
+    country: 'Japón',
+    place: 'Kioto',
+    date: 'ABR 2026',
+    quote: "Nos perdimos buscando el hotel... y encontramos nuestro lugar favorito.",
+    img: japanImg.src
+  },
+  {
+    id: 'peru',
+    lat: -13.1631,
+    lng: -72.5450,
+    country: 'Perú',
+    place: 'Cusco',
+    date: 'AGO 2024',
+    quote: "El silencio de aquella montaña decía más que cualquier palabra.",
+    img: peruImg.src
+  },
+  {
+    id: 'morocco',
+    lat: 31.7917,
+    lng: -7.0926,
+    country: 'Marruecos',
+    place: 'Marrakech',
+    date: 'NOV 2025',
+    quote: "El tiempo se mide en tazas de té y laberintos ocres.",
+    img: moroccoImg.src
+  },
+  {
+    id: 'thailand',
+    lat: 18.7953,
+    lng: 98.9620,
+    country: 'Tailandia',
+    place: 'Chiang Mai',
+    date: 'ENE 2026',
+    quote: "El aroma a incienso y lluvia nos recordó que el tiempo aquí camina descalzo.",
+    img: thailandImg.src
+  },
+  {
+    id: 'italy',
+    lat: 40.6340,
+    lng: 14.6027,
+    country: 'Italia',
+    place: 'Costa Amalfitana',
+    date: 'JUN 2025',
+    quote: "Acantilados esculpidos por el mar y atardeceres que saben a sal y limón.",
+    img: italyImg.src
+  }
+];
+---
+
+<section
+  id="around-the-world"
+  class="relative w-full h-[120vh] bg-midnight overflow-hidden flex items-center justify-center"
+  aria-label="Historias alrededor del mundo"
+  data-stories={JSON.stringify(stories)}
+>
+  <!-- 3D Globe Container -->
+  <div
+    id="globe-container"
+    class="absolute inset-0 z-0 opacity-0 cursor-grab active:cursor-grabbing"
+  >
+  </div>
+
+  <!-- SVG for connection lines (3D to HTML) -->
+  <svg class="absolute inset-0 z-10 pointer-events-none w-full h-full" id="connection-svg">
+    <line id="connection-line" x1="0" y1="0" x2="0" y2="0" stroke="rgba(250, 250, 248, 0.3)" stroke-width="1" stroke-dasharray="2 4" opacity="0" />
+    <circle id="connection-dot" cx="0" cy="0" r="3" fill="#FAFAF8" opacity="0" />
+  </svg>
+
+  <!-- Dynamic Editorial Card Container -->
+  <div class="relative z-20 container-editorial w-full h-full pointer-events-none flex items-center">
+    
+    <div 
+      id="dynamic-story-card" 
+      class="absolute left-[10%] md:left-[15%] max-w-[260px] md:max-w-[320px] opacity-0 pointer-events-auto flex flex-col gap-4"
+    >
+      <!-- Small Portrait Image -->
+      <div class="story-img-wrapper overflow-hidden w-24 h-32 md:w-28 md:h-36 rounded-sm">
+        <img id="story-img" src="" alt="" class="w-full h-full object-cover origin-center scale-110" />
+      </div>
+
+      <!-- Metadata -->
+      <div class="flex items-center gap-3">
+        <div class="w-1.5 h-1.5 rounded-full bg-sunset shadow-[0_0_8px_rgba(255,165,0,0.6)]"></div>
+        <div class="flex flex-col">
+          <span id="story-country" class="font-sans text-[0.65rem] md:text-xs tracking-[0.2em] uppercase text-ivory/80"></span>
+          <span id="story-place-date" class="font-sans text-[0.55rem] md:text-[0.6rem] tracking-wider text-ivory/50 mt-0.5"></span>
+        </div>
+      </div>
+
+      <!-- Quote -->
+      <p id="story-quote" class="font-serif text-lg md:text-xl text-ivory leading-relaxed">
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  import { initAroundWorld } from '@/animations/around-world';
+
+  document.addEventListener('astro:page-load', () => {
+    initAroundWorld();
+  });
+</script>

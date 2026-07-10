@@ -12,45 +12,45 @@ const socialLinks = [
 ---
 
 <footer
-  class="relative bg-midnight pt-32 pb-8 overflow-hidden flex flex-col justify-between min-h-[90vh] z-0"
+  class="relative bg-midnight pt-32 md:pt-48 pb-12 overflow-hidden flex flex-col justify-end min-h-[90vh] z-0"
   role="contentinfo"
 >
-  <!-- Background Noise -->
-  <div class="absolute inset-0 z-0 pointer-events-none opacity-[0.03] mix-blend-overlay" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E');"></div>
-
-  <Container class="relative z-10 flex flex-col justify-between h-full flex-grow">
+  <Container class="relative z-10 w-full max-w-7xl mx-auto px-4 md:px-8">
     
-    <!-- Top section: Call to action & Links -->
-    <div class="flex flex-col md:flex-row justify-between items-start gap-16 md:gap-0 mt-12">
-      <div class="max-w-md">
-        <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl text-ivory leading-tight mb-8">
-          ¿Listo para <br/><span class="italic text-sunset">perderte</span> un rato?
+    <!-- Diseño Editorial Asimétrico para Enlaces y CTA -->
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-16 md:gap-8 mb-32 md:mb-48">
+      <!-- Columna Izquierda (CTA) -->
+      <div class="md:col-span-6 md:col-start-1">
+        <span class="font-sans text-xs uppercase tracking-[0.2em] text-sunset mb-8 block">El Final del Viaje</span>
+        <h2 class="font-serif text-5xl md:text-7xl lg:text-[6rem] text-ivory leading-[0.9] mb-12 md:mb-16 italic">
+          Perderse <br/>es el mejor <br/>destino.
         </h2>
-        <a href="mailto:hello@wanderandwonder.com" class="magnetic-button inline-flex items-center gap-4 group">
-          <span class="w-12 h-12 rounded-full border border-ivory/20 flex items-center justify-center group-hover:bg-sunset group-hover:border-sunset transition-all duration-500">
-            <svg class="w-4 h-4 text-ivory -rotate-45 group-hover:rotate-0 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+        <a href="mailto:hello@wanderandwonder.com" class="magnetic-button inline-flex items-center gap-6 group cursor-pointer">
+          <span class="font-sans text-sm md:text-base uppercase tracking-widest text-ivory/60 group-hover:text-ivory transition-colors duration-500">
+            Comienza tu historia
           </span>
-          <span class="font-sans text-sm uppercase tracking-widest text-ivory/70 group-hover:text-ivory transition-colors duration-500">
-            hello@wanderandwonder.com
+          <span class="w-12 h-12 md:w-16 md:h-16 rounded-full border border-ivory/20 flex items-center justify-center group-hover:bg-sunset group-hover:border-sunset transition-all duration-500">
+            <svg class="w-4 h-4 md:w-5 md:h-5 text-ivory -rotate-45 group-hover:rotate-0 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
           </span>
         </a>
       </div>
 
-      <div class="flex gap-16 md:gap-24">
+      <!-- Columna Derecha (Enlaces) -->
+      <div class="md:col-span-4 md:col-start-9 flex flex-col justify-end gap-16 mt-16 md:mt-0">
         <div>
-          <h3 class="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-sunset mb-6">Explorar</h3>
+          <h3 class="font-sans text-xs uppercase tracking-[0.2em] text-sunset mb-8">Navegación</h3>
           <ul class="space-y-4">
-            <li><a href="#experiences" class="font-sans text-lg text-ivory/50 hover:text-ivory hover:italic transition-all duration-300">Experiencias</a></li>
-            <li><a href="#destinations" class="font-sans text-lg text-ivory/50 hover:text-ivory hover:italic transition-all duration-300">Destinos</a></li>
-            <li><a href="#stories" class="font-sans text-lg text-ivory/50 hover:text-ivory hover:italic transition-all duration-300">Historias</a></li>
+            <li><a href="#experiences" class="font-sans text-lg text-ivory/40 hover:text-ivory hover:italic transition-all duration-300 block">Experiencias</a></li>
+            <li><a href="#destinations" class="font-sans text-lg text-ivory/40 hover:text-ivory hover:italic transition-all duration-300 block">Destinos</a></li>
+            <li><a href="#stories" class="font-sans text-lg text-ivory/40 hover:text-ivory hover:italic transition-all duration-300 block">Historias</a></li>
           </ul>
         </div>
         <div>
-          <h3 class="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-sunset mb-6">Social</h3>
+          <h3 class="font-sans text-xs uppercase tracking-[0.2em] text-sunset mb-8">Social</h3>
           <ul class="space-y-4">
             {socialLinks.map((social) => (
               <li>
-                <a href={social.href} class="font-sans text-lg text-ivory/50 hover:text-ivory hover:italic transition-all duration-300">
+                <a href={social.href} class="font-sans text-lg text-ivory/40 hover:text-ivory hover:italic transition-all duration-300 block">
                   {social.label}
                 </a>
               </li>
@@ -61,20 +61,54 @@ const socialLinks = [
     </div>
 
     <!-- Massive Typography Bottom -->
-    <div class="mt-32 w-full flex flex-col items-center">
-      <h1 class="font-serif uppercase tracking-tighter text-center text-ivory w-full leading-[0.75] text-[15vw] opacity-90 select-none">
-        WANDER<span class="text-sunset">&</span>WONDER
+    <div class="w-full flex flex-col">
+      <h1 class="font-serif uppercase tracking-tighter text-ivory w-full leading-[0.75] text-[16vw] opacity-90 select-none -ml-2 md:-ml-4">
+        WANDER<span class="text-sunset/80">&</span>WONDER
       </h1>
       
-      <div class="w-full flex flex-col md:flex-row items-center justify-between gap-4 pt-12 border-t border-ivory/10 mt-8">
+      <div class="w-full flex flex-col md:flex-row items-center justify-between gap-4 pt-12 border-t border-ivory/10 mt-12">
         <p class="font-sans text-[10px] md:text-xs text-ivory/30 tracking-widest uppercase">
           &copy; {currentYear} {SITE_CONFIG.name}. Todos los derechos reservados.
         </p>
         <p class="font-sans text-[10px] md:text-xs text-ivory/30 tracking-widest uppercase">
-          Diseñado con brutal honestidad.
+          Diseñado para el mundo.
         </p>
       </div>
     </div>
-
   </Container>
 </footer>
+
+<script>
+  import { gsap } from 'gsap';
+
+  document.addEventListener('astro:page-load', () => {
+    if (window.matchMedia('(hover: none)').matches) return;
+    
+    const magnets = document.querySelectorAll('.magnetic-button');
+    
+    magnets.forEach((magnet) => {
+      magnet.addEventListener('mousemove', (e: Event) => {
+        const mouseEvent = e as MouseEvent;
+        const boundingRect = (magnet as HTMLElement).getBoundingClientRect();
+        const relX = mouseEvent.clientX - boundingRect.left;
+        const relY = mouseEvent.clientY - boundingRect.top;
+        
+        gsap.to(magnet, {
+          x: (relX - boundingRect.width / 2) * 0.2,
+          y: (relY - boundingRect.height / 2) * 0.2,
+          ease: 'power2.out',
+          duration: 0.3
+        });
+      });
+      
+      magnet.addEventListener('mouseleave', () => {
+        gsap.to(magnet, {
+          x: 0,
+          y: 0,
+          ease: 'elastic.out(1, 0.3)',
+          duration: 1
+        });
+      });
+    });
+  });
+</script>

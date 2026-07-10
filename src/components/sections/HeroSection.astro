@@ -1,70 +1,66 @@
 ---
-import ScrollIndicator from '@components/navigation/ScrollIndicator.astro';
 import heroBgImg from '@/assets/images/hero-breathtaking-portrait.webp';
 
-// A breathtaking, moody, high-contrast image of an authentic travel experience
 const heroBgUrl = heroBgImg.src;
 ---
 
 <section
   id="hero"
-  class="relative w-full h-[100vh] bg-[#050505] overflow-hidden"
+  class="relative w-full h-[200vh] bg-[#050505]"
   aria-label="Bienvenida"
 >
-  <!-- Film Grain Overlay -->
-  <div
-    class="absolute inset-0 z-50 pointer-events-none opacity-[0.15] mix-blend-overlay"
-    style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E');"
-  >
-  </div>
-
-  <!-- Base Ambient Image (Moody, Breathtaking) -->
-  <div class="hero-bg-container absolute inset-0 z-0 bg-black">
-    <img
-      src={heroBgUrl}
-      alt="Breathtaking portrait"
-      class="hero-bg-base w-full h-full object-cover object-center opacity-40 brightness-75 scale-105"
-      data-speed="0.2"
-    />
-  </div>
-
-  <!-- Cinematic Overlay (replaces spotlight) -->
-  <div
-    class="hero-overlay absolute inset-0 z-10 pointer-events-none bg-gradient-to-t from-[#050505] via-transparent to-transparent opacity-80"
-  >
-  </div>
-
-  <!-- Massive Editorial Typography -->
-  <div
-    class="absolute inset-0 z-20 flex flex-col items-center justify-center pointer-events-none px-4 mix-blend-screen"
-  >
-    <h1
-      class="hero-title font-serif uppercase tracking-tight text-center text-white drop-shadow-lg opacity-95 leading-[0.85] w-full flex flex-col items-center"
-    >
-      <span class="block text-[16vw] lg:text-[18vw] font-medium mr-[10vw]">WANDER</span>
-      <span class="block text-[16vw] lg:text-[18vw] font-medium ml-[10vw]">&amp; WONDER</span>
-    </h1>
-  </div>
-
-  <!-- Subtitle (Tiny, highly tracked, pure editorial) -->
-  <div
-    class="absolute bottom-12 w-full z-20 px-8 flex justify-between items-end pointer-events-none opacity-0 hero-meta"
-  >
-    <p
-      class="font-sans text-[0.65rem] md:text-xs text-white opacity-80 tracking-widest uppercase max-w-[200px] leading-relaxed drop-shadow-md"
-    >
-      Collect stories<br />you'll tell forever
-    </p>
-
-    <div class="hidden md:block">
-      <ScrollIndicator />
+  <!-- Sticky container to hold the camera view while scrolling -->
+  <div class="hero-sticky-container sticky top-0 w-full h-[100vh] overflow-hidden">
+    
+    <!-- Layer 1 & 2: Photography (Sharp and Blurred for Focus Pull) -->
+    <!-- Wrapped in a camera container for Breathing Engine (drift & scale) -->
+    <!-- We make it 110% size to have room to drift without exposing edges -->
+    <div class="hero-camera absolute inset-0 z-0 w-[110%] h-[110%] -left-[5%] -top-[5%]">
+      
+      <!-- Blurred Layer (starts visible, extremely out of focus) -->
+      <img
+        src={heroBgUrl}
+        alt=""
+        class="hero-bg-blur absolute inset-0 w-full h-full object-cover object-center scale-[1.02]"
+        style="filter: blur(16px);"
+      />
+      
+      <!-- Sharp Layer (fades in for focus pull, revealing depth) -->
+      <img
+        src={heroBgUrl}
+        alt="Breathtaking landscape"
+        class="hero-bg-sharp absolute inset-0 w-full h-full object-cover object-center opacity-0 scale-[1.02]"
+      />
+      
+      <!-- Atmosphere Layer (subtle moving noise) -->
+      <div
+        class="hero-atmosphere absolute inset-0 opacity-[0.25] mix-blend-overlay pointer-events-none"
+        style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E');"
+      ></div>
+      
+      <!-- Subtle Vignette to ground text gently without killing natural light -->
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(5,5,5,0.45)_100%)] pointer-events-none"></div>
     </div>
 
-    <p
-      class="font-sans text-[0.65rem] md:text-xs text-white opacity-80 tracking-widest uppercase text-right drop-shadow-md"
-    >
-      Est. 2026
-    </p>
+    <!-- Layer 3: Typography & Manifesto -->
+    <div class="hero-content absolute inset-0 z-30 flex flex-col items-center justify-center pointer-events-none px-4">
+      <h1 class="hero-title font-serif text-ivory text-center flex flex-col items-center leading-[1.1] opacity-0" style="filter: blur(10px);">
+        <span class="block text-[12vw] md:text-[9vw] lg:text-[7.5vw] font-normal tracking-wide">Wander & Wonder</span>
+      </h1>
+      
+      <p class="hero-manifesto mt-8 lg:mt-12 font-sans text-[0.65rem] md:text-xs text-ivory/80 opacity-0 tracking-[0.4em] uppercase text-center max-w-[300px] leading-relaxed">
+        Collect stories<br />you'll tell forever
+      </p>
+    </div>
+
+    <!-- Layer 4: Custom Cinematic Scroll Indicator -->
+    <div class="hero-scroll-indicator absolute bottom-0 left-1/2 -translate-x-1/2 z-40 flex flex-col items-center opacity-0 pointer-events-none">
+      <span class="font-sans text-[0.55rem] text-ivory/70 tracking-[0.3em] uppercase mb-6">Begin</span>
+      <div class="relative w-[1px] h-24 bg-ivory/10 overflow-hidden">
+        <!-- Energy particle falling continuously -->
+        <div class="hero-scroll-particle absolute top-0 left-0 w-full h-8 bg-gradient-to-b from-transparent via-ivory to-transparent -translate-y-full"></div>
+      </div>
+    </div>
   </div>
 </section>
 
