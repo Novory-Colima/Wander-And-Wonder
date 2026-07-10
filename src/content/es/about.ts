@@ -1,4 +1,5 @@
 import type { Statistic } from '@/types';
+import imgAbout from '@/assets/images/about-snowy-mountain.webp';
 
 export const aboutData = {
   philosophy: 'Nuestra filosofía',
@@ -7,7 +8,7 @@ export const aboutData = {
     'Creemos que un viaje no debe sentirse como una lista de tareas pendientes. No vendemos destinos; diseñamos momentos.',
     'Nuestro enfoque se basa en entender qué te emociona, qué te inspira y qué ritmo prefieres. A partir de ahí, construimos una experiencia que se siente exclusivamente tuya.'
   ],
-  image: 'https://images.unsplash.com/photo-1503220317375-aaad61436b1b?q=80&w=1470&auto=format&fit=crop',
+  image: imgAbout.src,
   alt: 'Una persona caminando por un paisaje de montaña nevado'
 };
 

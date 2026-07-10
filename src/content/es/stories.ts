@@ -1,5 +1,11 @@
 import type { Story } from '@/types';
 
+import img1 from '@/assets/images/story-iceland-aurora.webp';
+import img2 from '@/assets/images/story-japan-kyoto.webp';
+import img3 from '@/assets/images/story-peru-andes.webp';
+import img4 from '@/assets/images/story-morocco-market.png';
+import img5 from '@/assets/images/story-thailand-temple.webp';
+
 export const stories: Story[] = [
   {
     id: 'story-1',
@@ -7,7 +13,8 @@ export const stories: Story[] = [
     quote: 'Jamás había visto un cielo que pareciera respirar.',
     author: 'Elena V.',
     date: 'Octubre 2024',
-    image: 'https://images.unsplash.com/photo-1531366936337-7c912a4589a7?q=80&w=1470&auto=format&fit=crop', // Northern lights
+    image: img1.src,
+
     alt: 'Auroras boreales bailando en el cielo oscuro de Islandia',
   },
   {
@@ -16,7 +23,8 @@ export const stories: Story[] = [
     quote: 'Nos perdimos buscando el hotel... y encontramos nuestro lugar favorito.',
     author: 'Mateo & Sofia',
     date: 'Primavera 2023',
-    image: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=1470&auto=format&fit=crop', // Kyoto street
+    image: img2.src,
+
     alt: 'Callejón tradicional de Kioto iluminado por farolillos al atardecer',
   },
   {
@@ -25,7 +33,8 @@ export const stories: Story[] = [
     quote: 'El silencio de aquella montaña decía más que cualquier palabra.',
     author: 'David L.',
     date: 'Septiembre 2025',
-    image: 'https://images.unsplash.com/photo-1587595431973-160d0d94add1?q=80&w=1476&auto=format&fit=crop', // Andes
+    image: img3.src,
+
     alt: 'Vista majestuosa de las montañas de los Andes bajo un cielo despejado',
   },
   {
@@ -34,7 +43,8 @@ export const stories: Story[] = [
     quote: 'Descubrimos las conversaciones que se esconden entre cada puesto del mercado.',
     author: 'Ana P.',
     date: 'Otoño 2024',
-    image: 'https://images.unsplash.com/photo-1542038385-2e6f470557dd?q=80&w=1470&auto=format&fit=crop', // Marrakesh market
+    image: img4.src,
+
     alt: 'Especias coloridas y alfombras en un mercado tradicional en Marrakech',
   },
   {
@@ -43,7 +53,8 @@ export const stories: Story[] = [
     quote: 'La lluvia nos obligó a detenernos. Fue el mejor momento del día.',
     author: 'Carlos & Elena',
     date: 'Verano 2023',
-    image: 'https://images.unsplash.com/photo-1528181304800-259b08848526?q=80&w=1470&auto=format&fit=crop', // Thailand temple/rain
+    image: img5.src,
+
     alt: 'Templo en Tailandia rodeado de naturaleza verde después de una lluvia tropical',
   }
 ];

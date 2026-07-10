@@ -4,12 +4,17 @@ import Container from '@components/common/Container.astro';
 import DisplayTitle from '@components/common/DisplayTitle.astro';
 import EditorialImage from '@components/blocks/EditorialImage.astro';
 
+import dreamMainImg from '@/assets/images/dream-airplane-window.webp';
+import dreamPassportImg from '@/assets/images/dream-passport-map.webp';
+import dreamCameraImg from '@/assets/images/dream-camera-journal.png';
+import dreamSuitcaseImg from '@/assets/images/dream-small-suitcase.png';
+
 // High quality editorial images for Scene 3
-const mainImage = 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=1474&auto=format&fit=crop'; // Airport/Airplane window
+const mainImage = dreamMainImg.src; // Airport/Airplane window
 const smallImages = [
-  { src: 'https://images.unsplash.com/photo-1553531384-cc64ac80f931?q=80&w=1664&auto=format&fit=crop', alt: 'Pasaporte sobre mapa' },
-  { src: 'https://images.unsplash.com/photo-1516007204481-b5f7ee281315?q=80&w=1470&auto=format&fit=crop', alt: 'Cámara analógica y diario' },
-  { src: 'https://images.unsplash.com/photo-1512413914565-1d428fa6935c?q=80&w=1470&auto=format&fit=crop', alt: 'Maleta de cuero pequeña' }
+  { src: dreamPassportImg.src, alt: 'Pasaporte sobre mapa' },
+  { src: dreamCameraImg.src, alt: 'Cámara analógica y diario' },
+  { src: dreamSuitcaseImg.src, alt: 'Maleta de cuero pequeña' }
 ];
 ---
 
