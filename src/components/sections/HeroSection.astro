@@ -2,7 +2,8 @@
 import ScrollIndicator from '@components/navigation/ScrollIndicator.astro';
 
 // A breathtaking, moody, high-contrast image of an authentic travel experience
-const heroBgUrl = 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=2560&auto=format&fit=crop';
+const heroBgUrl =
+  'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=2560&auto=format&fit=crop';
 ---
 
 <section
@@ -11,7 +12,11 @@ const heroBgUrl = 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?
   aria-label="Bienvenida"
 >
   <!-- Film Grain Overlay -->
-  <div class="absolute inset-0 z-50 pointer-events-none opacity-[0.15] mix-blend-overlay" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E');"></div>
+  <div
+    class="absolute inset-0 z-50 pointer-events-none opacity-[0.15] mix-blend-overlay"
+    style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E');"
+  >
+  </div>
 
   <!-- Base Ambient Image (Moody, Breathtaking) -->
   <div class="hero-bg-container absolute inset-0 z-0 bg-black">
@@ -24,27 +29,40 @@ const heroBgUrl = 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?
   </div>
 
   <!-- Cinematic Overlay (replaces spotlight) -->
-  <div class="hero-overlay absolute inset-0 z-10 pointer-events-none bg-gradient-to-t from-[#050505] via-transparent to-transparent opacity-80"></div>
+  <div
+    class="hero-overlay absolute inset-0 z-10 pointer-events-none bg-gradient-to-t from-[#050505] via-transparent to-transparent opacity-80"
+  >
+  </div>
 
   <!-- Massive Editorial Typography -->
-  <div class="absolute inset-0 z-20 flex flex-col items-center justify-center pointer-events-none px-4 mix-blend-screen">
-    <h1 class="hero-title font-serif uppercase tracking-tight text-center text-white drop-shadow-lg opacity-95 leading-[0.85] w-full flex flex-col items-center">
+  <div
+    class="absolute inset-0 z-20 flex flex-col items-center justify-center pointer-events-none px-4 mix-blend-screen"
+  >
+    <h1
+      class="hero-title font-serif uppercase tracking-tight text-center text-white drop-shadow-lg opacity-95 leading-[0.85] w-full flex flex-col items-center"
+    >
       <span class="block text-[16vw] lg:text-[18vw] font-medium mr-[10vw]">WANDER</span>
       <span class="block text-[16vw] lg:text-[18vw] font-medium ml-[10vw]">&amp; WONDER</span>
     </h1>
   </div>
 
   <!-- Subtitle (Tiny, highly tracked, pure editorial) -->
-  <div class="absolute bottom-12 w-full z-20 px-8 flex justify-between items-end pointer-events-none opacity-0 hero-meta">
-    <p class="font-sans text-[0.65rem] md:text-xs text-white opacity-80 tracking-widest uppercase max-w-[200px] leading-relaxed drop-shadow-md">
-      Collect stories<br/>you'll tell forever
+  <div
+    class="absolute bottom-12 w-full z-20 px-8 flex justify-between items-end pointer-events-none opacity-0 hero-meta"
+  >
+    <p
+      class="font-sans text-[0.65rem] md:text-xs text-white opacity-80 tracking-widest uppercase max-w-[200px] leading-relaxed drop-shadow-md"
+    >
+      Collect stories<br />you'll tell forever
     </p>
-    
+
     <div class="hidden md:block">
       <ScrollIndicator />
     </div>
 
-    <p class="font-sans text-[0.65rem] md:text-xs text-white opacity-80 tracking-widest uppercase text-right drop-shadow-md">
+    <p
+      class="font-sans text-[0.65rem] md:text-xs text-white opacity-80 tracking-widest uppercase text-right drop-shadow-md"
+    >
       Est. 2026
     </p>
   </div>
