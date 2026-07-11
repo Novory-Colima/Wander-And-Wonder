@@ -8,8 +8,8 @@ const navSections = [
   {
     title: 'Marca',
     links: [
-      { label: 'Filosofía', href: '#' },
-      { label: 'Sobre nosotros', href: '#' },
+      { label: 'Filosofía', href: '#', dataDemo: 'social' },
+      { label: 'Sobre nosotros', href: '#about' },
     ]
   },
   {
@@ -17,24 +17,24 @@ const navSections = [
     links: [
       { label: 'Experiencias', href: '#experiences' },
       { label: 'Destinos', href: '#destinations' },
-      { label: 'Historias', href: '#stories' },
+      { label: 'Historias', href: '#around-the-world' },
     ]
   },
   {
     title: 'Contacto',
     links: [
       { label: 'Email', href: 'mailto:hello@wanderandwonder.com' },
-      { label: 'Teléfono', href: '#' },
-      { label: 'Ubicación', href: '#' },
+      { label: 'Teléfono', href: '#', dataDemo: 'social' },
+      { label: 'Ubicación', href: '#', dataDemo: 'social' },
     ]
   },
   {
     title: 'Síguenos',
     links: [
-      { label: 'Instagram', href: '#' },
-      { label: 'Facebook', href: '#' },
-      { label: 'Pinterest', href: '#' },
-      { label: 'YouTube', href: '#' },
+      { label: 'Instagram', href: '#', dataDemo: 'social' },
+      { label: 'Facebook', href: '#', dataDemo: 'social' },
+      { label: 'Pinterest', href: '#', dataDemo: 'social' },
+      { label: 'YouTube', href: '#', dataDemo: 'social' },
     ]
   }
 ];
@@ -71,7 +71,11 @@ const navSections = [
             <ul class="flex flex-col gap-3 md:gap-4 items-center md:items-start w-full">
               {section.links.map((link) => (
                 <li>
-                  <a href={link.href} class="footer-link">
+                  <a 
+                    href={link.href} 
+                    class="footer-link"
+                    {...(link.dataDemo ? { 'data-demo-action': link.dataDemo } : {})}
+                  >
                     {link.label}
                   </a>
                 </li>

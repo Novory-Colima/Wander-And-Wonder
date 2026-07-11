@@ -30,6 +30,11 @@
       menu?.classList.add('is-open');
       menu?.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
+      // Set focus to the first link inside the menu after a small delay
+      setTimeout(() => {
+        const firstLink = menu?.querySelector('a, button') as HTMLElement;
+        if (firstLink) firstLink.focus();
+      }, 100);
     }
 
     function closeMenu(): void {
@@ -40,6 +45,8 @@
       menu?.classList.remove('is-open');
       menu?.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
+      // Return focus to the toggle button
+      toggle?.focus();
     }
 
     toggle.addEventListener('click', () => {

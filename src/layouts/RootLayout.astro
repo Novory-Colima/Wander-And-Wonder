@@ -5,6 +5,7 @@ import { SITE_CONFIG } from '@/config/site';
 import { ClientRouter } from 'astro:transitions';
 import NoiseTexture from '@components/ui/NoiseTexture.astro';
 import CustomCursor from '@components/ui/CustomCursor.astro';
+import DemoToast from '@components/ui/DemoToast.astro';
 
 interface Props {
   meta?: Partial<PageMeta>;
@@ -75,6 +76,7 @@ const canonicalUrl = meta?.canonicalUrl ?? Astro.url.href;
     <NoiseTexture />
     <CustomCursor />
     <slot />
+    <DemoToast />
     
     <script>
       import { initLenis } from '@/lib/lenis';

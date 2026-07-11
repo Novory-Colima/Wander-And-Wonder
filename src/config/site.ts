@@ -3,9 +3,9 @@ import type { NavLink, LanguageConfig, Language } from '@/types';
 /** Primary navigation links */
 export const NAV_LINKS: readonly NavLink[] = [
   { label: 'Inicio', href: '#hero' },
+  { label: 'Historias', href: '#around-the-world' },
   { label: 'Experiencias', href: '#experiences' },
   { label: 'Destinos', href: '#destinations' },
-  { label: 'Historias', href: '#stories' },
   { label: 'Nosotros', href: '#about' },
   { label: 'Contacto', href: '#contact' },
 ] as const;
