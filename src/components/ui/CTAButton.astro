@@ -3,41 +3,42 @@ interface Props {
   text: string;
   href?: string;
   size?: 'sm' | 'md' | 'lg';
-  variant?: 'primary' | 'secondary' | 'outline';
+  variant?: 'primary' | 'secondary' | 'outline' | 'solid';
 }
 
 const { text, href = '#contact', size = 'md', variant = 'primary' } = Astro.props;
 
-const baseClasses = "inline-flex items-center justify-center font-sans uppercase tracking-[0.15em] transition-all duration-500 ease-out hover:scale-[1.02] active:scale-[0.98]";
+const baseClasses = "inline-flex items-center justify-center font-sans uppercase tracking-[0.15em] transition-all duration-500 ease-out";
 
 const sizeClasses = {
   sm: 'px-5 py-2.5 text-xs',
   md: 'px-7 py-3 text-sm',
-  lg: 'px-10 py-4 text-base',
+  lg: 'px-10 py-5 text-base',
 };
 
 const variantClasses = {
   primary: 'bg-transparent text-ivory border border-ivory/40 hover:border-ivory hover:bg-ivory/5',
   secondary: 'bg-transparent text-ivory border border-ivory/30 hover:border-ivory/60',
   outline: 'bg-transparent text-midnight border border-midnight/40 hover:border-midnight hover:bg-midnight/5',
+  solid: 'bg-ivory text-midnight border border-transparent shadow-[0_0_0_rgba(248,246,242,0)] hover:shadow-[0_0_30px_rgba(248,246,242,0.4)] hover:scale-[1.02]',
 };
 ---
 
 <a
   href={href}
   class:list={[
-    'cta-button magnetic inline-flex items-center justify-center gap-2',
-    'font-sans font-medium tracking-wide uppercase',
-    'rounded-full transition-colors duration-300',
+    'cta-button magnetic inline-flex items-center justify-center gap-3',
+    'font-sans font-semibold tracking-widest uppercase',
+    'rounded-full transition-all duration-500',
     'focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-ocean',
     sizeClasses[size],
     variantClasses[variant],
   ]}
   role="link"
 >
-  <span>{text}</span>
+  <span class="pointer-events-none">{text}</span>
   <svg
-    class="w-4 h-4 transition-transform duration-300 ease-[var(--ease-smooth)] cta-arrow"
+    class="w-4 h-4 transition-transform duration-500 ease-[var(--ease-smooth)] cta-arrow pointer-events-none"
     fill="none"
     stroke="currentColor"
     viewBox="0 0 24 24"
@@ -54,11 +55,11 @@ const variantClasses = {
 
 <style>
   .cta-button:hover .cta-arrow {
-    transform: translateX(4px);
+    transform: translateX(6px);
   }
 
   .cta-button:active {
-    transform: scale(0.98);
+    transform: scale(0.96) !important;
   }
 </style>
 
@@ -66,32 +67,56 @@ const variantClasses = {
   import { gsap } from '@/lib/gsap';
 
   document.addEventListener('astro:page-load', () => {
-    // Only run on hover-capable devices
     if (window.matchMedia('(hover: none)').matches) return;
     
     const magnets = document.querySelectorAll('.magnetic');
     
     magnets.forEach((magnet) => {
+      // Create a subtle magnetic effect that moves the button towards the cursor
       magnet.addEventListener('mousemove', (e: Event) => {
         const mouseEvent = e as MouseEvent;
         const boundingRect = (magnet as HTMLElement).getBoundingClientRect();
+        
+        // Calculate distance from center of the button
         const relX = mouseEvent.clientX - boundingRect.left;
         const relY = mouseEvent.clientY - boundingRect.top;
         
+        // Strength of the pull
+        const pull = 0.3;
+        
         gsap.to(magnet, {
-          x: (relX - boundingRect.width / 2) * 0.4,
-          y: (relY - boundingRect.height / 2) * 0.4,
+          x: (relX - boundingRect.width / 2) * pull,
+          y: (relY - boundingRect.height / 2) * pull,
           ease: 'power2.out',
-          duration: 0.3
+          duration: 0.4
+        });
+        
+        // Optional: Also gently move the text/arrow inside for a parallax effect
+        const children = (magnet as HTMLElement).querySelectorAll('span, svg');
+        gsap.to(children, {
+          x: (relX - boundingRect.width / 2) * 0.15,
+          y: (relY - boundingRect.height / 2) * 0.15,
+          ease: 'power2.out',
+          duration: 0.4
         });
       });
       
       magnet.addEventListener('mouseleave', () => {
+        // Snap back to center
         gsap.to(magnet, {
           x: 0,
           y: 0,
           ease: 'elastic.out(1, 0.3)',
-          duration: 1
+          duration: 1.2
+        });
+        
+        // Reset children
+        const children = (magnet as HTMLElement).querySelectorAll('span, svg');
+        gsap.to(children, {
+          x: 0,
+          y: 0,
+          ease: 'elastic.out(1, 0.3)',
+          duration: 1.2
         });
       });
     });

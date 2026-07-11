@@ -2,88 +2,233 @@
 import SectionContainer from '@components/layout/SectionContainer.astro';
 import Container from '@components/common/Container.astro';
 import DisplayTitle from '@components/common/DisplayTitle.astro';
-import CTAButton from '@components/ui/CTAButton.astro';
 
 import imgCta from '@/assets/images/cta-sunset-landscape.webp';
 
-const bgImage = imgCta.src; // Desert/Journey end
+const bgImage = imgCta.src;
 ---
 
-<SectionContainer id="start" padding="none" class="relative min-h-[90vh] flex flex-col justify-end">
-  <!-- Background Image -->
-  <div class="absolute inset-0 z-0">
-    <img
-      src={bgImage}
-      alt="Paisaje vasto al atardecer"
-      loading="lazy"
-      class="w-full h-full object-cover"
-    />
-    <div class="absolute inset-0 bg-gradient-to-t from-midnight-dark via-midnight/80 to-transparent"></div>
-  </div>
-
-  <Container class="relative z-10 w-full max-w-4xl mx-auto px-4 pb-24 md:pb-32 text-center">
-    <div class="mb-12">
-      <DisplayTitle as="h2" class="text-ivory mb-6 text-balance">
-        La próxima historia es la tuya.
-      </DisplayTitle>
-      <p class="font-sans text-lg md:text-xl text-ivory/80 max-w-2xl mx-auto leading-relaxed text-balance">
-        Déjanos saber a dónde quieres ir. Nosotros nos encargamos de que el viaje sea inolvidable.
-      </p>
+<SectionContainer
+  id="start"
+  padding="none"
+  dark
+  class="relative flex flex-col bg-midnight w-full overflow-hidden"
+>
+  <!-- ACT 1: Photography & Manifesto -->
+  <div class="relative w-full h-[75vh] min-h-[600px] flex flex-col justify-end">
+    <!-- Image -->
+    <div class="absolute inset-0 z-0 overflow-hidden">
+      <img
+        src={bgImage}
+        alt="Paisaje vasto al atardecer"
+        loading="lazy"
+        class="w-full h-full object-cover object-[center_30%] transform-gpu scale-105 cta-bg-image"
+      />
+      <!-- Massive gradients for flawless transition to midnight -->
+      <!-- Top gradient for image depth -->
+      <div class="absolute inset-0 bg-gradient-to-b from-midnight/20 to-transparent h-1/3"></div>
+      <!-- Bottom gradient fading heavily into solid midnight -->
+      <div
+        class="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-midnight via-midnight/80 to-transparent"
+      >
+      </div>
     </div>
 
-    <!-- Minimalist Form -->
-    <form class="max-w-2xl mx-auto bg-ivory/5 backdrop-blur-md p-8 md:p-10 rounded-3xl border border-ivory/10 shadow-2xl">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 text-left">
-        
-        <!-- Input Group -->
-        <div class="flex flex-col">
-          <label for="name" class="font-sans text-xs uppercase tracking-widest text-cloud-light mb-2 ml-4">Nombre</label>
-          <input 
-            type="text" 
-            id="name" 
-            name="name" 
-            placeholder="¿Cómo te llamas?" 
-            required
-            class="bg-midnight/40 border border-ivory/20 rounded-full px-6 py-4 text-ivory placeholder-cloud-dark focus:outline-none focus:border-sunset focus:ring-1 focus:ring-sunset transition-all"
-          />
-        </div>
-
-        <div class="flex flex-col">
-          <label for="email" class="font-sans text-xs uppercase tracking-widest text-cloud-light mb-2 ml-4">Correo</label>
-          <input 
-            type="email" 
-            id="email" 
-            name="email" 
-            placeholder="tu@correo.com" 
-            required
-            class="bg-midnight/40 border border-ivory/20 rounded-full px-6 py-4 text-ivory placeholder-cloud-dark focus:outline-none focus:border-sunset focus:ring-1 focus:ring-sunset transition-all"
-          />
-        </div>
-
-        <div class="flex flex-col md:col-span-2">
-          <label for="destination" class="font-sans text-xs uppercase tracking-widest text-cloud-light mb-2 ml-4">Destino en mente</label>
-          <input 
-            type="text" 
-            id="destination" 
-            name="destination" 
-            placeholder="Ese lugar que no puedes sacar de tu cabeza..." 
-            class="bg-midnight/40 border border-ivory/20 rounded-full px-6 py-4 text-ivory placeholder-cloud-dark focus:outline-none focus:border-sunset focus:ring-1 focus:ring-sunset transition-all"
-          />
-        </div>
-
+    <!-- Text content positioned over the gradient, leading down -->
+    <Container
+      class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-8 pb-8 md:pb-16 cta-text-wrapper"
+    >
+      <div class="max-w-3xl lg:ml-16 xl:ml-24">
+        <DisplayTitle
+          as="h2"
+          class="text-ivory mb-8 text-balance leading-[1.1] cta-title drop-shadow-lg"
+        >
+          La próxima historia es la tuya.
+        </DisplayTitle>
+        <p
+          class="font-sans text-xl md:text-2xl text-ivory/70 max-w-2xl leading-relaxed text-balance cta-description drop-shadow-md"
+        >
+          Déjanos saber a dónde quieres ir. Nosotros nos encargamos de que el viaje sea inolvidable.
+        </p>
       </div>
+    </Container>
+  </div>
+  <br /><br />
 
-      <div class="flex justify-center">
-        <CTAButton text="Comienza tu viaje" href="#submit" size="lg" variant="primary" />
+  <!-- ACT 2: Editorial Solid Band -->
+  <!-- This band natively matches the midnight color and seamlessly merges into the footer -->
+  <div class="relative z-10 w-full bg-midnight pb-32 md:pb-48 pt-8 md:pt-12 cta-form-wrapper">
+    <Container class="w-full max-w-7xl mx-auto px-4 sm:px-8">
+      <!-- Offset grid to match text alignment above -->
+      <div class="max-w-5xl lg:ml-16 xl:ml-24">
+        <form class="flex flex-col gap-16 md:gap-24">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">
+            <!-- Input Group: Nombre -->
+            <div class="relative group cta-input-group flex flex-col">
+              <label
+                for="name"
+                class="text-[10px] md:text-xs font-sans uppercase tracking-[0.2em] text-sunset mb-2 md:mb-4 opacity-80"
+              >
+                01. Nombre
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="¿Cómo te llamas?"
+                required
+                class="peer w-full bg-transparent border-b border-ivory/20 pb-4 md:pb-6 text-ivory text-xl md:text-2xl lg:text-3xl font-light placeholder-ivory/10 focus:outline-none transition-colors rounded-none"
+              />
+              <div
+                class="absolute bottom-0 left-0 w-full h-[1px] bg-ivory scale-x-0 origin-left transition-transform duration-700 ease-[var(--ease-smooth)] peer-focus:scale-x-100"
+              >
+              </div>
+            </div>
+
+            <!-- Input Group: Correo -->
+            <div class="relative group cta-input-group flex flex-col">
+              <label
+                for="email"
+                class="text-[10px] md:text-xs font-sans uppercase tracking-[0.2em] text-sunset mb-2 md:mb-4 opacity-80"
+              >
+                02. Correo
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="tu@correo.com"
+                required
+                class="peer w-full bg-transparent border-b border-ivory/20 pb-4 md:pb-6 text-ivory text-xl md:text-2xl lg:text-3xl font-light placeholder-ivory/10 focus:outline-none transition-colors rounded-none"
+              />
+              <div
+                class="absolute bottom-0 left-0 w-full h-[1px] bg-ivory scale-x-0 origin-left transition-transform duration-700 ease-[var(--ease-smooth)] peer-focus:scale-x-100"
+              >
+              </div>
+            </div>
+          </div>
+
+          <!-- Input Group: Destino -->
+          <div class="relative group cta-input-group flex flex-col">
+            <label
+              for="destination"
+              class="text-[10px] md:text-xs font-sans uppercase tracking-[0.2em] text-sunset mb-2 md:mb-4 opacity-80"
+            >
+              03. Destino
+            </label>
+            <input
+              type="text"
+              id="destination"
+              name="destination"
+              placeholder="El lugar que no puedes sacar de tu cabeza..."
+              class="peer w-full bg-transparent border-b border-ivory/20 pb-4 md:pb-6 text-ivory text-xl md:text-2xl lg:text-3xl font-light placeholder-ivory/10 focus:outline-none transition-colors rounded-none"
+            />
+            <div
+              class="absolute bottom-0 left-0 w-full h-[1px] bg-ivory scale-x-0 origin-left transition-transform duration-700 ease-[var(--ease-smooth)] peer-focus:scale-x-100"
+            >
+            </div>
+          </div>
+
+          <!-- Climax Button aligned to the right to close the Z-pattern reading -->
+          <div class="mt-4 md:mt-8 flex justify-end cta-submit-group">
+            <button
+              type="submit"
+              class="climax-btn magnetic group relative inline-flex items-center justify-center gap-6 md:gap-8 px-10 md:px-14 py-5 md:py-6 rounded-full bg-ivory text-midnight font-sans font-bold text-sm md:text-base uppercase tracking-[0.25em] transition-all duration-500 ease-out border border-transparent hover:shadow-[0_0_50px_rgba(248,246,242,0.15)] focus:outline-none"
+            >
+              <span class="relative z-10 pointer-events-none">Comienza tu viaje</span>
+              <span
+                class="relative z-10 flex items-center justify-center w-10 h-10 rounded-full border border-midnight/10 group-hover:border-midnight/30 transition-colors duration-500 pointer-events-none"
+              >
+                <svg
+                  class="w-4 h-4 transition-transform duration-500 ease-[var(--ease-smooth)] group-hover:translate-x-1 pointer-events-none"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                </svg>
+              </span>
+            </button>
+          </div>
+        </form>
       </div>
-    </form>
-  </Container>
+    </Container>
+  </div>
 </SectionContainer>
+
+<style>
+  .cta-title {
+    color: var(--color-ivory) !important;
+  }
+  .cta-description {
+    color: rgba(248, 246, 242, 0.8) !important;
+  }
+  .climax-btn:hover {
+    transform: translateY(-2px);
+  }
+  .climax-btn:active {
+    transform: translateY(1px);
+    transition-duration: 150ms;
+  }
+</style>
 
 <script>
   import { initCTAAnimation } from '@/animations/cta';
+  import { gsap } from '@/lib/gsap';
 
   document.addEventListener('astro:page-load', () => {
     initCTAAnimation();
+
+    if (window.matchMedia('(hover: none)').matches) return;
+
+    const magnets = document.querySelectorAll('.magnetic');
+
+    magnets.forEach((magnet) => {
+      magnet.addEventListener('mousemove', (e: Event) => {
+        const mouseEvent = e as MouseEvent;
+        const boundingRect = (magnet as HTMLElement).getBoundingClientRect();
+
+        const relX = mouseEvent.clientX - boundingRect.left;
+        const relY = mouseEvent.clientY - boundingRect.top;
+
+        const pull = 0.2;
+
+        gsap.to(magnet, {
+          x: (relX - boundingRect.width / 2) * pull,
+          y: (relY - boundingRect.height / 2) * pull,
+          ease: 'power2.out',
+          duration: 0.4,
+        });
+
+        const children = (magnet as HTMLElement).querySelectorAll('.pointer-events-none');
+        gsap.to(children, {
+          x: (relX - boundingRect.width / 2) * 0.1,
+          y: (relY - boundingRect.height / 2) * 0.1,
+          ease: 'power2.out',
+          duration: 0.4,
+        });
+      });
+
+      magnet.addEventListener('mouseleave', () => {
+        gsap.to(magnet, {
+          x: 0,
+          y: 0,
+          ease: 'elastic.out(1, 0.3)',
+          duration: 1.2,
+        });
+
+        const children = (magnet as HTMLElement).querySelectorAll('.pointer-events-none');
+        gsap.to(children, {
+          x: 0,
+          y: 0,
+          ease: 'elastic.out(1, 0.3)',
+          duration: 1.2,
+        });
+      });
+    });
   });
 </script>
