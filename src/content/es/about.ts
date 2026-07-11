@@ -6,7 +6,7 @@ export const aboutData = {
   title: 'Cada itinerario comienza escuchando.',
   paragraphs: [
     'Creemos que un viaje no debe sentirse como una lista de tareas pendientes. No vendemos destinos; diseñamos momentos.',
-    'Nuestro enfoque se basa en entender qué te emociona, qué te inspira y qué ritmo prefieres. A partir de ahí, construimos una experiencia que se siente exclusivamente tuya.'
+    'Nuestro enfoque se basa en entender qué te emociona, qué te inspira y qué ritmo prefieres.'
   ],
   image: imgAbout.src,
   alt: 'Una persona caminando por un paisaje de montaña nevado'
@@ -14,12 +14,12 @@ export const aboutData = {
 
 export const statistics: Statistic[] = [
   {
-    value: '15+',
+    value: '15 +',
     label: 'Años viajando',
     description: 'Explorando el mundo para ti.'
   },
   {
-    value: '40+',
+    value: '40 +',
     label: 'Países conocidos',
     description: 'De primera mano, sin intermediarios.'
   },
@@ -41,10 +41,10 @@ export const philosophyReasons = [
   },
   {
     title: 'Planeación Experta',
-    description: 'Conocemos los destinos de primera mano. Nuestro conocimiento nos permite evitar las multitudes y descubrir la esencia real de cada lugar.'
+    description: 'Conocemos los destinos de primera mano y eso nos permite evitar las multitudes y descubrir la esencia real de cada lugar.'
   },
   {
-    title: 'Acompañamiento Constante',
+    title: 'Cercanía Permanente',
     description: 'Estamos contigo antes, durante y después de tu viaje. Un soporte discreto pero siempre disponible cuando lo necesites.'
   }
 ];

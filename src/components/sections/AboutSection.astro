@@ -10,59 +10,73 @@ import { aboutData, philosophyReasons, statistics } from '@/content/es/about';
 ---
 
 <SectionContainer id="about" padding="none" class="bg-ivory pt-32 pb-32">
-  <Container class="max-w-6xl mx-auto px-4 md:px-8">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 lg:gap-32 mb-24">
-      
-      {/* Image Column */}
-      <div class="relative">
-        <EditorialImage 
-          src={aboutData.image}
-          alt={aboutData.alt}
-          aspectRatio="portrait"
-          class="rounded-sm w-full"
-        />
-        
-        {/* Statistics Floating Box */}
-        <div class="hidden md:flex absolute -bottom-10 -right-10 bg-midnight text-ivory p-8 rounded-2xl shadow-xl flex-col gap-6 w-72">
-          {statistics.map(stat => (
-            <div>
-              <div class="font-serif text-4xl mb-1">{stat.value}</div>
-              <div class="font-sans text-xs uppercase tracking-widest text-sunset mb-1">{stat.label}</div>
-              <div class="font-sans text-xs text-cloud-light/80">{stat.description}</div>
-            </div>
-          ))}
+  <Container class="max-w-7xl mx-auto px-4 md:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
+      {/* Sticky Image Column */}
+      <div class="col-span-1 lg:col-span-5 relative">
+        <div class="lg:sticky lg:top-32 h-fit flex flex-col gap-8 about-sticky-col">
+          <div class="overflow-hidden rounded-sm">
+            <EditorialImage
+              src={aboutData.image}
+              alt={aboutData.alt}
+              aspectRatio="portrait"
+              class="w-full transform-gpu scale-105 about-image"
+            />
+          </div>
+
+          {/* Statistics - Integrated cleanly below the image */}
+          <div
+            class="bg-midnight text-ivory p-8 rounded-xl shadow-lg flex flex-row justify-around md:justify-between items-start w-full pb-40 about-stats"
+          >
+            {
+              statistics.map((stat, idx) => (
+                <div class="flex flex-col flex-1 mb-40">
+                  <div class="font-serif text-4xl md:text-5xl mb-1 text-ivory">
+                    <span class="stat-counter" data-target={stat.value.replace(/[^0-9]/g, '')}>
+                      0
+                    </span>
+                    <span class="text-sunset">{stat.value.replace(/[0-9]/g, '')}</span>
+                  </div>
+                  <div class="font-sans text-[10px] md:text-xs uppercase tracking-widest text-sunset/80 mb-10">
+                    {stat.label}
+                  </div>
+                  {stat.description && (
+                    <div class="font-sans text-xs text-cloud-light/60 hidden md:block max-w-[140px] leading-relaxed">
+                      {stat.description}
+                    </div>
+                  )}
+                </div>
+              ))
+            }
+          </div>
         </div>
       </div>
-      
+
       {/* Content Column */}
-      <div class="flex flex-col justify-center">
+      <div class="col-span-1 lg:col-span-7 flex flex-col justify-center about-content-col lg:pt-16">
         <Eyebrow text={aboutData.philosophy} class="mb-6" />
-        <SectionTitle as="h2" class="text-midnight mb-8 text-balance">
+        <SectionTitle as="h2" class="text-midnight mb-10 text-balance leading-tight">
           {aboutData.title}
         </SectionTitle>
-        
-        <div class="space-y-6 mb-16">
-          {aboutData.paragraphs.map(p => (
-            <BodyText>{p}</BodyText>
-          ))}
-        </div>
-        
-        {/* Mobile Statistics */}
-        <div class="md:hidden grid grid-cols-2 gap-8 mb-16">
-          {statistics.map(stat => (
-            <div>
-              <div class="font-serif text-3xl mb-1">{stat.value}</div>
-              <div class="font-sans text-[10px] uppercase tracking-widest text-sunset mb-1">{stat.label}</div>
-            </div>
-          ))}
+
+      
+        <div class="space-y-6 mb-20 max-w-2xl text-lg text-cloud-dark leading-relaxed">
+          {aboutData.paragraphs.map((p) => <BodyText>{p}</BodyText>)}
         </div>
 
+        <br /><br />
+
         {/* Reasons Grid */}
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-12">
-          {philosophyReasons.map(reason => (
-            <FeatureCard title={reason.title} description={reason.description} />
-          ))}
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
+          {
+            philosophyReasons.map((reason, idx) => (
+              <div class="about-reason-item">
+                <FeatureCard title={reason.title} description={reason.description} />
+              </div>
+            ))
+          }
         </div>
+        <br /><br />
       </div>
     </div>
   </Container>
