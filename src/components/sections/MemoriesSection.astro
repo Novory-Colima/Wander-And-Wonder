@@ -1,78 +1,94 @@
 ---
 import SectionContainer from '@components/layout/SectionContainer.astro';
-import Container from '@components/common/Container.astro';
 import DisplayTitle from '@components/common/DisplayTitle.astro';
-import Quote from '@components/common/Quote.astro';
 import EditorialImage from '@components/blocks/EditorialImage.astro';
 
 import mem1Img from '@/assets/images/memory-nostalgic-sunset.webp';
 import mem2Img from '@/assets/images/memory-paris-street.webp';
 import mem3Img from '@/assets/images/memory-forest-mist.webp';
 
-
-const memoryImages = [
-  mem1Img.src, // Nostalgic sunset
-  mem2Img.src, // Paris quiet street
-  mem3Img.src, // Forest mist
+const memories = [
+  {
+    src: mem1Img.src,
+    alt: 'Atardecer nostálgico sobre el agua',
+    aspect: 'landscape',
+    quote: "Volvería únicamente para escuchar otra vez aquel atardecer.",
+    author: "Grecia, 2022",
+    align: 'left-[5%] md:left-[10%] top-[15%]',
+    width: 'w-[80vw] md:w-[45vw]',
+    speed: 1.2
+  },
+  {
+    src: mem2Img.src,
+    alt: 'Callejón tranquilo al amanecer',
+    aspect: 'portrait',
+    quote: "No recuerdo el nombre del restaurante. Pero sí recuerdo las risas.",
+    author: "París, 2024",
+    align: 'right-[5%] md:right-[15%] top-[45%]',
+    width: 'w-[70vw] md:w-[30vw]',
+    speed: 1.0
+  },
+  {
+    src: mem3Img.src,
+    alt: 'Bosque envuelto en niebla matutina',
+    aspect: 'video',
+    quote: "El silencio de aquella montaña lo decía todo.",
+    author: "Japón, 2023",
+    align: 'left-[10%] md:left-[20%] top-[80%]',
+    width: 'w-[85vw] md:w-[50vw]',
+    speed: 1.1
+  }
 ];
 ---
 
-<SectionContainer id="memories" padding="xl" class="bg-ivory transition-colors duration-1000" dark>
-  <Container class="max-w-4xl mx-auto text-center px-4 relative z-10">
-    <!-- Huge image -->
-    <div class="mb-32 md:mb-48 w-full max-w-5xl mx-auto">
-      <EditorialImage 
-        src={memoryImages[0]}
-        alt="Atardecer nostálgico sobre el agua"
-        aspectRatio="landscape"
-        class="rounded-none opacity-90 w-full"
-        dark
-      />
-    </div>
-
-    <!-- Phrase -->
-    <div class="mb-32 md:mb-48 max-w-3xl mx-auto">
-      <Quote author="Grecia, 2022" class="text-left md:text-center md:border-l-0 text-3xl md:text-5xl" dark>
-        Volvería únicamente para escuchar otra vez aquel atardecer.
-      </Quote>
-    </div>
-
-    <!-- Smaller layout -->
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-16 md:gap-8 mb-32 md:mb-48 max-w-6xl mx-auto">
-      <div class="col-span-1 md:col-span-5 md:mt-24">
-        <EditorialImage 
-          src={memoryImages[1]}
-          alt="Callejón tranquilo al amanecer"
-          aspectRatio="portrait"
-          class="rounded-none opacity-90 w-full"
-          dark
-        />
-      </div>
-      <div class="col-span-1 md:col-span-6 md:col-start-7 flex items-center justify-center">
-        <Quote author="París, 2024" class="text-2xl md:text-4xl leading-relaxed" dark>
-          No recuerdo el nombre del restaurante.<br/>Pero sí recuerdo las risas.
-        </Quote>
-      </div>
-    </div>
-
-    <!-- Final large image -->
-    <div class="mb-32 md:mb-48 max-w-4xl mx-auto">
-      <EditorialImage 
-        src={memoryImages[2]}
-        alt="Bosque envuelto en niebla matutina"
-        aspectRatio="video"
-        class="rounded-none opacity-80 w-full"
-        dark
-      />
-    </div>
-
-    <!-- Final phrase -->
-    <div>
-      <DisplayTitle as="h2" class="text-ivory">
-        El viaje terminó.<br />La historia no.
+<SectionContainer id="memories" padding="none" class="bg-ivory relative z-20">
+  
+  <!-- 1. Transition Screen (Cierre de Ojos) -->
+  <div id="memory-transition-screen" class="h-screen w-full flex items-center justify-center bg-ivory">
+    <div class="text-center px-4 opacity-0" id="memory-intro-text">
+      <span class="font-sans text-sm md:text-base tracking-[0.2em] uppercase block mb-4 text-midnight/60">La Memoria</span>
+      <DisplayTitle as="h2" class="text-3xl md:text-5xl lg:text-6xl max-w-4xl mx-auto leading-tight text-midnight">
+        Pero al final del viaje...<br />lo que queda son fragmentos.
       </DisplayTitle>
     </div>
-  </Container>
+  </div>
+
+  <!-- 2. The Memory Void -->
+  <div id="memory-void" class="relative w-full h-[300vh] bg-midnight z-10 pointer-events-none">
+    {memories.map((memory, index) => (
+      <div class={`memory-fragment absolute ${memory.align} ${memory.width} flex flex-col gap-6 md:gap-8 pointer-events-auto`} data-speed={memory.speed}>
+        
+        <!-- Image Container -->
+        <div class="memory-image-wrapper overflow-hidden relative shadow-2xl shadow-midnight/50">
+          <EditorialImage 
+            src={memory.src}
+            alt={memory.alt}
+            aspectRatio={memory.aspect as any}
+            class="memory-image rounded-none w-full scale-125 transform-gpu"
+          />
+        </div>
+
+        <!-- Magnetic Quote -->
+        <div class="memory-quote-wrapper flex flex-col px-4 md:px-0">
+          <p class="font-serif text-2xl md:text-4xl lg:text-5xl text-ivory italic leading-snug">
+            "{memory.quote}"
+          </p>
+          <span class="font-sans text-xs md:text-sm tracking-widest uppercase text-ivory/60 mt-4 block">
+            {memory.author}
+          </span>
+        </div>
+        
+      </div>
+    ))}
+  </div>
+
+  <!-- Final Anchor to next section -->
+  <div class="h-screen w-full bg-midnight flex items-center justify-center relative z-20">
+    <DisplayTitle as="h2" class="text-ivory text-center px-4" id="memory-outro-text">
+      El viaje terminó.<br />La historia no.
+    </DisplayTitle>
+  </div>
+
 </SectionContainer>
 
 <script>
