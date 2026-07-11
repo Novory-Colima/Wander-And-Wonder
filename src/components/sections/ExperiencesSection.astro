@@ -4,41 +4,42 @@ import Container from '@components/common/Container.astro';
 import { experiences } from '@/content/es/experiences';
 ---
 
-<SectionContainer id="experiences" padding="none" class="bg-midnight relative overflow-hidden min-h-screen flex items-center py-32">
+<SectionContainer id="experiences" padding="none" class="bg-midnight relative overflow-hidden min-h-screen flex items-center py-32 z-10">
   
-  <!-- Contenedor de imágenes de fondo (Hover Reveal) -->
-  <div class="exp-images-container absolute inset-0 z-0 pointer-events-none opacity-40">
+  <!-- Contenedor de imágenes de fondo (Cinematic Crossfade) -->
+  <div class="exp-images-container absolute inset-0 z-0 pointer-events-none">
     {experiences.map((exp, index) => (
-      <img 
-        src={exp.image}
-        alt=""
-        class={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-[var(--ease-smooth)] ${index === 0 ? 'opacity-100 scale-105' : 'opacity-0 scale-100'}`}
-        data-exp-img={index}
-      />
+      <div class="exp-image-wrapper absolute inset-0 w-full h-full opacity-0" data-exp-img={index}>
+        <img 
+          src={exp.image}
+          alt={exp.title}
+          class="w-full h-full object-cover transform-gpu"
+        />
+      </div>
     ))}
-    <!-- Overlay sutil para asegurar contraste -->
-    <div class="absolute inset-0 bg-gradient-to-r from-midnight via-midnight/60 to-transparent"></div>
+    <!-- Overlay de contraste: Un gradiente oscuro fuerte del lado izquierdo para asegurar legibilidad absoluta -->
+    <div class="absolute inset-0 bg-gradient-to-r from-[#070F18]/95 via-[#070F18]/75 to-transparent w-full md:w-3/4 lg:w-2/3 pointer-events-none"></div>
   </div>
 
   <Container class="relative z-10 w-full max-w-7xl mx-auto px-4 md:px-8 flex flex-col justify-center min-h-[70vh]">
-    <div class="max-w-xl mb-16 md:mb-24">
-      <span class="font-sans text-xs font-medium uppercase tracking-[0.2em] text-sunset/90 block mb-6">Escena 6</span>
-      <h2 class="font-sans text-xl md:text-2xl text-ivory/90 leading-relaxed font-light">
+    <div class="max-w-2xl mb-16 md:mb-24">
+      <h2 class="font-sans text-2xl md:text-4xl !text-white leading-relaxed font-light drop-shadow-xl">
         El mundo no es una lista de lugares para ver. Es una colección infinita de formas de sentir.
       </h2>
+      <br>
     </div>
 
-    <!-- Menú tipográfico gigante -->
+    <!-- Menú tipográfico gigante interactivo -->
     <div class="flex flex-col w-full max-w-5xl">
       {experiences.map((exp, index) => (
         <div 
-          class="exp-item group relative py-6 md:py-10 border-b border-ivory/10 cursor-pointer flex flex-col md:flex-row md:items-center justify-between"
+          class="exp-item group relative py-4 md:py-8 border-b border-white/10 cursor-pointer flex flex-col md:flex-row md:items-center justify-between"
           data-exp-index={index}
         >
-          <h3 class="font-serif text-5xl md:text-7xl lg:text-[7rem] leading-none text-ivory/30 transition-all duration-500 ease-out group-hover:text-ivory group-hover:italic pr-8">
+          <h3 class="exp-title font-serif text-5xl md:text-7xl lg:text-[7rem] leading-none !text-white/50 transition-colors duration-500 ease-out pr-8">
             {exp.title}
           </h3>
-          <p class="font-sans text-sm md:text-base text-cloud-light max-w-[280px] md:text-right mt-4 md:mt-0 opacity-0 transform md:translate-x-8 transition-all duration-700 ease-out group-hover:opacity-100 group-hover:translate-x-0">
+          <p class="exp-desc font-sans text-base md:text-lg !text-white max-w-[320px] md:text-right mt-4 md:mt-0 opacity-0 transform translate-x-4 transition-all duration-500 ease-out">
             {exp.description}
           </p>
         </div>
@@ -48,49 +49,9 @@ import { experiences } from '@/content/es/experiences';
 </SectionContainer>
 
 <script>
-  import { gsap } from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-  gsap.registerPlugin(ScrollTrigger);
+  import { initExperiencesAnimation } from '@/animations/experiences';
 
   document.addEventListener('astro:page-load', () => {
-    const items = document.querySelectorAll('.exp-item');
-    const images = document.querySelectorAll('[data-exp-img]');
-    const section = document.getElementById('experiences');
-    
-    if (!items.length || !images.length || !section) return;
-
-    // Animación de entrada
-    gsap.fromTo(items,
-      { opacity: 0, y: 50 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        stagger: 0.1,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: section,
-          start: 'top 60%'
-        }
-      }
-    );
-
-    // Hover logic
-    items.forEach((item) => {
-      item.addEventListener('mouseenter', () => {
-        const idx = item.getAttribute('data-exp-index');
-        
-        images.forEach(img => {
-          if (img.getAttribute('data-exp-img') === idx) {
-            img.classList.remove('opacity-0', 'scale-100');
-            img.classList.add('opacity-100', 'scale-105');
-          } else {
-            img.classList.remove('opacity-100', 'scale-105');
-            img.classList.add('opacity-0', 'scale-100');
-          }
-        });
-      });
-    });
+    initExperiencesAnimation();
   });
 </script>
