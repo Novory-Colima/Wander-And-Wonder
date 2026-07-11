@@ -27,7 +27,7 @@ const featuredDestinations = destinations.slice(0, 4);
       {featuredDestinations.map((dest, index) => {
         const isEven = index % 2 === 0;
         return (
-          <div class={`dest-item grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-0 items-center ${isEven ? '' : 'md:dir-rtl'}`}>
+          <div class={`dest-item grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-0 items-center`}>
             <!-- Imagen Gigante (Parallax Mask) -->
             <div class={`dest-image-col col-span-1 md:col-span-8 ${isEven ? 'md:col-start-1' : 'md:col-start-5'} relative z-10`}>
               <div class="overflow-hidden bg-midnight aspect-[4/3] md:aspect-[16/10]">

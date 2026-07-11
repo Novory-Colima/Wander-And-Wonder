@@ -6,20 +6,22 @@ import { experiences } from '@/content/es/experiences';
 
 <SectionContainer id="experiences" padding="none" class="bg-midnight relative overflow-hidden min-h-screen flex items-center py-32 z-10">
   
-  <!-- Contenedor de imágenes de fondo (Cinematic Crossfade) -->
+  <!-- Contenedor de imágenes de fondo (Cinematic Crossfade con Sticky) -->
   <div class="exp-images-container absolute inset-0 z-0 pointer-events-none">
-    {experiences.map((exp, index) => (
-      <div class="exp-image-wrapper absolute inset-0 w-full h-full opacity-0" data-exp-img={index}>
-        <img 
-          src={exp.image}
-          alt={exp.title}
-          loading="lazy"
-          class="w-full h-full object-cover transform-gpu"
-        />
-      </div>
-    ))}
-    <!-- Overlay de contraste: Un gradiente oscuro fuerte del lado izquierdo para asegurar legibilidad absoluta -->
-    <div class="absolute inset-0 bg-gradient-to-r from-[#070F18]/95 via-[#070F18]/75 to-transparent w-full md:w-3/4 lg:w-2/3 pointer-events-none"></div>
+    <div class="sticky top-0 w-full h-screen overflow-hidden">
+      {experiences.map((exp, index) => (
+        <div class="exp-image-wrapper absolute inset-0 w-full h-full opacity-0" data-exp-img={index}>
+          <img 
+            src={exp.image}
+            alt={exp.title}
+            loading="lazy"
+            class="w-full h-full object-cover transform-gpu"
+          />
+        </div>
+      ))}
+      <!-- Overlay de contraste: Un gradiente oscuro fuerte del lado izquierdo para asegurar legibilidad absoluta -->
+      <div class="absolute inset-0 bg-gradient-to-r from-[#070F18]/95 via-[#070F18]/75 to-transparent w-full md:w-3/4 lg:w-2/3 pointer-events-none"></div>
+    </div>
   </div>
 
   <Container class="relative z-10 w-full max-w-7xl mx-auto px-4 md:px-8 flex flex-col justify-center min-h-[70vh]">

@@ -43,23 +43,24 @@ import { SITE_CONFIG, CTA_TEXT } from '@/config/site';
     </div>
   </nav>
 
-  <!-- Mobile Menu -->
-  <div
-    id="mobile-menu"
-    class="lg:hidden fixed inset-0 top-20 bg-midnight/98 backdrop-blur-lg opacity-0 pointer-events-none transition-opacity duration-500 ease-[var(--ease-smooth)] z-40"
-    role="dialog"
-    aria-label="Menú de navegación"
-    aria-hidden="true"
-  >
-    <div class="container-max flex flex-col items-center justify-center h-full gap-8 py-12">
-      <NavLinks variant="mobile" />
-      <div class="mt-4">
-        <LanguageSelector />
-      </div>
-      <CTAButton text={CTA_TEXT} href="#contact" size="lg" variant="solid" />
-    </div>
-  </div>
 </header>
+
+<!-- Mobile Menu (Moved outside header to avoid backdrop-filter containing block bug) -->
+<div
+  id="mobile-menu"
+  class="lg:hidden fixed inset-0 top-20 bg-midnight/98 backdrop-blur-lg opacity-0 pointer-events-none transition-opacity duration-500 ease-[var(--ease-smooth)] z-[45]"
+  role="dialog"
+  aria-label="Menú de navegación"
+  aria-hidden="true"
+>
+  <div class="container-max flex flex-col items-center justify-center h-full gap-8 py-12">
+    <NavLinks variant="mobile" />
+    <div class="mt-4">
+      <LanguageSelector />
+    </div>
+    <CTAButton text={CTA_TEXT} href="#contact" size="lg" variant="solid" />
+  </div>
+</div>
 
 <script>
   function initNavbar(): void {
