@@ -4,111 +4,129 @@ import { SITE_CONFIG } from '@/config/site';
 
 const currentYear = new Date().getFullYear();
 
-const socialLinks = [
-  { label: 'Instagram', href: '#', icon: 'In' },
-  { label: 'Twitter', href: '#', icon: 'Tw' },
-  { label: 'YouTube', href: '#', icon: 'Yt' },
+const navSections = [
+  {
+    title: 'Marca',
+    links: [
+      { label: 'Filosofía', href: '#' },
+      { label: 'Sobre nosotros', href: '#' },
+    ]
+  },
+  {
+    title: 'Explorar',
+    links: [
+      { label: 'Experiencias', href: '#experiences' },
+      { label: 'Destinos', href: '#destinations' },
+      { label: 'Historias', href: '#stories' },
+    ]
+  },
+  {
+    title: 'Contacto',
+    links: [
+      { label: 'Email', href: 'mailto:hello@wanderandwonder.com' },
+      { label: 'Teléfono', href: '#' },
+      { label: 'Ubicación', href: '#' },
+    ]
+  },
+  {
+    title: 'Síguenos',
+    links: [
+      { label: 'Instagram', href: '#' },
+      { label: 'Facebook', href: '#' },
+      { label: 'Pinterest', href: '#' },
+      { label: 'YouTube', href: '#' },
+    ]
+  }
 ];
 ---
 
 <footer
-  class="relative bg-midnight pt-32 md:pt-48 pb-12 overflow-hidden flex flex-col justify-end min-h-[90vh] z-0"
+  class="relative bg-midnight flex flex-col pt-24 md:pt-32 z-0 w-full"
   role="contentinfo"
 >
-  <Container class="relative z-10 w-full max-w-7xl mx-auto px-4 md:px-8">
+  <!-- ACT 1: The Monumental Logo (Background Layer) -->
+  <div class="relative w-full flex justify-center z-0 px-2 sm:px-4">
+    <!-- Precision typography for maximum monumental feel -->
+    <h2 class="monumental-logo font-serif uppercase tracking-[0.03em] text-[15.5vw] leading-[0.8] opacity-90 text-center select-none w-full whitespace-nowrap">
+      Wander<span class="ampersand text-sunset font-serif">&</span>Wonder
+    </h2>
+  </div>
+
+  <!-- ACT 2: The Editorial Cut & Whispered Grid (Foreground Layer) -->
+  <!-- The negative margin overlaps the logo. Z-10 brings it to the front, perfectly slicing the typography. -->
+  <div class="relative z-10 w-full bg-midnight pt-24 md:pt-32 pb-16 md:pb-24 -mt-[4.5vw] md:-mt-[5vw] flex flex-col items-center">
     
-    <!-- Diseño Editorial Asimétrico para Enlaces y CTA -->
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-16 md:gap-8 mb-32 md:mb-48">
-      <!-- Columna Izquierda (CTA) -->
-      <div class="md:col-span-6 md:col-start-1">
-        <span class="font-sans text-xs uppercase tracking-[0.2em] text-sunset mb-8 block">El Final del Viaje</span>
-        <h2 class="font-serif text-5xl md:text-7xl lg:text-[6rem] text-ivory leading-[0.9] mb-12 md:mb-16 italic">
-          Perderse <br/>es el mejor <br/>destino.
-        </h2>
-        <a href="mailto:hello@wanderandwonder.com" class="magnetic-button inline-flex items-center gap-6 group cursor-pointer">
-          <span class="font-sans text-sm md:text-base uppercase tracking-widest text-ivory/60 group-hover:text-ivory transition-colors duration-500">
-            Comienza tu historia
-          </span>
-          <span class="w-12 h-12 md:w-16 md:h-16 rounded-full border border-ivory/20 flex items-center justify-center group-hover:bg-sunset group-hover:border-sunset transition-all duration-500">
-            <svg class="w-4 h-4 md:w-5 md:h-5 text-ivory -rotate-45 group-hover:rotate-0 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-          </span>
-        </a>
-      </div>
+    <!-- Razor line defining the intentional, surgical cut -->
+    <div class="absolute top-0 left-0 w-full h-[1px] bg-ivory/10"></div>
 
-      <!-- Columna Derecha (Enlaces) -->
-      <div class="md:col-span-4 md:col-start-9 flex flex-col justify-end gap-16 mt-16 md:mt-0">
-        <div>
-          <h3 class="font-sans text-xs uppercase tracking-[0.2em] text-sunset mb-8">Navegación</h3>
-          <ul class="space-y-4">
-            <li><a href="#experiences" class="font-sans text-lg text-ivory/40 hover:text-ivory hover:italic transition-all duration-300 block">Experiencias</a></li>
-            <li><a href="#destinations" class="font-sans text-lg text-ivory/40 hover:text-ivory hover:italic transition-all duration-300 block">Destinos</a></li>
-            <li><a href="#stories" class="font-sans text-lg text-ivory/40 hover:text-ivory hover:italic transition-all duration-300 block">Historias</a></li>
-          </ul>
-        </div>
-        <div>
-          <h3 class="font-sans text-xs uppercase tracking-[0.2em] text-sunset mb-8">Social</h3>
-          <ul class="space-y-4">
-            {socialLinks.map((social) => (
-              <li>
-                <a href={social.href} class="font-sans text-lg text-ivory/40 hover:text-ivory hover:italic transition-all duration-300 block">
-                  {social.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <!-- Massive Typography Bottom -->
-    <div class="w-full flex flex-col">
-      <h1 class="font-serif uppercase tracking-tighter text-ivory w-full leading-[0.75] text-[16vw] opacity-90 select-none -ml-2 md:-ml-4">
-        WANDER<span class="text-sunset/80">&</span>WONDER
-      </h1>
+    <Container class="w-full max-w-5xl mx-auto px-6 md:px-12 flex flex-col items-center">
       
-      <div class="w-full flex flex-col md:flex-row items-center justify-between gap-4 pt-12 border-t border-ivory/10 mt-12">
-        <p class="font-sans text-[10px] md:text-xs text-ivory/30 tracking-widest uppercase">
-          &copy; {currentYear} {SITE_CONFIG.name}. Todos los derechos reservados.
-        </p>
-        <p class="font-sans text-[10px] md:text-xs text-ivory/30 tracking-widest uppercase">
-          Diseñado para el mundo.
-        </p>
+      <!-- The Whispered Grid -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-y-16 gap-x-12 md:gap-x-20 w-full justify-items-center md:justify-items-start pl-4 md:pl-0">
+        {navSections.map((section) => (
+          <div class="flex flex-col items-center md:items-start w-full text-center md:text-left">
+            <h3 class="footer-column-title font-sans text-[9px] uppercase tracking-[0.35em] text-sunset mb-6 md:mb-8 opacity-70">
+              {section.title}
+            </h3>
+            <ul class="flex flex-col gap-3 md:gap-4 items-center md:items-start w-full">
+              {section.links.map((link) => (
+                <li>
+                  <a href={link.href} class="footer-link">
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
       </div>
-    </div>
-  </Container>
+
+      <!-- Ghost Copyright (No lines, breathing in space) -->
+      <div class="mt-32 md:mt-48 flex flex-col items-center justify-center opacity-30 hover:opacity-100 transition-opacity duration-700">
+        <span class="font-sans text-[8px] sm:text-[9px] uppercase tracking-[0.25em] text-ivory/80 text-center leading-relaxed">
+          &copy; {currentYear} {SITE_CONFIG.name}. Todos los derechos reservados.<br class="sm:hidden" />
+          <span class="hidden sm:inline"> &nbsp;|&nbsp; </span>Diseñado para el mundo.
+        </span>
+      </div>
+    </Container>
+  </div>
 </footer>
 
-<script>
-  import { gsap } from 'gsap';
+<style>
+  /* Override global unlayered h3 styles to restore correct gold/sunset color */
+  .footer-column-title {
+    color: var(--color-sunset) !important;
+  }
 
-  document.addEventListener('astro:page-load', () => {
-    if (window.matchMedia('(hover: none)').matches) return;
-    
-    const magnets = document.querySelectorAll('.magnetic-button');
-    
-    magnets.forEach((magnet) => {
-      magnet.addEventListener('mousemove', (e: Event) => {
-        const mouseEvent = e as MouseEvent;
-        const boundingRect = (magnet as HTMLElement).getBoundingClientRect();
-        const relX = mouseEvent.clientX - boundingRect.left;
-        const relY = mouseEvent.clientY - boundingRect.top;
-        
-        gsap.to(magnet, {
-          x: (relX - boundingRect.width / 2) * 0.2,
-          y: (relY - boundingRect.height / 2) * 0.2,
-          ease: 'power2.out',
-          duration: 0.3
-        });
-      });
-      
-      magnet.addEventListener('mouseleave', () => {
-        gsap.to(magnet, {
-          x: 0,
-          y: 0,
-          ease: 'elastic.out(1, 0.3)',
-          duration: 1
-        });
-      });
-    });
-  });
-</script>
+  /* Override global unlayered h2 styles to restore white/ivory and gold ampersand */
+  .monumental-logo {
+    color: var(--color-ivory) !important;
+  }
+  
+  .monumental-logo .ampersand {
+    color: var(--color-sunset) !important;
+  }
+
+  .footer-link {
+    display: inline-flex;
+    align-items: center;
+    color: rgba(248, 246, 242, 0.35); /* Whispered legibility */
+    font-family: var(--font-sans);
+    font-size: 0.85rem; /* Delicate scale */
+    font-weight: 300;
+    transition: all 400ms var(--ease-smooth); /* Majestic, slow hover */
+    will-change: transform, color, text-shadow;
+  }
+  
+  .footer-link:hover {
+    color: rgba(248, 246, 242, 0.9); /* Gentle bloom */
+    transform: translateX(4px); /* Very subtle editorial shift */
+    text-shadow: 0 0 12px rgba(248, 246, 242, 0.2);
+  }
+
+  @media (min-width: 768px) {
+    .footer-link {
+      font-size: 0.9rem;
+    }
+  }
+</style>
