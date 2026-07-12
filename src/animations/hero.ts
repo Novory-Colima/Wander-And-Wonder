@@ -106,9 +106,15 @@ export const initHeroAnimation = () => {
       y: '-30vh', 
       ease: 'none' 
     }, 0)
-    // Camera background moves slightly to create extreme depth
+    // Camera background moves slightly and fades out to create extreme depth and dark fade
     .to(heroCamera, { 
       y: '15vh', 
+      opacity: 0,
       ease: 'none' 
+    }, 0)
+    // Transition background color of heroSection to match the next section's bg-midnight
+    .to(heroSection, {
+      backgroundColor: '#0D1B2A',
+      ease: 'none'
     }, 0);
 };
