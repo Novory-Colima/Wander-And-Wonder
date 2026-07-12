@@ -95,9 +95,16 @@ export function initExperiencesAnimation() {
     });
   };
 
-  // Attach hover events
+  // Attach interactive events (hover, click, and keyboard)
   items.forEach((item, index) => {
     item.addEventListener('mouseenter', () => activateExperience(index));
+    item.addEventListener('click', () => activateExperience(index));
+    item.addEventListener('keydown', (e) => {
+      if ((e as KeyboardEvent).key === 'Enter' || (e as KeyboardEvent).key === ' ') {
+        e.preventDefault();
+        activateExperience(index);
+      }
+    });
   });
 
   // Initialize the first item as active

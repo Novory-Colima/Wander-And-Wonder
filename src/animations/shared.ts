@@ -1,5 +1,3 @@
-import { gsap } from 'gsap';
-
 export const ANIMATION_CONSTANTS = {
   duration: {
     base: 1.2,
@@ -31,19 +29,4 @@ export const ANIMATION_CONSTANTS = {
 export function prefersReducedMotion(): boolean {
   if (typeof window === 'undefined') return false;
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-}
-
-/**
- * Creates a standard ScrollTrigger configuration
- */
-export function createScrollTrigger(
-  trigger: string | Element,
-  options: ScrollTrigger.Vars = {}
-): ScrollTrigger.Vars {
-  return {
-    trigger,
-    start: 'top 80%',
-    toggleActions: 'play none none none',
-    ...options,
-  };
 }

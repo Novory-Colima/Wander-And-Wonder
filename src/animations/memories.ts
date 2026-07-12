@@ -1,5 +1,5 @@
 import { gsap } from '@/lib/gsap';
-import { ANIMATION_CONSTANTS, prefersReducedMotion, createScrollTrigger } from './shared';
+import { prefersReducedMotion } from './shared';
 
 export function initMemoriesAnimation() {
   const section = document.getElementById('memories');

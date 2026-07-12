@@ -67,7 +67,6 @@ import { SITE_CONFIG, CTA_TEXT } from '@/config/site';
     const navbar = document.getElementById('navbar');
     if (!navbar) return;
 
-    let lastScrollY = 0;
     let isScrolled = false;
 
     function updateNavbar(): void {
@@ -80,8 +79,6 @@ import { SITE_CONFIG, CTA_TEXT } from '@/config/site';
         isScrolled = false;
         navbar?.classList.remove('navbar-scrolled');
       }
-
-      lastScrollY = currentScrollY;
     }
 
     window.addEventListener('scroll', updateNavbar, { passive: true });

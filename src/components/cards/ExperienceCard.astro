@@ -9,7 +9,7 @@ interface Props {
 const { experience, class: className = '' } = Astro.props;
 ---
 
-<article class="group relative overflow-hidden rounded-sm cursor-pointer aspect-[4/5] w-full">
+<article class:list={["group relative overflow-hidden rounded-sm cursor-pointer aspect-[4/5] w-full", className]}>
   <img
     src={experience.image}
     alt={experience.alt}

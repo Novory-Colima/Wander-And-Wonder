@@ -55,7 +55,7 @@ const memories = [
 
   <!-- 2. The Memory Void -->
   <div id="memory-void" class="relative w-full h-[300vh] bg-midnight z-10 pointer-events-none">
-    {memories.map((memory, index) => (
+    {memories.map((memory) => (
       <div class={`memory-fragment absolute ${memory.align} ${memory.width} flex flex-col gap-6 md:gap-8 pointer-events-auto`} data-speed={memory.speed}>
         
         <!-- Image Container -->

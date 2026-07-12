@@ -1,4 +1,4 @@
-import { gsap, ScrollTrigger } from '@/lib/gsap';
+import { gsap } from '@/lib/gsap';
 import { prefersReducedMotion } from './shared';
 
 export function initDreamAnimation() {
@@ -28,16 +28,44 @@ export function initDreamAnimation() {
   });
 
   // 1. Text reveals
-  tl.fromTo([title, paragraph], 
-    { opacity: 0, y: 50 },
-    { opacity: 1, y: 0, stagger: 0.2, duration: 1, ease: 'power2.out' }
-  );
+  const textElements = [title, paragraph].filter((el): el is HTMLHeadingElement | HTMLParagraphElement => !!el);
+  if (textElements.length > 0) {
+    tl.fromTo(textElements, 
+      { opacity: 0, y: 50 },
+      { opacity: 1, y: 0, stagger: 0.2, duration: 1, ease: 'power2.out' }
+    );
+  }
 
   // 2. Background color transitions (Midnight -> Ivory Warm) 
-  // and Text color transitions (Ivory -> Midnight)
-  tl.to(section, { backgroundColor: '#F5F3EF', duration: 2, ease: 'power1.inOut' }, '+=0.5')
-    .to(title, { color: '#070F18', duration: 2, ease: 'power1.inOut' }, '<')
-    .to(paragraph, { color: 'rgba(7, 15, 24, 0.7)', duration: 2, ease: 'power1.inOut' }, '<');
+  // and Text/Card color transitions (Ivory -> Midnight)
+  tl.to(section, { backgroundColor: '#F5F3EF', duration: 2, ease: 'power1.inOut' }, '+=0.5');
+
+  if (title) {
+    tl.to(title, { color: '#070F18', duration: 2, ease: 'power1.inOut' }, '<');
+  }
+  if (paragraph) {
+    tl.to(paragraph, { color: 'rgba(7, 15, 24, 0.7)', duration: 2, ease: 'power1.inOut' }, '<');
+  }
+
+  // Also transition the collage cards' labels and backgrounds so they are readable against the light background!
+  const collageInners = section.querySelectorAll('.collage-item div.relative');
+  const collageLabels = section.querySelectorAll('.collage-item span');
+  
+  if (collageInners.length > 0) {
+    tl.to(collageInners, {
+      backgroundColor: 'rgba(255, 255, 255, 0.8)',
+      borderColor: 'rgba(13, 27, 42, 0.1)',
+      duration: 2,
+      ease: 'power1.inOut'
+    }, '<');
+  }
+  if (collageLabels.length > 0) {
+    tl.to(collageLabels, {
+      color: '#070F18',
+      duration: 2,
+      ease: 'power1.inOut'
+    }, '<');
+  }
 
   // 3. Collage items fly in overlapping
   collageItems.forEach((item, index) => {
@@ -73,7 +101,7 @@ export function initDreamAnimation() {
     // Extract the original inline rotation from the style attribute
     const styleTransform = inner.style.transform || '';
     const match = styleTransform.match(/rotate\(([-\d.]+)deg\)/);
-    const baseRotation = match ? parseFloat(match[1]) : 0;
+    const baseRotation = (match && match[1]) ? parseFloat(match[1]) : 0;
 
     el.addEventListener('mousemove', (e) => {
       const rect = el.getBoundingClientRect();

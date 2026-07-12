@@ -39,7 +39,7 @@ const images = [
             class={`collage-item absolute ${img.align} w-48 md:w-64 opacity-0 pointer-events-auto cursor-none group`}
             data-index={index}
           >
-            <div class="relative shadow-2xl shadow-midnight/30 p-2 bg-ivory/5 backdrop-blur-sm" style={`transform: rotate(${img.rotate});`}>
+            <div class="relative shadow-2xl shadow-midnight/30 p-2 bg-ivory/5 backdrop-blur-sm border border-transparent" style={`transform: rotate(${img.rotate});`}>
               <div class="overflow-hidden">
                 <img src={img.src} alt={img.alt} loading="lazy" class="w-full h-auto object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-700" />
               </div>

@@ -1,5 +1,5 @@
 ---
-interface Props {
+export interface Props {
   as?: 'section' | 'div' | 'article';
   id?: string;
   class?: string;
@@ -15,7 +15,7 @@ const {
   dark = false,
 } = Astro.props;
 
-const paddingMap = {
+const paddingMap: Record<NonNullable<Props['padding']>, string> = {
   none: '',
   sm: 'py-16 md:py-20',
   md: 'py-20 md:py-28',

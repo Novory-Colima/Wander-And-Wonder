@@ -33,11 +33,14 @@ import { experiences } from '@/content/es/experiences';
     </div>
 
     <!-- Menú tipográfico gigante interactivo -->
-    <div class="flex flex-col w-full max-w-5xl">
+    <div class="flex flex-col w-full max-w-5xl" role="tablist" aria-label="Experiencias disponibles">
       {experiences.map((exp, index) => (
         <div 
-          class="exp-item group relative py-4 md:py-8 border-b border-white/10 cursor-pointer flex flex-col md:flex-row md:items-center justify-between"
+          role="button"
+          tabindex="0"
+          class="exp-item group relative py-4 md:py-8 border-b border-white/10 cursor-pointer flex flex-col md:flex-row md:items-center justify-between focus:outline-none focus-visible:bg-white/5 px-4 -mx-4 rounded-sm"
           data-exp-index={index}
+          aria-label={`Ver experiencia: ${exp.title}`}
         >
           <h3 class="exp-title font-serif text-5xl md:text-7xl lg:text-[7rem] leading-none !text-white/50 transition-colors duration-500 ease-out pr-8">
             {exp.title}

@@ -26,18 +26,18 @@ import { aboutData, philosophyReasons, statistics } from '@/content/es/about';
 
           {/* Statistics - Integrated cleanly below the image */}
           <div
-            class="bg-midnight text-ivory p-8 rounded-xl shadow-lg flex flex-row justify-around md:justify-between items-start w-full pb-40 about-stats"
+            class="bg-midnight text-ivory py-8 px-6 md:p-8 rounded-xl shadow-lg flex flex-row justify-around md:justify-between items-start w-full about-stats"
           >
             {
-              statistics.map((stat, idx) => (
-                <div class="flex flex-col flex-1 mb-40">
+              statistics.map((stat) => (
+                <div class="flex flex-col flex-1">
                   <div class="font-serif text-4xl md:text-5xl mb-1 text-ivory">
                     <span class="stat-counter" data-target={stat.value.replace(/[^0-9]/g, '')}>
                       0
                     </span>
                     <span class="text-sunset">{stat.value.replace(/[0-9]/g, '')}</span>
                   </div>
-                  <div class="font-sans text-[10px] md:text-xs uppercase tracking-widest text-sunset/80 mb-10">
+                  <div class="font-sans text-[10px] md:text-xs uppercase tracking-widest text-sunset/80 mb-3">
                     {stat.label}
                   </div>
                   {stat.description && (
@@ -68,7 +68,7 @@ import { aboutData, philosophyReasons, statistics } from '@/content/es/about';
         {/* Reasons Grid */}
         <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
           {
-            philosophyReasons.map((reason, idx) => (
+            philosophyReasons.map((reason) => (
               <div class="about-reason-item">
                 <FeatureCard title={reason.title} description={reason.description} />
               </div>

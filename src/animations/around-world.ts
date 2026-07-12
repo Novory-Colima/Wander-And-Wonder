@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { gsap, ScrollTrigger } from '@/lib/gsap';
+import { gsap } from '@/lib/gsap';
 
 export const initAroundWorld = () => {
   const container = document.getElementById('globe-container');
@@ -129,8 +129,9 @@ export const initAroundWorld = () => {
 
   const onPointerDown = (e: MouseEvent | TouchEvent) => {
     isDragging = true;
-    const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
-    const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY;
+    const touch = ('touches' in e && e.touches && e.touches.length > 0) ? e.touches[0] : null;
+    const clientX = touch ? touch.clientX : (e as MouseEvent).clientX;
+    const clientY = touch ? touch.clientY : (e as MouseEvent).clientY;
     previousMousePosition = { x: clientX, y: clientY };
     velocity = { x: 0, y: 0 };
   };
@@ -146,8 +147,9 @@ export const initAroundWorld = () => {
   let imgParallaxY = gsap.quickTo(cardImg, "y", {duration: 0.6, ease: "power2.out"});
 
   const onPointerMove = (e: MouseEvent | TouchEvent) => {
-    const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
-    const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY;
+    const touch = ('touches' in e && e.touches && e.touches.length > 0) ? e.touches[0] : null;
+    const clientX = touch ? touch.clientX : (e as MouseEvent).clientX;
+    const clientY = touch ? touch.clientY : (e as MouseEvent).clientY;
 
     if (isDragging) {
       const deltaMove = {
@@ -175,9 +177,7 @@ export const initAroundWorld = () => {
       
       const maxDistance = 400; // Activation radius
       const dist = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
-      
       if (dist < maxDistance) {
-        const pull = 25; // Max pull in pixels
         const intensity = 1 - (dist / maxDistance);
         magnetX(distanceX * 0.1 * intensity);
         magnetY(distanceY * 0.1 * intensity);

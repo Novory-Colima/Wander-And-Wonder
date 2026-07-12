@@ -114,7 +114,7 @@ const navSections = [
   .footer-link {
     display: inline-flex;
     align-items: center;
-    color: rgba(248, 246, 242, 0.35); /* Whispered legibility */
+    color: rgba(248, 246, 242, 0.55); /* Whispered legibility - bumped from 0.35 */
     font-family: var(--font-sans);
     font-size: 0.85rem; /* Delicate scale */
     font-weight: 300;
@@ -122,10 +122,17 @@ const navSections = [
     will-change: transform, color, text-shadow;
   }
   
-  .footer-link:hover {
+  .footer-link:hover,
+  .footer-link:focus-visible {
     color: rgba(248, 246, 242, 0.9); /* Gentle bloom */
     transform: translateX(4px); /* Very subtle editorial shift */
     text-shadow: 0 0 12px rgba(248, 246, 242, 0.2);
+  }
+
+  .footer-link:focus-visible {
+    outline: 2px solid var(--color-sunset);
+    outline-offset: 4px;
+    border-radius: var(--radius-sm);
   }
 
   @media (min-width: 768px) {

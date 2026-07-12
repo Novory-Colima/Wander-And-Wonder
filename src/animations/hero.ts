@@ -1,9 +1,8 @@
-import { gsap, ScrollTrigger } from '@/lib/gsap';
+import { gsap } from '@/lib/gsap';
 
 export const initHeroAnimation = () => {
   const heroSection = document.querySelector('#hero');
   const heroCamera = document.querySelector('.hero-camera');
-  const bgBlur = document.querySelector('.hero-bg-blur');
   const bgSharp = document.querySelector('.hero-bg-sharp');
   const atmosphere = document.querySelector('.hero-atmosphere');
   const title = document.querySelector('.hero-title');

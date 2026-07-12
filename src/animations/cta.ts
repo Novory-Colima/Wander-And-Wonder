@@ -2,7 +2,7 @@ import { gsap } from '@/lib/gsap';
 import { prefersReducedMotion } from './shared';
 
 export function initCTAAnimation() {
-  const section = document.getElementById('start');
+  const section = document.getElementById('contact');
   if (!section) return;
 
   const isReduced = prefersReducedMotion();

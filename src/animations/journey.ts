@@ -1,5 +1,5 @@
 import { gsap, ScrollTrigger } from '@/lib/gsap';
-import { ANIMATION_CONSTANTS, prefersReducedMotion, createScrollTrigger } from './shared';
+import { prefersReducedMotion } from './shared';
 
 export function initJourneyAnimation() {
   const section = document.getElementById('journey');

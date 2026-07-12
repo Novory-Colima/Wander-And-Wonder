@@ -12,6 +12,7 @@ const { label, href, variant = 'desktop' } = Astro.props;
   href={href}
   class:list={[
     'nav-item relative inline-block font-sans font-medium transition-all',
+    'focus:outline-none focus-visible:outline-2 focus-visible:outline-sunset focus-visible:outline-offset-4 rounded-sm',
     variant === 'mobile'
       ? 'text-2xl py-2'
       : 'text-sm px-3 py-2 tracking-wide uppercase',
@@ -24,7 +25,7 @@ const { label, href, variant = 'desktop' } = Astro.props;
 
 <style>
   .nav-item {
-    overflow: hidden;
+    /* Removed overflow: hidden to allow focus outline rendering */
   }
 
   .nav-item-line {

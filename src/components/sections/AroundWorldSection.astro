@@ -116,6 +116,20 @@ const stories = [
     </div>
 
   </div>
+
+  <!-- Visually Hidden Stories for Screen Readers and SEO (WCAG & SEO Accessibility) -->
+  <div class="sr-only">
+    <h2>Historias de viajeros alrededor del mundo</h2>
+    <ul>
+      {stories.map(story => (
+        <li>
+          <h3>{story.country} ({story.place})</h3>
+          <p>Fecha: {story.date}</p>
+          <blockquote>"{story.quote}"</blockquote>
+        </li>
+      ))}
+    </ul>
+  </div>
 </section>
 
 <script>
