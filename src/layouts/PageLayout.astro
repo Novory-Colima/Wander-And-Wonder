@@ -2,6 +2,9 @@
 import RootLayout from './RootLayout.astro';
 import Navbar from '@components/navigation/Navbar.astro';
 import Footer from '@components/sections/FooterSection.astro';
+import NovoryTopBar from '../novory/NovoryTopBar.astro';
+import NovoryFloatingBadge from '../novory/NovoryFloatingBadge.astro';
+import NovoryFinalCTA from '../novory/NovoryFinalCTA.astro';
 import type { PageMeta } from '@/types';
 
 interface Props {
@@ -17,6 +20,9 @@ const { meta } = Astro.props;
     Saltar al contenido principal
   </a>
 
+  <!-- Novory TopBar (sobre el navbar) -->
+  <NovoryTopBar />
+
   <!-- Navigation -->
   <Navbar />
 
@@ -27,4 +33,10 @@ const { meta } = Astro.props;
 
   <!-- Footer -->
   <Footer />
+
+  <!-- Novory Final CTA (después del footer) -->
+  <NovoryFinalCTA />
+
+  <!-- Novory Floating Badge (componente flotante) -->
+  <NovoryFloatingBadge />
 </RootLayout>
