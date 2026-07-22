@@ -5,6 +5,10 @@
  * Usa el logotipo oficial de Novory desde los assets SVG.
  */
 import { NOVORY_LINKS, NOVORY_TEXTS, getNovoryCustomProperties } from "./novory.config";
+import logoHorizontalDark from "./assets/novory-logotipo-horizontal-color-dark-svg.svg";
+import logoHorizontalClear from "./assets/novory-logotipo-horizontal-color-clear-svg.svg";
+import isotipoDark from "./assets/novory-isotipo-color-dark-svg.svg";
+import isotipoClear from "./assets/novory-isotipo-color-clear-svg.svg";
 
 interface Props {
   /** Texto central descriptivo */
@@ -28,6 +32,8 @@ const {
 } = Astro.props;
 
 const cssVars = getNovoryCustomProperties(theme);
+const logoHorizontal = theme === "light" ? logoHorizontalClear : logoHorizontalDark;
+const isotipo = theme === "light" ? isotipoClear : isotipoDark;
 ---
 
 <div
@@ -53,7 +59,7 @@ const cssVars = getNovoryCustomProperties(theme);
       <!-- Desktop/Tablet: logotipo horizontal -->
       <span class="novory-topbar__logo-full">
         <img
-          src="/novory/novory-logotipo-horizontal-color-dark-svg.svg"
+          src={logoHorizontal.src}
           alt="Novory"
           width="100"
           height="28"
@@ -63,7 +69,7 @@ const cssVars = getNovoryCustomProperties(theme);
       <!-- Mobile: isotipo -->
       <span class="novory-topbar__logo-compact">
         <img
-          src="/novory/novory-isotipo-color-dark-svg.svg"
+          src={isotipo.src}
           alt="Novory"
           width="22"
           height="22"

@@ -6,7 +6,8 @@
  * Scroll-triggered reveal con stagger.
  */
 import { NOVORY_LINKS, NOVORY_TEXTS, getNovoryCustomProperties } from "./novory.config";
-import identidad from "@/novory/assets/novory-identidad-horizontal-color-dark-svg.svg";
+import identidadDark from "./assets/novory-identidad-horizontal-color-dark-svg.svg";
+import identidadClear from "./assets/novory-identidad-horizontal-color-clear-svg.svg";
 
 interface Props {
   /** Título principal */
@@ -36,6 +37,7 @@ const {
 } = Astro.props;
 
 const cssVars = getNovoryCustomProperties(theme);
+const identidad = theme === "light" ? identidadClear : identidadDark;
 ---
 
 <section

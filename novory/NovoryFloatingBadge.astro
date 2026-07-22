@@ -7,7 +7,8 @@
  * Mobile: tap toggle.
  */
 import { NOVORY_LINKS, NOVORY_TEXTS, getNovoryCustomProperties } from "./novory.config";
-import isotipo from "@/novory/assets/novory-isotipo-color-dark-svg.svg";
+import isotipoDark from "./assets/novory-isotipo-color-dark-svg.svg";
+import isotipoClear from "./assets/novory-isotipo-color-clear-svg.svg";
 
 interface Props {
   /** Texto del botón CTA */
@@ -35,6 +36,7 @@ const {
 
 const cssVars = getNovoryCustomProperties(theme);
 const positionClass = position === "bottom-left" ? "novory-badge--left" : "novory-badge--right";
+const isotipo = theme === "light" ? isotipoClear : isotipoDark;
 ---
 
 <div
