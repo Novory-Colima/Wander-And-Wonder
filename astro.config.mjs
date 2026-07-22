@@ -4,8 +4,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://novory-colima.github.io",
-  base: "/Wander-And-Wonder",
+  site: "https://wander.novorystudio.com",
   compressHTML: true,
   build: {
     inlineStylesheets: 'auto',
