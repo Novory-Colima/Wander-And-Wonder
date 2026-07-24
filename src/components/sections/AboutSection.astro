@@ -24,24 +24,24 @@ import { aboutData, philosophyReasons, statistics } from '@/content/es/about';
             />
           </div>
 
-          {/* Statistics - Integrated cleanly below the image */}
+          {/* Statistics - Integrated cleanly below the image with generous breathing room */}
           <div
-            class="bg-midnight text-ivory py-6 px-3 sm:px-6 md:p-8 rounded-xl shadow-lg grid grid-cols-3 gap-2 sm:gap-4 w-full text-center sm:text-left about-stats"
+            class="bg-midnight text-ivory p-5 sm:p-6 md:p-7 xl:p-8 rounded-2xl shadow-xl border border-white/10 grid grid-cols-3 gap-3 sm:gap-5 lg:gap-4 xl:gap-6 w-full text-center sm:text-left about-stats"
           >
             {
               statistics.map((stat) => (
-                <div class="flex flex-col min-w-0">
-                  <div class="font-serif text-2xl sm:text-4xl md:text-5xl mb-1 text-ivory flex flex-wrap justify-center sm:justify-start items-baseline gap-0.5">
+                <div class="flex flex-col min-w-0 justify-start">
+                  <div class="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-4xl mb-1 text-ivory flex flex-wrap justify-center sm:justify-start items-baseline gap-0.5 font-normal">
                     <span class="stat-counter" data-target={stat.value.replace(/[^0-9]/g, '')}>
                       0
                     </span>
                     <span class="text-sunset">{stat.value.replace(/[0-9]/g, '')}</span>
                   </div>
-                  <div class="font-sans text-[9px] sm:text-[10px] md:text-xs uppercase tracking-normal sm:tracking-widest text-sunset/90 mb-1 leading-tight break-words">
+                  <div class="font-sans text-[9px] sm:text-[10px] lg:text-[11px] xl:text-xs uppercase tracking-wider text-sunset font-medium mb-1.5 leading-snug break-words">
                     {stat.label}
                   </div>
                   {stat.description && (
-                    <div class="font-sans text-xs text-cloud-light/60 hidden md:block max-w-[140px] leading-relaxed">
+                    <div class="font-sans text-[11px] lg:text-[11px] xl:text-xs text-cloud-light/65 hidden sm:block leading-relaxed">
                       {stat.description}
                     </div>
                   )}

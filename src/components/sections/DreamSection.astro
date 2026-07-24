@@ -10,10 +10,10 @@ import dreamSuitcaseImg from '@/assets/images/dream-small-suitcase.png';
 
 // High quality editorial images for Scene 3
 const images = [
-  { src: dreamPassportImg.src, alt: 'Pasaporte sobre mapa', label: 'Preparar', rotate: '-6deg', align: 'left-2 sm:left-6 top-6 sm:top-1/6 md:top-1/4' },
-  { src: dreamCameraImg.src, alt: 'Cámara analógica y diario', label: 'Imaginar', rotate: '4deg', align: 'right-2 sm:right-6 top-6 sm:top-1/6 md:top-1/4' },
-  { src: dreamSuitcaseImg.src, alt: 'Maleta de cuero pequeña', label: 'Empacar', rotate: '-3deg', align: 'left-2 sm:left-12 bottom-6 sm:bottom-10' },
-  { src: dreamMainImg.src, alt: 'Mirando por la ventana del avión', label: 'Partir', rotate: '5deg', align: 'right-2 sm:right-12 bottom-6 sm:bottom-10' }
+  { src: dreamPassportImg.src, alt: 'Pasaporte sobre mapa', label: 'Preparar', rotate: '-6deg', align: 'left-2 sm:left-4 md:left-2 lg:left-6 xl:left-10 top-4 sm:top-6 md:top-10 lg:top-14' },
+  { src: dreamCameraImg.src, alt: 'Cámara analógica y diario', label: 'Imaginar', rotate: '4deg', align: 'right-2 sm:right-4 md:right-2 lg:right-6 xl:right-10 top-4 sm:top-6 md:top-10 lg:top-14' },
+  { src: dreamSuitcaseImg.src, alt: 'Maleta de cuero pequeña', label: 'Empacar', rotate: '-3deg', align: 'left-2 sm:left-4 md:left-4 lg:left-10 xl:left-14 bottom-4 sm:bottom-6 md:bottom-8 lg:bottom-12' },
+  { src: dreamMainImg.src, alt: 'Mirando por la ventana del avión', label: 'Partir', rotate: '5deg', align: 'right-2 sm:right-4 md:right-4 lg:right-10 xl:right-14 bottom-4 sm:bottom-6 md:bottom-8 lg:bottom-12' }
 ];
 ---
 
@@ -21,25 +21,25 @@ const images = [
   <!-- Pinned Container -->
   <div id="dream-pin-container" class="h-screen w-full relative flex items-center justify-center">
     
-    <!-- Central Text -->
-    <div id="dream-text-center" class="max-w-3xl sm:max-w-4xl mx-auto text-center px-4 sm:px-6 z-10 pointer-events-none relative">
-      <DisplayTitle as="h2" class="text-ivory leading-[1.15] sm:leading-[1.1] text-2xl sm:text-4xl md:text-6xl lg:text-7xl break-words">
+    <!-- Central Text Layer (z-20 so text sits cleanly above background collage) -->
+    <div id="dream-text-center" class="max-w-lg sm:max-w-xl md:max-w-2xl lg:max-w-3xl mx-auto text-center px-4 sm:px-6 z-20 pointer-events-none relative">
+      <DisplayTitle as="h2" class="text-ivory leading-[1.15] sm:leading-[1.1] text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl break-words">
         El viaje comienza mucho antes <br class="hidden md:block"/> de subir al avión.
       </DisplayTitle>
-      <p class="mt-4 sm:mt-8 font-sans text-sm sm:text-lg md:text-xl text-ivory/70 max-w-2xl mx-auto leading-relaxed">
+      <p class="mt-4 sm:mt-8 font-sans text-sm sm:text-base md:text-lg lg:text-xl text-ivory/75 max-w-xl lg:max-w-2xl mx-auto leading-relaxed">
         Comienza en esa primera conversación. En el momento en que decides que es hora de irte. En la emoción de empacar lo indispensable y dejar espacio para lo inesperado.
       </p>
     </div>
 
-    <!-- Collage Images -->
-    <div id="dream-collage" class="absolute inset-0 z-20 pointer-events-none overflow-hidden">
+    <!-- Collage Images Layer (z-10 in background surrounding the text) -->
+    <div id="dream-collage" class="absolute inset-0 z-10 pointer-events-none overflow-hidden">
       <Container class="h-full w-full max-w-7xl relative mx-auto px-2 sm:px-4">
         {images.map((img, index) => (
           <div 
-            class={`collage-item absolute ${img.align} w-28 sm:w-44 md:w-64 opacity-0 pointer-events-auto cursor-none group`}
+            class={`collage-item absolute ${img.align} w-28 sm:w-36 md:w-48 lg:w-56 xl:w-64 opacity-0 pointer-events-auto cursor-none group`}
             data-index={index}
           >
-            <div class="relative shadow-2xl shadow-midnight/30 p-1.5 sm:p-2 bg-ivory/5 backdrop-blur-sm border border-transparent" style={`transform: rotate(${img.rotate});`}>
+            <div class="relative shadow-2xl shadow-midnight/50 p-1.5 sm:p-2 bg-ivory/5 backdrop-blur-sm border border-transparent" style={`transform: rotate(${img.rotate});`}>
               <div class="overflow-hidden">
                 <img src={img.src} alt={img.alt} loading="lazy" class="w-full h-auto object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-700" />
               </div>
