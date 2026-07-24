@@ -27,7 +27,8 @@ export const initAroundWorld = () => {
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   container.appendChild(renderer.domElement);
   
-  const radius = window.innerWidth < 480 ? 2.7 : (window.innerWidth < 768 ? 3.6 : 5.5);
+  const isMobile = window.innerWidth < 768;
+  const radius = window.innerWidth < 480 ? 2.4 : (isMobile ? 3.2 : 5.5);
   const globeGroup = new THREE.Group();
   scene.add(globeGroup);
 
@@ -54,7 +55,6 @@ export const initAroundWorld = () => {
 
   // Atmosphere / Halo
   const haloGeo = new THREE.SphereGeometry(radius * 1.15, 32, 32);
-  // Custom shader-like material using additive blending and opacity gradient
   const haloMat = new THREE.MeshBasicMaterial({
     color: 0x4A6B8C, // Subtle blue
     transparent: true,
@@ -74,9 +74,11 @@ export const initAroundWorld = () => {
     blending: THREE.AdditiveBlending
   });
   const pulseMesh = new THREE.Mesh(pulseGeo, pulseMat);
-  scene.add(pulseMesh); // Add to scene, not globeGroup, so it can be positioned globally
+  scene.add(pulseMesh);
 
+  // Position camera higher on mobile to center globe in top half of screen
   camera.position.z = 16;
+  camera.position.y = isMobile ? 1.4 : 0;
 
   // --- MARKERS ---
   const markers: THREE.Mesh[] = [];
@@ -316,10 +318,9 @@ export const initAroundWorld = () => {
     const cardRect = card.getBoundingClientRect();
     const sectionRect = section.getBoundingClientRect();
     
-    // Calculate the dynamic position including the magnetic offset
-    // Since card has transform: translate() from GSAP, getBoundingClientRect accounts for it
-    const xCard = cardRect.right - 20;
-    const yCard = (cardRect.top - sectionRect.top) + (cardRect.height / 3);
+    const isSmall = window.innerWidth < 640;
+    const xCard = isSmall ? (cardRect.left - sectionRect.left) + (cardRect.width / 2) : (cardRect.right - 20);
+    const yCard = isSmall ? (cardRect.top - sectionRect.top) : ((cardRect.top - sectionRect.top) + (cardRect.height / 3));
 
     connectionLine.setAttribute('x1', x3D.toString());
     connectionLine.setAttribute('y1', y3D.toString());

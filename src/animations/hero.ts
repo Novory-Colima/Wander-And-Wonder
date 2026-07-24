@@ -39,12 +39,12 @@ export const initHeroAnimation = () => {
     );
 
   // 2. Breathing Engine (La Vida Continua)
-  // Continuous camera drift
+  const isMobile = window.innerWidth < 768;
   gsap.to(heroCamera, {
-    x: '1.5%',
-    y: '1%',
-    scale: 1.05,
-    rotation: 0.2,
+    x: isMobile ? '0.5%' : '1.5%',
+    y: isMobile ? '0.5%' : '1%',
+    scale: isMobile ? 1.02 : 1.05,
+    rotation: isMobile ? 0 : 0.2,
     duration: 20,
     ease: 'sine.inOut',
     yoyo: true,

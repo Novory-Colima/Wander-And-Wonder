@@ -6,58 +6,55 @@ const heroBgUrl = heroBgImg.src;
 
 <section
   id="hero"
-  class="relative w-full h-[100vh] bg-[#050505]"
+  class="relative w-full min-h-screen h-[100vh] bg-midnight overflow-hidden flex items-center justify-center"
   aria-label="Bienvenida"
 >
-  <!-- Non-sticky container for 100vh layout -->
-  <div class="hero-sticky-container relative w-full h-full overflow-hidden">
+  <!-- Cohesive full-screen background container -->
+  <div class="hero-sticky-container relative w-full h-full overflow-hidden flex items-center justify-center">
     
-    <!-- Layer 1 & 2: Photography (Sharp and Blurred for Focus Pull) -->
-    <!-- Wrapped in a camera container for Breathing Engine (drift & scale) -->
-    <!-- We make it 110% size to have room to drift without exposing edges -->
-    <div class="hero-camera absolute inset-0 z-0 w-[110%] h-[110%] -left-[5%] -top-[5%]">
+    <!-- Photography Layer (Cohesive, perfectly framed) -->
+    <div class="hero-camera absolute inset-0 z-0 w-full h-full overflow-hidden">
       
-      <!-- Blurred Layer (starts visible, extremely out of focus) -->
+      <!-- Blurred Layer for Focus Pull -->
       <img
         src={heroBgUrl}
         alt=""
-        class="hero-bg-blur absolute inset-0 w-full h-full object-cover object-[center_30%] md:object-center scale-[1.02] max-w-none"
+        class="hero-bg-blur absolute inset-0 w-full h-full object-cover object-center scale-[1.02] max-w-none"
         style="filter: blur(16px);"
       />
       
-      <!-- Sharp Layer (fades in for focus pull, revealing depth) -->
+      <!-- Sharp Layer -->
       <img
         src={heroBgUrl}
         alt="Breathtaking landscape"
-        class="hero-bg-sharp absolute inset-0 w-full h-full object-cover object-[center_30%] md:object-center opacity-0 scale-[1.02] max-w-none"
+        class="hero-bg-sharp absolute inset-0 w-full h-full object-cover object-center opacity-0 scale-[1.02] max-w-none"
       />
       
-      <!-- Atmosphere Layer (subtle moving noise) -->
+      <!-- Atmosphere Layer -->
       <div
         class="hero-atmosphere absolute inset-0 opacity-[0.25] mix-blend-overlay pointer-events-none"
         style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E');"
       ></div>
       
-      <!-- Subtle Vignette to ground text gently without killing natural light -->
-      <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(5,5,5,0.45)_100%)] pointer-events-none"></div>
+      <!-- Subtle, elegant dark overlay for optimal text contrast -->
+      <div class="absolute inset-0 bg-gradient-to-b from-midnight/70 via-midnight/40 to-midnight/80 pointer-events-none"></div>
     </div>
 
-    <!-- Layer 3: Typography & Manifesto -->
-    <div class="hero-content absolute inset-0 z-30 flex flex-col items-center justify-center pointer-events-none px-4 sm:px-6">
+    <!-- Layer 3: Responsive Centered Typography -->
+    <div class="hero-content absolute inset-0 z-30 flex flex-col items-center justify-center pointer-events-none px-4 sm:px-6 text-center">
       <h1 class="hero-title font-serif !text-ivory text-center flex flex-col items-center leading-[1.1] opacity-0 max-w-full" style="filter: blur(10px);">
-        <span class="block text-4xl sm:text-6xl md:text-[9vw] lg:text-[7.5vw] font-normal tracking-tight sm:tracking-wide !text-ivory max-w-full break-words">Wander & Wonder</span>
+        <span class="block text-3xl sm:text-5xl md:text-[9vw] lg:text-[7.5vw] font-normal tracking-tight sm:tracking-wide !text-ivory max-w-full break-words">Wander & Wonder</span>
       </h1>
       
-      <p class="hero-manifesto mt-6 sm:mt-8 lg:mt-12 font-sans text-[0.6rem] sm:text-xs !text-ivory/80 opacity-0 tracking-[0.3em] sm:tracking-[0.4em] uppercase text-center max-w-[280px] sm:max-w-[300px] leading-relaxed">
+      <p class="hero-manifesto mt-4 sm:mt-6 lg:mt-10 font-sans text-[0.65rem] sm:text-xs !text-ivory/80 opacity-0 tracking-[0.3em] sm:tracking-[0.4em] uppercase text-center max-w-[280px] sm:max-w-[320px] leading-relaxed">
         Collect stories<br />you'll tell forever
       </p>
     </div>
 
-    <!-- Layer 4: Custom Cinematic Scroll Indicator -->
-    <div class="hero-scroll-indicator absolute bottom-0 left-1/2 -translate-x-1/2 z-40 flex flex-col items-center opacity-0 pointer-events-none">
-      <span class="font-sans text-[0.55rem] !text-ivory/70 tracking-[0.3em] uppercase mb-6">Begin</span>
-      <div class="relative w-[1px] h-24 bg-ivory/10 overflow-hidden">
-        <!-- Energy particle falling continuously -->
+    <!-- Layer 4: Custom Scroll Indicator -->
+    <div class="hero-scroll-indicator absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 z-40 flex flex-col items-center opacity-0 pointer-events-none">
+      <span class="font-sans text-[0.55rem] !text-ivory/70 tracking-[0.3em] uppercase mb-3 sm:mb-6">Begin</span>
+      <div class="relative w-[1px] h-16 sm:h-24 bg-ivory/10 overflow-hidden">
         <div class="hero-scroll-particle absolute top-0 left-0 w-full h-8 bg-gradient-to-b from-transparent via-ivory to-transparent -translate-y-full"></div>
       </div>
     </div>

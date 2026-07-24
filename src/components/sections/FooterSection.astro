@@ -45,32 +45,32 @@ const navSections = [
   role="contentinfo"
 >
   <!-- ACT 1: The Monumental Logo (Background Layer) -->
-  <div class="relative w-full flex justify-center z-0 px-2 sm:px-4 overflow-hidden">
+  <div class="relative w-full flex justify-center z-0 px-4 overflow-hidden">
     <!-- Precision typography for maximum monumental feel -->
-    <h2 class="monumental-logo font-serif uppercase tracking-[0.01em] sm:tracking-[0.03em] text-[11vw] sm:text-[14vw] md:text-[15.5vw] leading-[0.85] sm:leading-[0.8] opacity-90 text-center select-none w-full max-w-full overflow-hidden">
+    <h2 class="monumental-logo font-serif uppercase tracking-normal sm:tracking-[0.03em] text-2xl sm:text-5xl md:text-7xl lg:text-[15.5vw] leading-tight sm:leading-[0.8] opacity-90 text-center select-none w-full max-w-full overflow-hidden break-words">
       Wander<span class="ampersand text-sunset font-serif">&</span>Wonder
     </h2>
   </div>
 
   <!-- ACT 2: The Editorial Cut & Whispered Grid (Foreground Layer) -->
   <!-- The negative margin overlaps the logo. Z-10 brings it to the front, perfectly slicing the typography. -->
-  <div class="relative z-10 w-full bg-midnight pt-16 sm:pt-24 md:pt-32 pb-16 md:pb-24 -mt-[3vw] sm:-mt-[4.5vw] md:-mt-[5vw] flex flex-col items-center">
+  <div class="relative z-10 w-full bg-midnight pt-12 sm:pt-24 md:pt-32 pb-16 md:pb-24 -mt-2 sm:-mt-[4.5vw] md:-mt-[5vw] flex flex-col items-center">
     
     <!-- Razor line defining the intentional, surgical cut -->
     <div class="absolute top-0 left-0 w-full h-[1px] bg-ivory/10"></div>
 
     <Container class="w-full max-w-5xl mx-auto px-4 sm:px-6 md:px-12 flex flex-col items-center">
       
-      <!-- The Whispered Grid -->
-      <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-y-8 sm:gap-y-12 md:gap-y-16 gap-x-4 sm:gap-x-8 md:gap-x-20 w-full justify-items-stretch text-left">
+      <!-- The Whispered Grid: Single column on mobile to eliminate column text collisions -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-y-8 sm:gap-y-12 md:gap-y-16 w-full text-center sm:text-left">
         {navSections.map((section) => (
-          <div class="flex flex-col items-center md:items-start w-full min-w-0 text-center md:text-left">
-            <h3 class="footer-column-title font-sans text-[10px] sm:text-[11px] uppercase tracking-[0.25em] sm:tracking-[0.35em] text-sunset mb-4 sm:mb-6 md:mb-8 opacity-90">
+          <div class="flex flex-col items-center sm:items-start w-full min-w-0">
+            <h3 class="footer-column-title font-sans text-xs sm:text-[11px] uppercase tracking-[0.25em] sm:tracking-[0.35em] text-sunset mb-3 sm:mb-6 md:mb-8 opacity-90 font-medium">
               {section.title}
             </h3>
-            <ul class="flex flex-col gap-2.5 sm:gap-3 md:gap-4 items-center md:items-start w-full">
+            <ul class="flex flex-col gap-2.5 sm:gap-3 md:gap-4 items-center sm:items-start w-full">
               {section.links.map((link) => (
-                <li class="w-full text-center md:text-left">
+                <li class="w-full text-center sm:text-left">
                   <a 
                     href={link.href} 
                     class="footer-link"
@@ -86,8 +86,8 @@ const navSections = [
       </div>
 
       <!-- Ghost Copyright (No lines, breathing in space) -->
-      <div class="mt-32 md:mt-48 flex flex-col items-center justify-center opacity-30 hover:opacity-100 transition-opacity duration-700">
-        <span class="font-sans text-[8px] sm:text-[9px] uppercase tracking-[0.25em] text-ivory/80 text-center leading-relaxed">
+      <div class="mt-20 sm:mt-32 md:mt-48 flex flex-col items-center justify-center opacity-40 hover:opacity-100 transition-opacity duration-700">
+        <span class="font-sans text-[9px] sm:text-[9px] uppercase tracking-[0.2em] sm:tracking-[0.25em] text-ivory/80 text-center leading-relaxed">
           &copy; {currentYear} {SITE_CONFIG.name}. Todos los derechos reservados.<br class="sm:hidden" />
           <span class="hidden sm:inline"> &nbsp;|&nbsp; </span>Diseñado para el mundo.
         </span>

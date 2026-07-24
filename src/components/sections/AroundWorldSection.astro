@@ -72,7 +72,7 @@ const stories = [
 
 <section
   id="around-the-world"
-  class="relative w-full h-[120vh] bg-midnight overflow-hidden flex items-center justify-center"
+  class="relative w-full h-[100vh] sm:h-[120vh] bg-midnight overflow-hidden flex flex-col justify-between items-center"
   aria-label="Historias alrededor del mundo"
   data-stories={JSON.stringify(stories)}
 >
@@ -85,34 +85,37 @@ const stories = [
 
   <!-- SVG for connection lines (3D to HTML) -->
   <svg class="absolute inset-0 z-10 pointer-events-none w-full h-full" id="connection-svg">
-    <line id="connection-line" x1="0" y1="0" x2="0" y2="0" stroke="rgba(250, 250, 248, 0.3)" stroke-width="1" stroke-dasharray="2 4" opacity="0" />
-    <circle id="connection-dot" cx="0" cy="0" r="3" fill="#FAFAF8" opacity="0" />
+    <line id="connection-line" x1="0" y1="0" x2="0" y2="0" stroke="rgba(250, 250, 248, 0.4)" stroke-width="1.5" stroke-dasharray="3 3" opacity="0" />
+    <circle id="connection-dot" cx="0" cy="0" r="3.5" fill="#FAFAF8" opacity="0" />
   </svg>
 
   <!-- Dynamic Editorial Card Container -->
-  <div class="relative z-20 container-editorial w-full h-full pointer-events-none flex items-center justify-center sm:justify-start px-4">
+  <div class="relative z-20 container-editorial w-full h-full pointer-events-none flex flex-col justify-end sm:justify-center items-center pb-6 sm:pb-0 px-4">
     
     <div 
       id="dynamic-story-card" 
-      class="absolute left-4 right-4 sm:left-[10%] md:left-[15%] sm:right-auto max-w-[calc(100vw-2rem)] sm:max-w-[280px] md:max-w-[320px] mx-auto sm:mx-0 opacity-0 pointer-events-auto flex flex-col gap-3 sm:gap-4 bottom-6 sm:bottom-auto sm:top-1/2 sm:-translate-y-1/2 bg-midnight/85 sm:bg-transparent backdrop-blur-md sm:backdrop-blur-none p-4 sm:p-0 rounded-xl sm:rounded-none border border-white/10 sm:border-none shadow-2xl sm:shadow-none"
+      class="w-full max-w-[340px] sm:max-w-[280px] md:max-w-[320px] opacity-0 pointer-events-auto flex flex-row sm:flex-col items-center sm:items-start gap-3 sm:gap-4 bg-midnight/90 sm:bg-transparent backdrop-blur-xl sm:backdrop-blur-none p-3.5 sm:p-0 rounded-xl sm:rounded-none border border-white/15 sm:border-none shadow-2xl sm:shadow-none sm:absolute sm:left-[10%] md:left-[15%] sm:top-1/2 sm:-translate-y-1/2"
     >
       <!-- Small Portrait Image -->
-      <div class="story-img-wrapper overflow-hidden w-20 h-28 sm:w-24 sm:h-32 md:w-28 md:h-36 rounded-sm">
+      <div class="story-img-wrapper overflow-hidden w-16 h-20 sm:w-24 sm:h-32 md:w-28 md:h-36 rounded-md sm:rounded-sm shrink-0">
         <img id="story-img" src="" alt="" loading="lazy" class="w-full h-full object-cover origin-center scale-110" />
       </div>
 
-      <!-- Metadata -->
-      <div class="flex items-center gap-3">
-        <div class="w-1.5 h-1.5 rounded-full bg-sunset shadow-[0_0_8px_rgba(255,165,0,0.6)]"></div>
-        <div class="flex flex-col">
-          <span id="story-country" class="font-sans text-[0.65rem] md:text-xs tracking-[0.2em] uppercase text-ivory/80"></span>
-          <span id="story-place-date" class="font-sans text-[0.55rem] md:text-[0.6rem] tracking-wider text-ivory/50 mt-0.5"></span>
+      <!-- Text Container (Side by side on mobile for compact layout, stacked on desktop) -->
+      <div class="flex flex-col gap-1.5 sm:gap-3 flex-1 min-w-0">
+        <!-- Metadata -->
+        <div class="flex items-center gap-2 sm:gap-3">
+          <div class="w-1.5 h-1.5 rounded-full bg-sunset shadow-[0_0_8px_rgba(255,165,0,0.6)] shrink-0"></div>
+          <div class="flex flex-col truncate">
+            <span id="story-country" class="font-sans text-[0.65rem] md:text-xs tracking-[0.2em] uppercase text-ivory/90 font-medium"></span>
+            <span id="story-place-date" class="font-sans text-[0.55rem] md:text-[0.6rem] tracking-wider text-ivory/60 mt-0.5 truncate"></span>
+          </div>
         </div>
-      </div>
 
-      <!-- Quote -->
-      <p id="story-quote" class="font-serif text-base sm:text-lg md:text-xl text-ivory leading-relaxed">
-      </p>
+        <!-- Quote -->
+        <p id="story-quote" class="font-serif text-xs sm:text-lg md:text-xl text-ivory leading-snug sm:leading-relaxed line-clamp-3 sm:line-clamp-none">
+        </p>
+      </div>
     </div>
 
   </div>

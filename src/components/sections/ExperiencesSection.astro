@@ -4,47 +4,46 @@ import Container from '@components/common/Container.astro';
 import { experiences } from '@/content/es/experiences';
 ---
 
-<SectionContainer id="experiences" padding="none" class="bg-midnight relative overflow-hidden min-h-screen flex items-center py-16 sm:py-24 md:py-32 z-10">
+<SectionContainer id="experiences" padding="none" class="bg-midnight relative overflow-hidden min-h-screen flex items-center py-20 sm:py-28 md:py-36 z-10">
   
-  <!-- Contenedor de imágenes de fondo (Cinematic Crossfade con Sticky) -->
-  <div class="exp-images-container absolute inset-0 z-0 pointer-events-none">
-    <div class="sticky top-0 w-full h-screen overflow-hidden">
-      {experiences.map((exp, index) => (
-        <div class="exp-image-wrapper absolute inset-0 w-full h-full opacity-0" data-exp-img={index}>
-          <img 
-            src={exp.image}
-            alt={exp.title}
-            loading="lazy"
-            class="w-full h-full object-cover transform-gpu max-w-none opacity-60 md:opacity-100"
-          />
-        </div>
-      ))}
-      <!-- Overlay de contraste: Un gradiente oscuro fuerte para asegurar legibilidad absoluta en móvil y desktop -->
-      <div class="absolute inset-0 bg-[#070F18]/85 md:bg-gradient-to-r md:from-[#070F18]/95 md:via-[#070F18]/75 md:to-transparent w-full md:w-3/4 lg:w-2/3 pointer-events-none"></div>
-    </div>
+  <!-- Contenedor de imágenes de fondo normalizado (Full-cover absolute con crossfade) -->
+  <div class="exp-images-container absolute inset-0 w-full h-full z-0 pointer-events-none overflow-hidden">
+    {experiences.map((exp, index) => (
+      <div class="exp-image-wrapper absolute inset-0 w-full h-full opacity-0 transition-opacity duration-700 ease-in-out" data-exp-img={index}>
+        <img 
+          src={exp.image}
+          alt={exp.title}
+          loading="lazy"
+          class="w-full h-full object-cover object-center transform-gpu opacity-50 md:opacity-100"
+        />
+      </div>
+    ))}
+    <!-- Overlay de contraste absoluto y limpio -->
+    <div class="absolute inset-0 bg-[#070F18]/90 md:bg-gradient-to-r md:from-[#070F18]/95 md:via-[#070F18]/75 md:to-transparent w-full pointer-events-none"></div>
   </div>
 
-  <Container class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 flex flex-col justify-center min-h-[70vh]">
-    <div class="max-w-2xl mb-10 sm:mb-16 md:mb-24">
-      <h2 class="font-sans text-xl sm:text-3xl md:text-4xl !text-white leading-relaxed font-light drop-shadow-xl">
+  <Container class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 flex flex-col justify-center min-h-[60vh]">
+    <!-- Título estático y proporcional (sin sticky ni flotados invasivos) -->
+    <div class="max-w-2xl mb-8 sm:mb-14 md:mb-20">
+      <h2 class="font-sans text-base sm:text-2xl md:text-4xl !text-ivory leading-relaxed font-light drop-shadow-md">
         El mundo no es una lista de lugares para ver. Es una colección infinita de formas de sentir.
       </h2>
     </div>
 
-    <!-- Menú tipográfico gigante interactivo -->
+    <!-- Menú tipográfico interactivo -->
     <div class="flex flex-col w-full max-w-5xl" role="tablist" aria-label="Experiencias disponibles">
       {experiences.map((exp, index) => (
         <div 
           role="button"
           tabindex="0"
-          class="exp-item group relative py-3 sm:py-5 md:py-8 border-b border-white/10 cursor-pointer flex flex-col md:flex-row md:items-center justify-between focus:outline-none focus-visible:bg-white/5 px-2 sm:px-4 -mx-2 sm:-mx-4 rounded-sm"
+          class="exp-item group relative py-3.5 sm:py-5 md:py-8 border-b border-white/15 cursor-pointer flex flex-col md:flex-row md:items-center justify-between focus:outline-none focus-visible:bg-white/5 px-2 sm:px-4 -mx-2 sm:-mx-4 rounded-sm"
           data-exp-index={index}
           aria-label={`Ver experiencia: ${exp.title}`}
         >
-          <h3 class="exp-title font-serif text-3xl sm:text-5xl md:text-7xl lg:text-[7rem] leading-none !text-white/50 transition-colors duration-500 ease-out pr-2 sm:pr-8">
+          <h3 class="exp-title font-serif text-2xl sm:text-4xl md:text-6xl lg:text-[6.5rem] leading-tight sm:leading-none !text-white/50 transition-all duration-500 ease-out pr-2 sm:pr-8">
             {exp.title}
           </h3>
-          <p class="exp-desc font-sans text-sm sm:text-base md:text-lg !text-white max-w-[320px] md:text-right mt-2 sm:mt-4 md:mt-0 opacity-0 transform translate-x-4 transition-all duration-500 ease-out">
+          <p class="exp-desc font-sans text-xs sm:text-base md:text-lg !text-white/90 max-w-[340px] md:text-right mt-2 sm:mt-4 md:mt-0 opacity-0 transform translate-x-3 transition-all duration-500 ease-out leading-relaxed">
             {exp.description}
           </p>
         </div>
