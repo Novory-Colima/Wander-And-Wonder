@@ -90,14 +90,14 @@ const stories = [
   </svg>
 
   <!-- Dynamic Editorial Card Container -->
-  <div class="relative z-20 container-editorial w-full h-full pointer-events-none flex items-center">
+  <div class="relative z-20 container-editorial w-full h-full pointer-events-none flex items-center justify-center sm:justify-start px-4">
     
     <div 
       id="dynamic-story-card" 
-      class="absolute left-[10%] md:left-[15%] max-w-[260px] md:max-w-[320px] opacity-0 pointer-events-auto flex flex-col gap-4"
+      class="absolute left-4 right-4 sm:left-[10%] md:left-[15%] sm:right-auto max-w-[calc(100vw-2rem)] sm:max-w-[280px] md:max-w-[320px] mx-auto sm:mx-0 opacity-0 pointer-events-auto flex flex-col gap-3 sm:gap-4 bottom-6 sm:bottom-auto sm:top-1/2 sm:-translate-y-1/2 bg-midnight/85 sm:bg-transparent backdrop-blur-md sm:backdrop-blur-none p-4 sm:p-0 rounded-xl sm:rounded-none border border-white/10 sm:border-none shadow-2xl sm:shadow-none"
     >
       <!-- Small Portrait Image -->
-      <div class="story-img-wrapper overflow-hidden w-24 h-32 md:w-28 md:h-36 rounded-sm">
+      <div class="story-img-wrapper overflow-hidden w-20 h-28 sm:w-24 sm:h-32 md:w-28 md:h-36 rounded-sm">
         <img id="story-img" src="" alt="" loading="lazy" class="w-full h-full object-cover origin-center scale-110" />
       </div>
 
@@ -111,7 +111,7 @@ const stories = [
       </div>
 
       <!-- Quote -->
-      <p id="story-quote" class="font-serif text-lg md:text-xl text-ivory leading-relaxed">
+      <p id="story-quote" class="font-serif text-base sm:text-lg md:text-xl text-ivory leading-relaxed">
       </p>
     </div>
 

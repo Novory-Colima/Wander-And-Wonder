@@ -17,13 +17,15 @@ export function initDreamAnimation() {
   if (paragraph) gsap.set(paragraph, { color: 'rgba(250, 250, 248, 0.7)' });
 
   // Setup GSAP Timeline with ScrollTrigger
+  const isMobile = window.innerWidth < 768;
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: section,
       start: 'top top',
-      end: '+=300%', // Pin for 3 screens
+      end: () => isMobile ? '+=140%' : '+=260%', // Lower scroll friction on mobile
       pin: true,
       scrub: 1,
+      invalidateOnRefresh: true,
     }
   });
 
@@ -70,16 +72,17 @@ export function initDreamAnimation() {
   // 3. Collage items fly in overlapping
   collageItems.forEach((item, index) => {
     // Determine starting positions based on screen corners to create a converging effect
+    const offsetMult = isMobile ? 0.4 : 1;
     let xOffset = 0;
     let yOffset = 0;
     
-    if (index === 0) { xOffset = -window.innerWidth; yOffset = -window.innerHeight; }
-    else if (index === 1) { xOffset = window.innerWidth; yOffset = -window.innerHeight; }
-    else if (index === 2) { xOffset = -window.innerWidth; yOffset = window.innerHeight; }
-    else { xOffset = window.innerWidth; yOffset = window.innerHeight; }
+    if (index === 0) { xOffset = -window.innerWidth * offsetMult; yOffset = -window.innerHeight * offsetMult; }
+    else if (index === 1) { xOffset = window.innerWidth * offsetMult; yOffset = -window.innerHeight * offsetMult; }
+    else if (index === 2) { xOffset = -window.innerWidth * offsetMult; yOffset = window.innerHeight * offsetMult; }
+    else { xOffset = window.innerWidth * offsetMult; yOffset = window.innerHeight * offsetMult; }
 
     tl.fromTo(item, 
-      { opacity: 0, x: xOffset, y: yOffset, rotation: (Math.random() - 0.5) * 60, scale: 1.5 },
+      { opacity: 0, x: xOffset, y: yOffset, rotation: (Math.random() - 0.5) * (isMobile ? 30 : 60), scale: isMobile ? 1.2 : 1.5 },
       { opacity: 1, x: 0, y: 0, rotation: 0, scale: 1, duration: 1.5, ease: 'power3.out' },
       `-=${index === 0 ? 0.5 : 1}` // Overlap entrances significantly
     );

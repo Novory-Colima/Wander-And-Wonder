@@ -53,9 +53,10 @@ export function initExperiencesAnimation() {
       
       if (index === itemIndex) {
         // Active Text Styling
+        const xOffset = window.innerWidth < 768 ? 8 : 20;
         gsap.to(title, { 
           color: '#FFFFFF', // Pure white
-          x: 20, 
+          x: xOffset, 
           fontStyle: 'italic',
           opacity: 1,
           duration: 0.6, 

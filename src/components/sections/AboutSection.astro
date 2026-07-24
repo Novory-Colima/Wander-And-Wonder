@@ -26,18 +26,18 @@ import { aboutData, philosophyReasons, statistics } from '@/content/es/about';
 
           {/* Statistics - Integrated cleanly below the image */}
           <div
-            class="bg-midnight text-ivory py-8 px-6 md:p-8 rounded-xl shadow-lg flex flex-row justify-around md:justify-between items-start w-full about-stats"
+            class="bg-midnight text-ivory py-6 px-3 sm:px-6 md:p-8 rounded-xl shadow-lg grid grid-cols-3 gap-2 sm:gap-4 w-full text-center sm:text-left about-stats"
           >
             {
               statistics.map((stat) => (
-                <div class="flex flex-col flex-1">
-                  <div class="font-serif text-4xl md:text-5xl mb-1 text-ivory">
+                <div class="flex flex-col min-w-0">
+                  <div class="font-serif text-2xl sm:text-4xl md:text-5xl mb-1 text-ivory flex flex-wrap justify-center sm:justify-start items-baseline gap-0.5">
                     <span class="stat-counter" data-target={stat.value.replace(/[^0-9]/g, '')}>
                       0
                     </span>
                     <span class="text-sunset">{stat.value.replace(/[0-9]/g, '')}</span>
                   </div>
-                  <div class="font-sans text-[10px] md:text-xs uppercase tracking-widest text-sunset/80 mb-3">
+                  <div class="font-sans text-[9px] sm:text-[10px] md:text-xs uppercase tracking-normal sm:tracking-widest text-sunset/90 mb-1 leading-tight break-words">
                     {stat.label}
                   </div>
                   {stat.description && (

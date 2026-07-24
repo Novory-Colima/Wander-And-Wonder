@@ -27,7 +27,7 @@ export const initAroundWorld = () => {
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   container.appendChild(renderer.domElement);
   
-  const radius = window.innerWidth < 768 ? 4 : 5.5;
+  const radius = window.innerWidth < 480 ? 2.7 : (window.innerWidth < 768 ? 3.6 : 5.5);
   const globeGroup = new THREE.Group();
   scene.add(globeGroup);
 

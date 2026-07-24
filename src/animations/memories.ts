@@ -21,13 +21,15 @@ export function initMemoriesAnimation() {
     if (title) gsap.set(title, { color: '#070F18' }); // text-midnight hex
     if (subtitle) gsap.set(subtitle, { color: 'rgba(7, 15, 24, 0.6)' }); // text-midnight/60 hex
 
+    const isMobile = window.innerWidth < 768;
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: transitionScreen,
         start: 'top top',
-        end: '+=120%', // Pin for 1.2 screen heights
+        end: () => isMobile ? '+=80%' : '+=120%', // Pin duration responsive
         pin: true,
         scrub: true,
+        invalidateOnRefresh: true,
       }
     });
 
@@ -46,6 +48,7 @@ export function initMemoriesAnimation() {
 
   // 2. The Memory Void (Parallax, Drift & Focus Entrance)
   if (!isReduced) {
+    const isMobile = window.innerWidth < 768;
     fragments.forEach((fragment) => {
       const speed = parseFloat((fragment as HTMLElement).dataset.speed || '1');
       const img = fragment.querySelector('.memory-image');
@@ -54,10 +57,10 @@ export function initMemoriesAnimation() {
       // Determine horizontal drift direction based on alignment class
       const className = fragment.className;
       const isLeft = className.includes('left-');
-      const driftAmount = isLeft ? 100 : -100; // Drift towards the center/opposite side
+      const driftAmount = isLeft ? (isMobile ? 16 : 100) : (isMobile ? -16 : -100); // Scale down drift for mobile to avoid overflow
 
       // Vertical parallax offset
-      const movementY = (1 - speed) * 500;
+      const movementY = (1 - speed) * (isMobile ? 200 : 500);
 
       // Master timeline for this fragment scrubbing over its entire lifecycle in the viewport
       const tl = gsap.timeline({
@@ -66,6 +69,7 @@ export function initMemoriesAnimation() {
           start: 'top bottom', // Starts entering viewport
           end: 'bottom top',   // Leaves viewport
           scrub: true,
+          invalidateOnRefresh: true,
         }
       });
 

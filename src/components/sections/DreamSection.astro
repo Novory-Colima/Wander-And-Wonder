@@ -10,10 +10,10 @@ import dreamSuitcaseImg from '@/assets/images/dream-small-suitcase.png';
 
 // High quality editorial images for Scene 3
 const images = [
-  { src: dreamPassportImg.src, alt: 'Pasaporte sobre mapa', label: 'Preparar', rotate: '-6deg', align: 'left-10 top-1/4' },
-  { src: dreamCameraImg.src, alt: 'Cámara analógica y diario', label: 'Imaginar', rotate: '4deg', align: 'right-10 top-1/4' },
-  { src: dreamSuitcaseImg.src, alt: 'Maleta de cuero pequeña', label: 'Empacar', rotate: '-3deg', align: 'left-20 bottom-10' },
-  { src: dreamMainImg.src, alt: 'Mirando por la ventana del avión', label: 'Partir', rotate: '5deg', align: 'right-20 bottom-10' }
+  { src: dreamPassportImg.src, alt: 'Pasaporte sobre mapa', label: 'Preparar', rotate: '-6deg', align: 'left-2 sm:left-6 top-6 sm:top-1/6 md:top-1/4' },
+  { src: dreamCameraImg.src, alt: 'Cámara analógica y diario', label: 'Imaginar', rotate: '4deg', align: 'right-2 sm:right-6 top-6 sm:top-1/6 md:top-1/4' },
+  { src: dreamSuitcaseImg.src, alt: 'Maleta de cuero pequeña', label: 'Empacar', rotate: '-3deg', align: 'left-2 sm:left-12 bottom-6 sm:bottom-10' },
+  { src: dreamMainImg.src, alt: 'Mirando por la ventana del avión', label: 'Partir', rotate: '5deg', align: 'right-2 sm:right-12 bottom-6 sm:bottom-10' }
 ];
 ---
 
@@ -22,29 +22,29 @@ const images = [
   <div id="dream-pin-container" class="h-screen w-full relative flex items-center justify-center">
     
     <!-- Central Text -->
-    <div id="dream-text-center" class="max-w-4xl mx-auto text-center px-4 z-10 pointer-events-none relative">
-      <DisplayTitle as="h2" class="text-ivory leading-[1.1] text-4xl md:text-6xl lg:text-7xl">
+    <div id="dream-text-center" class="max-w-3xl sm:max-w-4xl mx-auto text-center px-4 sm:px-6 z-10 pointer-events-none relative">
+      <DisplayTitle as="h2" class="text-ivory leading-[1.15] sm:leading-[1.1] text-2xl sm:text-4xl md:text-6xl lg:text-7xl break-words">
         El viaje comienza mucho antes <br class="hidden md:block"/> de subir al avión.
       </DisplayTitle>
-      <p class="mt-8 font-sans text-lg md:text-xl text-ivory/70 max-w-2xl mx-auto leading-relaxed">
+      <p class="mt-4 sm:mt-8 font-sans text-sm sm:text-lg md:text-xl text-ivory/70 max-w-2xl mx-auto leading-relaxed">
         Comienza en esa primera conversación. En el momento en que decides que es hora de irte. En la emoción de empacar lo indispensable y dejar espacio para lo inesperado.
       </p>
     </div>
 
     <!-- Collage Images -->
     <div id="dream-collage" class="absolute inset-0 z-20 pointer-events-none overflow-hidden">
-      <Container class="h-full w-full max-w-7xl relative mx-auto">
+      <Container class="h-full w-full max-w-7xl relative mx-auto px-2 sm:px-4">
         {images.map((img, index) => (
           <div 
-            class={`collage-item absolute ${img.align} w-48 md:w-64 opacity-0 pointer-events-auto cursor-none group`}
+            class={`collage-item absolute ${img.align} w-28 sm:w-44 md:w-64 opacity-0 pointer-events-auto cursor-none group`}
             data-index={index}
           >
-            <div class="relative shadow-2xl shadow-midnight/30 p-2 bg-ivory/5 backdrop-blur-sm border border-transparent" style={`transform: rotate(${img.rotate});`}>
+            <div class="relative shadow-2xl shadow-midnight/30 p-1.5 sm:p-2 bg-ivory/5 backdrop-blur-sm border border-transparent" style={`transform: rotate(${img.rotate});`}>
               <div class="overflow-hidden">
                 <img src={img.src} alt={img.alt} loading="lazy" class="w-full h-auto object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-700" />
               </div>
-              <div class="pt-3 pb-1 px-1 flex justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                <span class="font-sans text-[0.65rem] tracking-widest uppercase text-ivory/80">{img.label}</span>
+              <div class="pt-2 sm:pt-3 pb-1 px-1 flex justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                <span class="font-sans text-[0.55rem] sm:text-[0.65rem] tracking-widest uppercase text-ivory/80">{img.label}</span>
                 <div class="w-1.5 h-1.5 rounded-full bg-sunset shadow-[0_0_8px_rgba(255,165,0,0.6)]"></div>
               </div>
             </div>
