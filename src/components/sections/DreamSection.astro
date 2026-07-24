@@ -7,52 +7,77 @@ import dreamMainImg from '@/assets/images/dream-airplane-window.webp';
 import dreamPassportImg from '@/assets/images/dream-passport-map.webp';
 import dreamCameraImg from '@/assets/images/dream-camera-journal.png';
 import dreamSuitcaseImg from '@/assets/images/dream-small-suitcase.png';
-
-// High quality editorial images for Scene 3
-const images = [
-  { src: dreamPassportImg.src, alt: 'Pasaporte sobre mapa', label: 'Preparar', rotate: '-6deg', align: 'left-2 sm:left-4 md:left-4 lg:left-6 xl:left-8 top-4 sm:top-6 md:top-10 lg:top-14' },
-  { src: dreamCameraImg.src, alt: 'Cámara analógica y diario', label: 'Imaginar', rotate: '4deg', align: 'right-2 sm:right-4 md:right-4 lg:right-6 xl:right-8 top-4 sm:top-6 md:top-10 lg:top-14' },
-  { src: dreamSuitcaseImg.src, alt: 'Maleta de cuero pequeña', label: 'Empacar', rotate: '-3deg', align: 'left-2 sm:left-4 md:left-8 lg:left-12 xl:left-16 bottom-4 sm:bottom-6 md:bottom-8 lg:bottom-12' },
-  { src: dreamMainImg.src, alt: 'Mirando por la ventana del avión', label: 'Partir', rotate: '5deg', align: 'right-2 sm:right-4 md:right-8 lg:right-12 xl:right-16 bottom-4 sm:bottom-6 md:bottom-8 lg:bottom-12' }
-];
 ---
 
-<SectionContainer id="dream" padding="none" class="bg-midnight overflow-hidden relative">
+<SectionContainer id="dream" padding="none" class="bg-midnight relative overflow-hidden py-20 px-4 max-w-7xl mx-auto">
   <!-- Pinned Container -->
   <div id="dream-pin-container" class="h-screen w-full relative flex items-center justify-center">
     
-    <!-- Central Text Layer (z-20 and constrained width to prevent overlapping with side cards) -->
-    <div id="dream-text-center" class="max-w-[280px] sm:max-w-[420px] md:max-w-[480px] lg:max-w-[580px] xl:max-w-[640px] mx-auto text-center px-4 z-20 pointer-events-none relative">
-      <DisplayTitle as="h2" class="text-ivory leading-[1.15] sm:leading-[1.1] text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl break-words">
+    <!-- Central Text Layer (z-10, constrained max-width) -->
+    <div id="dream-text-center" class="relative z-10 max-w-2xl mx-auto text-center pointer-events-none">
+      <DisplayTitle as="h2" class="text-ivory leading-tight text-3xl sm:text-5xl md:text-6xl break-words">
         El viaje comienza mucho antes <br class="hidden md:block"/> de subir al avión.
       </DisplayTitle>
-      <p class="mt-4 sm:mt-8 font-sans text-sm sm:text-base md:text-lg lg:text-xl text-ivory/75 leading-relaxed">
+      <p class="mt-6 font-sans text-sm sm:text-base md:text-lg text-ivory/70 leading-relaxed">
         Comienza en esa primera conversación. En el momento en que decides que es hora de irte. En la emoción de empacar lo indispensable y dejar espacio para lo inesperado.
       </p>
     </div>
 
-    <!-- Collage Images Layer (z-10 in background, normalized Polaroid sizes) -->
-    <div id="dream-collage" class="absolute inset-0 z-10 pointer-events-none overflow-hidden">
-      <Container class="h-full w-full max-w-7xl relative mx-auto px-2 sm:px-4">
-        {images.map((img, index) => (
-          <div 
-            class={`collage-item absolute ${img.align} w-28 sm:w-36 md:w-48 lg:w-56 xl:w-60 opacity-0 pointer-events-auto cursor-none group`}
-            data-index={index}
-          >
-            {/* White classic Polaroid frame border */}
-            <div class="relative shadow-2xl shadow-midnight/50 p-2 sm:p-2.5 md:p-3 bg-[#FAFAF8] border border-[#EAE6DF]" style={`transform: rotate(${img.rotate});`}>
-              {/* Normalized 3:4 aspect-ratio container */}
-              <div class="overflow-hidden aspect-[3/4] w-full relative bg-midnight/5">
-                <img src={img.src} alt={img.alt} loading="lazy" class="absolute inset-0 w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-700" />
-              </div>
-              <div class="pt-2 sm:pt-3 pb-0.5 px-1 flex justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                <span class="font-sans text-[0.55rem] sm:text-[0.65rem] tracking-widest uppercase text-midnight/80">{img.label}</span>
-                <div class="w-1.5 h-1.5 rounded-full bg-sunset shadow-[0_0_8px_rgba(255,165,0,0.6)]"></div>
-              </div>
-            </div>
+    <!-- Polaroid Cards Layer (z-0, absolute in corners, normalized dimensions) -->
+    <div id="dream-collage" class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+      
+      <!-- Card 0: Preparar (Top Left) -->
+      <div class="collage-item absolute left-4 top-10 w-44 md:w-52 opacity-0 pointer-events-auto cursor-none group" data-index="0">
+        <div class="relative shadow-xl bg-white p-3 pb-6 border border-slate-200/50" style="transform: rotate(-6deg);">
+          <div class="overflow-hidden aspect-[3/4] w-full relative bg-slate-100">
+            <img src={dreamPassportImg.src} alt="Pasaporte sobre mapa" loading="lazy" class="absolute inset-0 w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-700" />
           </div>
-        ))}
-      </Container>
+          <div class="mt-3 flex justify-between items-center px-1">
+            <span class="font-sans text-[0.65rem] tracking-widest uppercase text-slate-800 font-bold">Preparar</span>
+            <div class="w-1.5 h-1.5 rounded-full bg-sunset"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 1: Imaginar (Top Right) -->
+      <div class="collage-item absolute right-4 top-6 w-44 md:w-52 opacity-0 pointer-events-auto cursor-none group" data-index="1">
+        <div class="relative shadow-xl bg-white p-3 pb-6 border border-slate-200/50" style="transform: rotate(3deg);">
+          <div class="overflow-hidden aspect-[3/4] w-full relative bg-slate-100">
+            <img src={dreamCameraImg.src} alt="Cámara analógica y diario" loading="lazy" class="absolute inset-0 w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-700" />
+          </div>
+          <div class="mt-3 flex justify-between items-center px-1">
+            <span class="font-sans text-[0.65rem] tracking-widest uppercase text-slate-800 font-bold">Imaginar</span>
+            <div class="w-1.5 h-1.5 rounded-full bg-sunset"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Empacar (Bottom Left) -->
+      <div class="collage-item absolute left-12 bottom-4 w-44 md:w-52 opacity-0 pointer-events-auto cursor-none group" data-index="2">
+        <div class="relative shadow-xl bg-white p-3 pb-6 border border-slate-200/50" style="transform: rotate(-3deg);">
+          <div class="overflow-hidden aspect-[3/4] w-full relative bg-slate-100">
+            <img src={dreamSuitcaseImg.src} alt="Maleta de cuero pequeña" loading="lazy" class="absolute inset-0 w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-700" />
+          </div>
+          <div class="mt-3 flex justify-between items-center px-1">
+            <span class="font-sans text-[0.65rem] tracking-widest uppercase text-slate-800 font-bold">Empacar</span>
+            <div class="w-1.5 h-1.5 rounded-full bg-sunset"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Partir (Bottom Right) -->
+      <div class="collage-item absolute right-12 bottom-10 w-44 md:w-52 opacity-0 pointer-events-auto cursor-none group" data-index="3">
+        <div class="relative shadow-xl bg-white p-3 pb-6 border border-slate-200/50" style="transform: rotate(6deg);">
+          <div class="overflow-hidden aspect-[3/4] w-full relative bg-slate-100">
+            <img src={dreamMainImg.src} alt="Mirando por la ventana del avión" loading="lazy" class="absolute inset-0 w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-700" />
+          </div>
+          <div class="mt-3 flex justify-between items-center px-1">
+            <span class="font-sans text-[0.65rem] tracking-widest uppercase text-slate-800 font-bold">Partir</span>
+            <div class="w-1.5 h-1.5 rounded-full bg-sunset"></div>
+          </div>
+        </div>
+      </div>
+
     </div>
 
   </div>

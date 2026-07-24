@@ -24,27 +24,28 @@ import { aboutData, philosophyReasons, statistics } from '@/content/es/about';
             />
           </div>
 
-          {/* Statistics - Integrated cleanly below the image with generous breathing room and h-auto */}
+          {/* Statistics - Integrated cleanly below the image with strict vertical layout and bg-[#0B1726] */}
           <div
-            class="bg-midnight text-ivory p-6 md:p-8 rounded-2xl shadow-xl border border-white/10 grid grid-cols-3 gap-4 md:gap-6 w-full text-left h-auto about-stats"
+            class="bg-[#0B1726] rounded-3xl p-8 shadow-2xl max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left about-stats"
           >
             {
               statistics.map((stat) => (
-                <div class="flex flex-col min-w-0 justify-start">
-                  <div class="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-4xl mb-1 sm:mb-2 text-ivory flex flex-wrap items-baseline gap-0.5 font-normal leading-none">
-                    <span class="stat-counter" data-target={stat.value.replace(/[^0-9]/g, '')}>
-                      0
-                    </span>
-                    <span class="text-sunset">{stat.value.replace(/[0-9]/g, '')}</span>
-                  </div>
-                  <div class="font-sans text-[9px] sm:text-xs font-semibold tracking-wider text-sunset uppercase mb-1 sm:mb-2 leading-tight break-words">
+                <div class="flex flex-col gap-2">
+                  {/* 1. Número grande */}
+                  <span class="text-4xl md:text-5xl font-serif text-white flex items-baseline justify-center md:justify-start gap-0.5">
+                    <span class="stat-counter" data-target={stat.value.replace(/[^0-9]/g, '')}>0</span>
+                    <span class="text-[#D4AF37]">{stat.value.replace(/[0-9]/g, '').trim()}</span>
+                  </span>
+                  
+                  {/* 2. Etiqueta dorada */}
+                  <span class="text-xs md:text-sm font-bold tracking-widest text-[#D4AF37] uppercase">
                     {stat.label}
-                  </div>
-                  {stat.description && (
-                    <div class="font-sans text-[10px] sm:text-xs text-cloud-light/80 opacity-80 leading-relaxed">
-                      {stat.description}
-                    </div>
-                  )}
+                  </span>
+                  
+                  {/* 3. Descripción */}
+                  <p class="text-xs md:text-sm text-slate-400 font-light leading-relaxed max-w-none">
+                    {stat.description}
+                  </p>
                 </div>
               ))
             }
