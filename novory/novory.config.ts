@@ -5,6 +5,8 @@
 // Cada demo solo necesita modificar este archivo.
 // ============================================================================
 
+import { WHATSAPP_URLS } from "./whatsapp";
+
 // ---------------------------------------------------------------------------
 // Enlaces
 // ---------------------------------------------------------------------------
@@ -13,8 +15,12 @@ export const NOVORY_LINKS = {
   site: "https://novorystudio.com",
   /** Página de contacto / solicitar proyecto */
   contact: "https://novorystudio.com/contacto",
-  /** Formulario de solicitud de proyecto */
-  requestProject: "https://novorystudio.com/contacto",
+  /** Formulario de solicitud de proyecto (WhatsApp por defecto con mensaje project) */
+  requestProject: WHATSAPP_URLS.project,
+  /** WhatsApp para Wander & Wonder */
+  whatsappWander: WHATSAPP_URLS.wander,
+  /** WhatsApp para proyectos generales */
+  whatsappProject: WHATSAPP_URLS.project,
 } as const;
 
 // ---------------------------------------------------------------------------

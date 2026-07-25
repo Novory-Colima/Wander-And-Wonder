@@ -5,9 +5,10 @@
  * Usa la identidad horizontal oficial de Novory.
  * Scroll-triggered reveal con stagger.
  */
-import { NOVORY_LINKS, NOVORY_TEXTS, getNovoryCustomProperties } from "./novory.config";
-import identidadDark from "./assets/novory-identidad-horizontal-color-dark-svg.svg";
-import identidadClear from "./assets/novory-identidad-horizontal-color-clear-svg.svg";
+import { NOVORY_LINKS, NOVORY_TEXTS, getNovoryCustomProperties } from './novory.config';
+import identidadDark from './assets/novory-identidad-horizontal-color-dark-svg.svg';
+import identidadClear from './assets/novory-identidad-horizontal-color-clear-svg.svg';
+import { whatsappLink, WHATSAPP_MESSAGES } from '@/lib/whatsapp';
 
 interface Props {
   /** Título principal */
@@ -23,7 +24,7 @@ interface Props {
   /** URL del botón secundario */
   secondaryUrl?: string;
   /** Tema: 'dark' | 'light' */
-  theme?: "dark" | "light";
+  theme?: 'dark' | 'light';
 }
 
 const {
@@ -33,11 +34,11 @@ const {
   primaryUrl = NOVORY_LINKS.requestProject,
   secondaryCta = NOVORY_TEXTS.finalCta.secondaryCta,
   secondaryUrl = NOVORY_LINKS.site,
-  theme = "dark",
+  theme = 'dark',
 } = Astro.props;
 
 const cssVars = getNovoryCustomProperties(theme);
-const identidad = theme === "light" ? identidadClear : identidadDark;
+const identidad = theme === 'light' ? identidadClear : identidadDark;
 ---
 
 <section
@@ -88,8 +89,20 @@ const identidad = theme === "light" ? identidadClear : identidadDark;
         rel="noopener noreferrer"
       >
         <span class="novory-final__btn-text">{primaryCta}</span>
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="novory-final__btn-arrow">
-          <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+          class="novory-final__btn-arrow"
+        >
+          <path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path>
         </svg>
         <span class="novory-final__btn-shimmer" aria-hidden="true"></span>
       </a>
@@ -104,9 +117,7 @@ const identidad = theme === "light" ? identidadClear : identidadDark;
     </div>
 
     <!-- Attribution micro-text -->
-    <p class="novory-final__attribution" data-novory-reveal>
-      Diseñado y desarrollado por Novory
-    </p>
+    <p class="novory-final__attribution" data-novory-reveal>Diseñado y desarrollado por Novory</p>
   </div>
 </section>
 
@@ -169,9 +180,16 @@ const identidad = theme === "light" ? identidadClear : identidadDark;
   }
 
   @keyframes novory-orb-float {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    33% { transform: translate(30px, -20px) scale(1.1); }
-    66% { transform: translate(-20px, 15px) scale(0.95); }
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1);
+    }
+    33% {
+      transform: translate(30px, -20px) scale(1.1);
+    }
+    66% {
+      transform: translate(-20px, 15px) scale(0.95);
+    }
   }
 
   .novory-final__orb--3 {
@@ -179,9 +197,16 @@ const identidad = theme === "light" ? identidadClear : identidadDark;
   }
 
   @keyframes novory-orb-float-center {
-    0%, 100% { transform: translateX(-50%) translate(0, 0) scale(1); }
-    33% { transform: translateX(-50%) translate(20px, -30px) scale(1.15); }
-    66% { transform: translateX(-50%) translate(-15px, 20px) scale(0.9); }
+    0%,
+    100% {
+      transform: translateX(-50%) translate(0, 0) scale(1);
+    }
+    33% {
+      transform: translateX(-50%) translate(20px, -30px) scale(1.15);
+    }
+    66% {
+      transform: translateX(-50%) translate(-15px, 20px) scale(0.9);
+    }
   }
 
   /* --- Gradient separator --- */
@@ -204,8 +229,13 @@ const identidad = theme === "light" ? identidadClear : identidadDark;
   }
 
   @keyframes novory-divider-glow {
-    0%, 100% { opacity: 0.3; }
-    50% { opacity: 0.6; }
+    0%,
+    100% {
+      opacity: 0.3;
+    }
+    50% {
+      opacity: 0.6;
+    }
   }
 
   /* --- Wrapper --- */
@@ -233,7 +263,9 @@ const identidad = theme === "light" ? identidadClear : identidadDark;
     width: auto;
     display: block;
     opacity: 0.9;
-    transition: opacity 600ms ease, transform 600ms ease;
+    transition:
+      opacity 600ms ease,
+      transform 600ms ease;
   }
 
   .novory-final__identity:hover .novory-final__identity-img {
@@ -302,7 +334,7 @@ const identidad = theme === "light" ? identidadClear : identidadDark;
 
   /* Primary: gradient with shimmer */
   .novory-final__btn--primary {
-    color: #FFFFFF;
+    color: #ffffff;
     background: linear-gradient(
       135deg,
       var(--novory-gradient-start),
@@ -316,9 +348,15 @@ const identidad = theme === "light" ? identidadClear : identidadDark;
   }
 
   @keyframes novory-final-btn-gradient {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
   }
 
   .novory-final__btn-text {
@@ -344,8 +382,12 @@ const identidad = theme === "light" ? identidadClear : identidadDark;
   }
 
   @keyframes novory-final-shimmer {
-    0% { background-position: 200% center; }
-    100% { background-position: -200% center; }
+    0% {
+      background-position: 200% center;
+    }
+    100% {
+      background-position: -200% center;
+    }
   }
 
   .novory-final__btn--primary:hover {
@@ -407,11 +449,21 @@ const identidad = theme === "light" ? identidadClear : identidadDark;
   }
 
   /* Stagger */
-  [data-novory-reveal]:nth-child(1) { transition-delay: 0ms; }
-  [data-novory-reveal]:nth-child(2) { transition-delay: 120ms; }
-  [data-novory-reveal]:nth-child(3) { transition-delay: 240ms; }
-  [data-novory-reveal]:nth-child(4) { transition-delay: 360ms; }
-  [data-novory-reveal]:nth-child(5) { transition-delay: 480ms; }
+  [data-novory-reveal]:nth-child(1) {
+    transition-delay: 0ms;
+  }
+  [data-novory-reveal]:nth-child(2) {
+    transition-delay: 120ms;
+  }
+  [data-novory-reveal]:nth-child(3) {
+    transition-delay: 240ms;
+  }
+  [data-novory-reveal]:nth-child(4) {
+    transition-delay: 360ms;
+  }
+  [data-novory-reveal]:nth-child(5) {
+    transition-delay: 480ms;
+  }
 
   /* ===== Responsive ===== */
   @media (max-width: 768px) {
@@ -426,9 +478,18 @@ const identidad = theme === "light" ? identidadClear : identidadDark;
       width: 100%;
       justify-content: center;
     }
-    .novory-final__orb--1 { width: 250px; height: 250px; }
-    .novory-final__orb--2 { width: 200px; height: 200px; }
-    .novory-final__orb--3 { width: 150px; height: 150px; }
+    .novory-final__orb--1 {
+      width: 250px;
+      height: 250px;
+    }
+    .novory-final__orb--2 {
+      width: 200px;
+      height: 200px;
+    }
+    .novory-final__orb--3 {
+      width: 150px;
+      height: 150px;
+    }
   }
 
   @media (max-width: 480px) {
@@ -450,25 +511,25 @@ const identidad = theme === "light" ? identidadClear : identidadDark;
 
 <script>
   function initNovoryFinalCTA() {
-    const section = document.querySelector<HTMLElement>("[data-novory-final-cta]");
+    const section = document.querySelector<HTMLElement>('[data-novory-final-cta]');
     if (!section) return;
 
-    const reveals = section.querySelectorAll<HTMLElement>("[data-novory-reveal]");
+    const reveals = section.querySelectorAll<HTMLElement>('[data-novory-reveal]');
     if (!reveals.length) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            reveals.forEach((el) => el.classList.add("is-visible"));
+            reveals.forEach((el) => el.classList.add('is-visible'));
             observer.disconnect();
           }
         });
       },
       {
         threshold: 0.1,
-        rootMargin: "0px 0px -30px 0px",
-      }
+        rootMargin: '0px 0px -30px 0px',
+      },
     );
 
     observer.observe(section);

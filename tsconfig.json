@@ -6,22 +6,54 @@
     "exactOptionalPropertyTypes": false,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
-      "@components/*": ["src/components/*"],
-      "@layouts/*": ["src/layouts/*"],
-      "@styles/*": ["src/styles/*"],
-      "@utils/*": ["src/utils/*"],
-      "@animations/*": ["src/animations/*"],
-      "@config/*": ["src/config/*"],
-      "@content/*": ["src/content/*"],
-      "@data/*": ["src/data/*"],
-      "@lib/*": ["src/lib/*"],
-      "@types/*": ["src/types/*"],
-      "@assets/*": ["src/assets/*"]
+      "@/*": [
+        "src/*"
+      ],
+      "@components/*": [
+        "src/components/*"
+      ],
+      "@layouts/*": [
+        "src/layouts/*"
+      ],
+      "@styles/*": [
+        "src/styles/*"
+      ],
+      "@utils/*": [
+        "src/utils/*"
+      ],
+      "@animations/*": [
+        "src/animations/*"
+      ],
+      "@config/*": [
+        "src/config/*"
+      ],
+      "@content/*": [
+        "src/content/*"
+      ],
+      "@data/*": [
+        "src/data/*"
+      ],
+      "@lib/*": [
+        "src/lib/*"
+      ],
+      "@types/*": [
+        "src/types/*"
+      ],
+      "@assets/*": [
+        "src/assets/*"
+      ]
     },
     "jsx": "react-jsx",
     "jsxImportSource": "astro"
   },
-  "include": ["src/**/*.ts", "src/**/*.astro", "src/**/*.d.ts"],
-  "exclude": ["node_modules", "dist"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.astro",
+    "src/**/*.d.ts",
+    "novory/whatsapp.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
 }
