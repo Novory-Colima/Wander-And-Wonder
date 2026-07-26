@@ -1,10 +1,28 @@
 import * as THREE from 'three';
 import { gsap } from '@/lib/gsap';
 
+function hasWebGL(): boolean {
+  try {
+    const canvas = document.createElement('canvas');
+    return !!(
+      window.WebGLRenderingContext &&
+      (canvas.getContext('webgl') || canvas.getContext('experimental-webgl'))
+    );
+  } catch {
+    return false;
+  }
+}
+
 export const initAroundWorld = () => {
   const container = document.getElementById('globe-container');
   const section = document.getElementById('around-the-world');
   if (!container || !section) return;
+
+  if (!hasWebGL()) {
+    const fallback = container.querySelector('.globe-fallback') as HTMLElement;
+    if (fallback) fallback.style.opacity = '1';
+    return;
+  }
 
   const rawData = section.getAttribute('data-stories');
   const stories = rawData ? JSON.parse(rawData) : [];

@@ -21,7 +21,8 @@ export function initExperiencesAnimation() {
 
     // 1. Crossfade Background Images
     imageWrappers.forEach((wrapper, imgIndex) => {
-      const img = wrapper.querySelector('img');
+      const img = wrapper.querySelector('.exp-img-sharp') as HTMLImageElement || wrapper.querySelector('img');
+      const allImgs = wrapper.querySelectorAll('img');
       
       if (index === imgIndex) {
         // Fade in active wrapper
@@ -40,8 +41,8 @@ export function initExperiencesAnimation() {
         gsap.to(wrapper, { opacity: 0, duration: 1.5, ease: 'power2.inOut', overwrite: 'auto' });
         
         // Stop scaling inactive image (by letting overwrite handle it or just leave it)
-        if (img) {
-          gsap.killTweensOf(img);
+        if (allImgs.length) {
+          gsap.killTweensOf(allImgs);
         }
       }
     });

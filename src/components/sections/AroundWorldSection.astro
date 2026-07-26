@@ -81,6 +81,12 @@ const stories = [
     id="globe-container"
     class="absolute inset-0 z-0 cursor-grab active:cursor-grabbing will-change-transform"
   >
+    <!-- Fallback visual: shown if WebGL fails or on low-power devices -->
+    <div class="globe-fallback absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-500 pointer-events-none">
+      <div class="w-64 h-64 md:w-96 md:h-96 rounded-full border border-ivory/10 flex items-center justify-center">
+        <div class="w-48 h-48 md:w-72 md:h-72 rounded-full border border-ivory/5 animate-pulse"></div>
+      </div>
+    </div>
   </div>
 
   <!-- SVG for connection lines (3D to HTML) -->
@@ -142,3 +148,15 @@ const stories = [
     initAroundWorld();
   });
 </script>
+
+<style>
+  #around-the-world {
+    min-height: 100svh;
+  }
+  #globe-container:empty::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(74, 107, 140, 0.15) 0%, transparent 70%);
+  }
+</style>

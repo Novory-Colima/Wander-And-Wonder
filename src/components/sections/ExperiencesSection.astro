@@ -10,11 +10,22 @@ import { experiences } from '@/content/es/experiences';
   <div class="exp-images-container absolute inset-0 w-full h-full z-0 pointer-events-none overflow-hidden">
     {experiences.map((exp, index) => (
       <div class="exp-image-wrapper absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out" data-exp-img={index}>
+        <!-- Capa 1: Imagen borrosa de fondo (relleno inteligente para letterbox/aspect ratios variables) -->
+        <img 
+          src={exp.image}
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+          class="exp-img-blur absolute inset-0 w-full h-full object-cover object-center scale-110"
+          style="filter: blur(40px); transform: scale(1.15); opacity: 0.6;"
+        />
+        
+        <!-- Capa 2: Imagen nítida con object-fit: cover -->
         <img 
           src={exp.image}
           alt={exp.title}
           loading="lazy"
-          class="w-full h-full object-cover object-center transform-gpu opacity-75 md:opacity-90 will-change-transform"
+          class="exp-img-sharp absolute inset-0 w-full h-full object-cover object-center transform-gpu opacity-75 md:opacity-90 will-change-transform"
         />
       </div>
     ))}
@@ -59,3 +70,22 @@ import { experiences } from '@/content/es/experiences';
     initExperiencesAnimation();
   });
 </script>
+
+<style>
+  /* Forzar cobertura total del contenedor independientemente del aspect ratio de la imagen */
+  .exp-images-container .exp-image-wrapper img {
+    height: 100% !important;
+    width: 100% !important;
+    max-width: none !important;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .exp-image-wrapper {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+</style>
