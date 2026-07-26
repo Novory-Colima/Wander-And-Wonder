@@ -14,31 +14,31 @@ export const WHATSAPP_PHONE_NUMBER = "523121992198";
 export const WHATSAPP_MESSAGES = {
   /** Experiencia Interactiva / Demo Wander & Wonder */
   wander:
-    "¡Hola Novory Studio! 👋 Me encantó la experiencia interactiva de Wander & Wonder 🚀 y me gustaría solicitar un proyecto así de impresionante para mi marca. ✨",
+    "¡Hola Novory Studio! \u{1F44B} Me encantó la experiencia interactiva de Wander & Wonder \u{1F680} y me gustaría solicitar un proyecto así de impresionante para mi marca. \u{2728}",
 
   /** Solicitud General de Proyecto */
   project:
-    "¡Hola Novory Studio! 👋 Me gustaría solicitar información para iniciar un proyecto con ustedes. 🚀 ¿Podríamos coordinar una propuesta?",
+    "¡Hola Novory Studio! \u{1F44B} Me gustaría solicitar información para iniciar un proyecto con ustedes. \u{1F680} ¿Podríamos coordinar una propuesta?",
 
   /** Desarrollo Web Premium */
   web:
-    "¡Hola Novory Studio! 💻 Quisiera cotizar el desarrollo de un sitio web premium, moderno e interactivo para mi negocio. ✨",
+    "¡Hola Novory Studio! \u{1F4BB} Quisiera cotizar el desarrollo de un sitio web premium, moderno e interactivo para mi negocio. \u{2728}",
 
   /** SEO Local y Crecimiento */
   seo:
-    "¡Hola Novory Studio! 📈 Me interesa impulsar la presencia digital y el SEO local de mi negocio para captar más clientes. 🔍",
+    "¡Hola Novory Studio! \u{1F4C8} Me interesa impulsar la presencia digital y el SEO local de mi negocio para captar más clientes. \u{1F50D}",
 
   /** Automatizaciones y Procesos */
   automation:
-    "¡Hola Novory Studio! ⚙️ Quisiera automatizar procesos en mi negocio y conocer más sobre sus soluciones inteligentes. 🤖✨",
+    "¡Hola Novory Studio! \u{2699}\u{FE0F} Quisiera automatizar procesos en mi negocio y conocer más sobre sus soluciones inteligentes. \u{1F916}\u{2728}",
 
   /** Demo Personalizada */
   demo:
-    "¡Hola Novory Studio! 💡 Vi sus demos y me gustaría explorar una experiencia visual personalizada para mi empresa. 🚀",
+    "¡Hola Novory Studio! \u{1F4A1} Vi sus demos y me gustaría explorar una experiencia visual personalizada para mi empresa. \u{1F680}",
 
   /** Contacto / Consulta General */
   contact:
-    "¡Hola Novory Studio! 👋 Me gustaría hacerles una consulta rápida sobre sus servicios digitales. 💬",
+    "¡Hola Novory Studio! \u{1F44B} Me gustaría hacerles una consulta rápida sobre sus servicios digitales. \u{1F4AC}",
 } as const;
 
 export type WhatsAppMessageType = keyof typeof WHATSAPP_MESSAGES;
@@ -57,7 +57,7 @@ export function getWhatsAppUrl(
       ? WHATSAPP_MESSAGES[message as WhatsAppMessageType]
       : message;
   const encodedText = encodeURIComponent(text);
-  return `https://wa.me/${phone}?text=${encodedText}`;
+  return `https://api.whatsapp.com/send?phone=${phone}&text=${encodedText}`;
 }
 
 /**
