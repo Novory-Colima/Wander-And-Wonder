@@ -6,7 +6,7 @@
 // ============================================================================
 
 /** Número oficial de WhatsApp de Novory Studio (con código de país sin signo +) */
-export const WHATSAPP_PHONE_NUMBER = "523122105747";
+export const WHATSAPP_PHONE_NUMBER = "523121992198";
 
 /**
  * Mensajes predefinidos animados y enfocados en conversión para WhatsApp
