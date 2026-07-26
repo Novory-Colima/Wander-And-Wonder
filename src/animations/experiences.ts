@@ -8,8 +8,34 @@ export function initExperiencesAnimation() {
   const items = section.querySelectorAll('.exp-item');
   const imageWrappers = section.querySelectorAll('.exp-image-wrapper');
   const isReduced = prefersReducedMotion();
+  const introScreen = document.getElementById('experiences-intro');
+  const introText = document.getElementById('experiences-intro-text');
 
   if (!items.length || !imageWrappers.length) return;
+
+  // 0. Intro Animation (Pinned Title)
+  if (introScreen && introText && !isReduced) {
+    gsap.set(introText, { opacity: 0 });
+    
+    const isMobile = window.innerWidth < 768;
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: introScreen,
+        start: 'top top',
+        end: () => isMobile ? '+=80%' : '+=120%', // Pin duration responsive
+        pin: true,
+        scrub: true,
+        invalidateOnRefresh: true,
+      }
+    });
+
+    // Fade in text
+    tl.to(introText, { opacity: 1, duration: 1 }, 0);
+    // Hold
+    tl.to({}, { duration: 0.8 });
+    // Fade out text to black
+    tl.to(introText, { opacity: 0, duration: 0.8 });
+  }
 
   // Track the currently active index
   let activeIndex = -1;
@@ -123,7 +149,7 @@ export function initExperiencesAnimation() {
         stagger: 0.1,
         ease: 'power2.out',
         scrollTrigger: {
-          trigger: section,
+          trigger: '#experiences-main',
           start: 'top 60%',
         }
       }

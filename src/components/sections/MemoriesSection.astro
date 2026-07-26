@@ -14,7 +14,7 @@ const memories = [
     aspect: 'landscape',
     quote: "Volvería únicamente para escuchar otra vez aquel atardecer.",
     author: "Grecia, 2022",
-    align: 'left-[4%] sm:left-[5%] md:left-[10%] top-[12%]',
+    align: 'left-[4%] sm:left-[5%] md:left-[10%] top-[10%]',
     width: 'w-[88vw] max-w-[340px] sm:w-[60vw] md:w-[45vw]',
     speed: 1.2
   },
@@ -24,7 +24,7 @@ const memories = [
     aspect: 'portrait',
     quote: "No recuerdo el nombre del restaurante. Pero sí recuerdo las risas.",
     author: "París, 2024",
-    align: 'right-[4%] sm:right-[5%] md:right-[15%] top-[45%]',
+    align: 'right-[4%] sm:right-[5%] md:right-[15%] top-[37%]',
     width: 'w-[78vw] max-w-[300px] sm:w-[50vw] md:w-[30vw]',
     speed: 1.0
   },
@@ -34,7 +34,7 @@ const memories = [
     aspect: 'video',
     quote: "El silencio de aquella montaña lo decía todo.",
     author: "Japón, 2023",
-    align: 'left-[5%] sm:left-[10%] md:left-[20%] top-[78%]',
+    align: 'left-[5%] sm:left-[10%] md:left-[20%] top-[77%]',
     width: 'w-[88vw] max-w-[340px] sm:w-[65vw] md:w-[50vw]',
     speed: 1.1
   }
@@ -54,7 +54,7 @@ const memories = [
   </div>
 
   <!-- 2. The Memory Void -->
-  <div id="memory-void" class="relative w-full h-[180vh] sm:h-[210vh] bg-midnight z-10 pointer-events-none overflow-hidden">
+  <div id="memory-void" class="relative w-full h-[220vh] sm:h-[250vh] bg-midnight z-10 pointer-events-none overflow-hidden">
     {memories.map((memory) => (
       <div class={`memory-fragment absolute ${memory.align} ${memory.width} flex flex-col gap-4 sm:gap-6 md:gap-8 pointer-events-auto will-change-transform`} data-speed={memory.speed}>
         
