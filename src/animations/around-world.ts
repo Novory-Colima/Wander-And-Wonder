@@ -109,7 +109,10 @@ export const initAroundWorld = () => {
   let activeMarker: THREE.Mesh | null = null;
   let isSwitching = false;
 
-  // Reveal globe on scroll
+  // Reveal globe on scroll safely with initial hidden state
+  gsap.set(container, { opacity: 0 });
+  if (card) gsap.set(card, { opacity: 0 });
+
   gsap.to(container, {
     opacity: 1,
     duration: 2,

@@ -13,6 +13,11 @@ export const initHeroAnimation = () => {
 
   if (!heroSection || !titleSpan) return;
 
+  // Set initial states via GSAP safely to prevent FOIT
+  gsap.set([bgSharp, manifesto, scrollIndicator], { opacity: 0 });
+  gsap.set(titleSpan, { filter: 'blur(16px)', opacity: 0, scale: 0.9, y: 30 });
+  gsap.set(title, { filter: 'blur(10px)', opacity: 0 });
+
   // 1. Intro Timeline (El Despertar)
   const introTl = gsap.timeline({
     defaults: { ease: 'power3.out' }
@@ -21,8 +26,7 @@ export const initHeroAnimation = () => {
   // Focus Pull & Title Reveal
   introTl
     .to(bgSharp, { opacity: 1, duration: 3.5, ease: 'power2.inOut' }) // Focus Pull
-    .fromTo(titleSpan, 
-      { filter: 'blur(16px)', opacity: 0, scale: 0.9, y: 30 },
+    .to(titleSpan, 
       { filter: 'blur(0px)', opacity: 1, scale: 1, y: 0, duration: 3, ease: 'power3.out' },
       '-=2.5'
     )

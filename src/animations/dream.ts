@@ -11,6 +11,11 @@ export function initDreamAnimation() {
 
   if (!section || !pinContainer || prefersReducedMotion()) return;
 
+  // Set initial hidden state for items safely in JS
+  if (collageItems.length > 0) {
+    gsap.set(collageItems, { opacity: 0 });
+  }
+
   // Force initial colors so GSAP can interpolate them correctly
   gsap.set(section, { backgroundColor: '#070F18' }); // Midnight
   if (title) gsap.set(title, { color: '#FAFAF8' }); // Ivory

@@ -45,7 +45,7 @@ const memories = [
   
   <!-- 1. Transition Screen (Cierre de Ojos) -->
   <div id="memory-transition-screen" class="h-screen w-full flex items-center justify-center bg-ivory px-4">
-    <div class="text-center max-w-4xl mx-auto opacity-0" id="memory-intro-text">
+    <div class="text-center max-w-4xl mx-auto" id="memory-intro-text">
       <span class="font-sans text-xs sm:text-sm md:text-base tracking-[0.2em] uppercase block mb-3 sm:mb-4 text-midnight/60">La Memoria</span>
       <DisplayTitle as="h2" class="text-2xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight text-midnight break-words">
         Pero al final del viaje...<br />lo que queda son fragmentos.
@@ -56,7 +56,7 @@ const memories = [
   <!-- 2. The Memory Void -->
   <div id="memory-void" class="relative w-full h-[250vh] sm:h-[300vh] bg-midnight z-10 pointer-events-none overflow-hidden">
     {memories.map((memory) => (
-      <div class={`memory-fragment absolute ${memory.align} ${memory.width} flex flex-col gap-4 sm:gap-6 md:gap-8 pointer-events-auto`} data-speed={memory.speed}>
+      <div class={`memory-fragment absolute ${memory.align} ${memory.width} flex flex-col gap-4 sm:gap-6 md:gap-8 pointer-events-auto will-change-transform`} data-speed={memory.speed}>
         
         <!-- Image Container -->
         <div class="memory-image-wrapper overflow-hidden relative shadow-2xl shadow-midnight/50 rounded-sm">
@@ -64,7 +64,7 @@ const memories = [
             src={memory.src}
             alt={memory.alt}
             aspectRatio={memory.aspect as any}
-            class="memory-image rounded-none w-full scale-125 transform-gpu"
+            class="memory-image rounded-none w-full scale-125 transform-gpu will-change-transform"
           />
         </div>
 

@@ -18,6 +18,7 @@ export function initMemoriesAnimation() {
 
     // Force initial styles for clean interpolation
     gsap.set(transitionScreen, { backgroundColor: '#F5F3EF' }); // bg-ivory hex
+    gsap.set(introText, { opacity: 0 });
     if (title) gsap.set(title, { color: '#070F18' }); // text-midnight hex
     if (subtitle) gsap.set(subtitle, { color: 'rgba(7, 15, 24, 0.6)' }); // text-midnight/60 hex
 

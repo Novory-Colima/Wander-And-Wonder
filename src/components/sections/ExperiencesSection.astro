@@ -9,12 +9,12 @@ import { experiences } from '@/content/es/experiences';
   <!-- Contenedor de imágenes de fondo normalizado (Full-cover absolute con crossfade) -->
   <div class="exp-images-container absolute inset-0 w-full h-full z-0 pointer-events-none overflow-hidden">
     {experiences.map((exp, index) => (
-      <div class="exp-image-wrapper absolute inset-0 w-full h-full opacity-0 transition-opacity duration-700 ease-in-out" data-exp-img={index}>
+      <div class="exp-image-wrapper absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out" data-exp-img={index}>
         <img 
           src={exp.image}
           alt={exp.title}
           loading="lazy"
-          class="w-full h-full object-cover object-center transform-gpu opacity-75 md:opacity-90"
+          class="w-full h-full object-cover object-center transform-gpu opacity-75 md:opacity-90 will-change-transform"
         />
       </div>
     ))}
@@ -36,14 +36,14 @@ import { experiences } from '@/content/es/experiences';
         <div 
           role="button"
           tabindex="0"
-          class="exp-item group relative py-3.5 sm:py-5 md:py-8 border-b border-white/15 cursor-pointer flex flex-col md:flex-row md:items-center justify-between focus:outline-none focus-visible:bg-white/5 px-2 sm:px-4 -mx-2 sm:-mx-4 rounded-sm"
+          class="exp-item group relative py-3.5 sm:py-5 md:py-8 border-b border-white/15 cursor-pointer flex flex-col md:flex-row md:items-center justify-between focus:outline-none focus-visible:bg-white/5 px-2 sm:px-4 -mx-2 sm:-mx-4 rounded-sm transition-all duration-300 hover:bg-white/[0.03]"
           data-exp-index={index}
           aria-label={`Ver experiencia: ${exp.title}`}
         >
-          <h3 class="exp-title font-serif text-2xl sm:text-4xl md:text-6xl lg:text-[6.5rem] leading-tight sm:leading-none !text-white/50 transition-all duration-500 ease-out pr-2 sm:pr-8">
+          <h3 class="exp-title font-serif text-2xl sm:text-4xl md:text-6xl lg:text-[6.5rem] leading-tight sm:leading-none !text-white/50 transition-all duration-500 ease-out pr-2 sm:pr-8 group-hover:text-white/80">
             {exp.title}
           </h3>
-          <p class="exp-desc font-sans text-xs sm:text-base md:text-lg !text-white/90 max-w-[340px] md:text-right mt-2 sm:mt-4 md:mt-0 opacity-0 transform translate-x-3 transition-all duration-500 ease-out leading-relaxed">
+          <p class="exp-desc font-sans text-xs sm:text-base md:text-lg !text-white/90 max-w-[340px] md:text-right mt-2 sm:mt-4 md:mt-0 transform translate-x-3 transition-all duration-500 ease-out leading-relaxed">
             {exp.description}
           </p>
         </div>
