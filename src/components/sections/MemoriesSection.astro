@@ -54,7 +54,7 @@ const memories = [
   </div>
 
   <!-- 2. The Memory Void -->
-  <div id="memory-void" class="relative w-full h-[250vh] sm:h-[300vh] bg-midnight z-10 pointer-events-none overflow-hidden">
+  <div id="memory-void" class="relative w-full h-[180vh] sm:h-[210vh] bg-midnight z-10 pointer-events-none overflow-hidden">
     {memories.map((memory) => (
       <div class={`memory-fragment absolute ${memory.align} ${memory.width} flex flex-col gap-4 sm:gap-6 md:gap-8 pointer-events-auto will-change-transform`} data-speed={memory.speed}>
         
@@ -83,12 +83,12 @@ const memories = [
   </div>
 
   <!-- Final Anchor to next section -->
-  <div class="h-screen w-full bg-midnight flex items-center justify-center relative z-20">
+  <div class="py-24 sm:py-32 w-full bg-midnight flex flex-col items-center justify-center relative z-20">
     <DisplayTitle as="h2" class="text-ivory text-center px-4" id="memory-outro-text">
       El viaje terminó.<br />La historia no.
     </DisplayTitle>
     <!-- Transición gradual al final para conectar con Experiences -->
-    <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-b from-transparent to-midnight pointer-events-none"></div>
+    <div class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-b from-transparent to-midnight pointer-events-none"></div>
   </div>
 
 </SectionContainer>

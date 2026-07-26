@@ -19,8 +19,19 @@ export const initAroundWorld = () => {
   if (!container || !section) return;
 
   if (!hasWebGL()) {
-    const fallback = container.querySelector('.globe-fallback') as HTMLElement;
-    if (fallback) fallback.style.opacity = '1';
+    section.style.display = 'none';
+    
+    // Si GSAP y ScrollTrigger ya están cargados en la página, refrescamos el layout
+    // para que las secciones posteriores (Memories, Experiences) ajusten sus posiciones
+    // ya que esta sección (de 100vh) acaba de desaparecer del DOM.
+    requestAnimationFrame(() => {
+      if (window.ScrollTrigger) {
+        window.ScrollTrigger.refresh();
+      } else {
+        // En caso de que GSAP esté empaquetado y cargue después, despachamos un evento de resize
+        window.dispatchEvent(new Event('resize'));
+      }
+    });
     return;
   }
 
