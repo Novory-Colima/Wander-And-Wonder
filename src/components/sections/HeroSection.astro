@@ -12,44 +12,49 @@ const heroBgUrl = heroBgImg.src;
   <!-- Cohesive full-screen background container -->
   <div class="hero-sticky-container relative w-full h-full overflow-hidden flex items-center justify-center">
     
-    <!-- Photography Layer (Cohesive, perfectly framed) -->
-    <div class="hero-camera absolute inset-0 z-0 w-full h-full overflow-hidden will-change-transform">
-      
-      <!-- Blurred Layer for Focus Pull -->
-      <img
-        src={heroBgUrl}
-        alt=""
-        loading="eager"
-        class="hero-bg-blur absolute inset-0 w-full h-full object-cover object-center scale-[1.02] max-w-none"
-        style="filter: blur(16px);"
-      />
-      
-      <!-- Sharp Layer -->
-      <img
-        src={heroBgUrl}
-        alt="Breathtaking landscape"
-        loading="eager"
-        fetchpriority="high"
-        class="hero-bg-sharp absolute inset-0 w-full h-full object-cover object-center scale-[1.02] max-w-none will-change-transform"
-      />
-      
-      <!-- Atmosphere Layer -->
-      <div
-        class="hero-atmosphere absolute inset-0 opacity-[0.25] mix-blend-overlay pointer-events-none"
-        style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E');"
-      ></div>
-      
-      <!-- Subtle, elegant dark overlay for optimal text contrast -->
-      <div class="absolute inset-0 bg-gradient-to-b from-midnight/70 via-midnight/40 to-midnight/80 pointer-events-none"></div>
+    <!-- Parallax Wrapper for Scroll Animation -->
+    <div class="hero-parallax absolute inset-0 z-0 w-full h-full overflow-hidden will-change-transform">
+      <!-- Photography Layer (Cohesive, perfectly framed, for breathing animation) -->
+      <div class="hero-camera absolute inset-0 w-full h-full overflow-hidden will-change-transform">
+        
+        <!-- Blurred Layer for Focus Pull -->
+        <img
+          src={heroBgUrl}
+          alt=""
+          loading="eager"
+          class="hero-bg-blur absolute inset-0 w-full h-full object-cover object-center scale-[1.02] max-w-none"
+          style="filter: blur(16px);"
+        />
+        
+        <!-- Sharp Layer -->
+        <img
+          src={heroBgUrl}
+          alt="Breathtaking landscape"
+          loading="eager"
+          fetchpriority="high"
+          class="hero-bg-sharp absolute inset-0 w-full h-full object-cover object-center scale-[1.02] max-w-none will-change-transform"
+        />
+        
+        <!-- Atmosphere Layer -->
+        <div
+          class="hero-atmosphere absolute inset-0 opacity-[0.25] mix-blend-overlay pointer-events-none"
+          style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E');"
+        ></div>
+        
+        <!-- Subtle, elegant dark overlay for optimal text contrast -->
+        <div class="absolute inset-0 bg-gradient-to-b from-midnight/70 via-midnight/40 to-midnight/80 pointer-events-none"></div>
+      </div>
     </div>
 
     <!-- Layer 3: Responsive Centered Typography -->
     <div class="hero-content absolute inset-0 z-30 flex flex-col items-center justify-center pointer-events-none px-4 sm:px-6 text-center">
-      <h1 class="hero-title font-serif !text-ivory text-center flex flex-col items-center leading-[1.1] max-w-full will-change-transform">
-        <span class="block text-3xl sm:text-5xl md:text-[9vw] lg:text-[7.5vw] font-normal tracking-tight sm:tracking-wide !text-ivory max-w-full break-words">Wander & Wonder</span>
-      </h1>
+      <div class="hero-title-wrapper font-serif !text-ivory text-center flex flex-col items-center leading-[1.1] max-w-full will-change-transform relative z-10">
+        <h1 class="hero-title w-full will-change-transform">
+          <span class="block text-3xl sm:text-5xl md:text-[9vw] lg:text-[7.5vw] font-normal tracking-tight sm:tracking-wide !text-ivory max-w-full break-words">Wander & Wonder</span>
+        </h1>
+      </div>
       
-      <p class="hero-manifesto mt-4 sm:mt-6 lg:mt-10 font-sans text-[0.65rem] sm:text-xs !text-ivory/80 tracking-[0.3em] sm:tracking-[0.4em] uppercase text-center max-w-[280px] sm:max-w-[320px] leading-relaxed">
+      <p class="hero-manifesto mt-6 sm:mt-8 lg:mt-12 font-sans text-[0.65rem] sm:text-xs !text-ivory/80 tracking-[0.3em] sm:tracking-[0.4em] uppercase text-center max-w-[280px] sm:max-w-[320px] leading-relaxed relative z-20 will-change-transform">
         Collect stories<br />you'll tell forever
       </p>
     </div>

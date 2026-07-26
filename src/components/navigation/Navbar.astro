@@ -67,21 +67,75 @@ import { SITE_CONFIG, CTA_TEXT } from '@/config/site';
     const navbar = document.getElementById('navbar');
     if (!navbar) return;
 
+    let lastScrollY = window.scrollY;
+    let isHidden = false;
     let isScrolled = false;
+    let rafId: number | null = null;
+
+    const SCROLL_THRESHOLD = 80; // px after which navbar gets translucent background
+    const HIDE_THRESHOLD = 150;  // px after which navbar can auto-hide
 
     function updateNavbar(): void {
-      const currentScrollY = window.scrollY;
+      const currentY = window.scrollY;
+      const scrollingDown = currentY > lastScrollY;
+      const delta = Math.abs(currentY - lastScrollY);
 
-      if (currentScrollY > 80 && !isScrolled) {
-        isScrolled = true;
-        navbar?.classList.add('navbar-scrolled');
-      } else if (currentScrollY <= 80 && isScrolled) {
-        isScrolled = false;
-        navbar?.classList.remove('navbar-scrolled');
+      // --- Sincronizar posición TOP con el scroll para el TopBar ---
+      const topbarH = window.innerWidth <= 480 ? 34 : 38;
+      navbar!.style.top = `${Math.max(0, topbarH - currentY)}px`;
+
+      // Check near footer to auto hide floating navbar on mobile/desktop
+      const pageBottom = document.documentElement.scrollHeight - window.innerHeight;
+      const isNearFooter = currentY > pageBottom * 0.92;
+
+      if (isNearFooter && currentY > HIDE_THRESHOLD) {
+        if (!isHidden) {
+          isHidden = true;
+          navbar!.classList.add('navbar-hidden');
+        }
+        lastScrollY = currentY;
+        rafId = null;
+        return;
       }
+
+      // --- Translucent background state ---
+      if (currentY > SCROLL_THRESHOLD && !isScrolled) {
+        isScrolled = true;
+        navbar!.classList.add('navbar-scrolled');
+      } else if (currentY <= SCROLL_THRESHOLD && isScrolled) {
+        isScrolled = false;
+        navbar!.classList.remove('navbar-scrolled');
+      }
+
+      // --- Smart hide / show ---
+      if (currentY > HIDE_THRESHOLD) {
+        if (scrollingDown && !isHidden && delta > 4) {
+          // Hide when scrolling down
+          isHidden = true;
+          navbar!.classList.add('navbar-hidden');
+        } else if (!scrollingDown && isHidden && delta > 4) {
+          // Show when scrolling up
+          isHidden = false;
+          navbar!.classList.remove('navbar-hidden');
+        }
+      } else {
+        // Always show near the top
+        if (isHidden) {
+          isHidden = false;
+          navbar!.classList.remove('navbar-hidden');
+        }
+      }
+
+      lastScrollY = currentY;
+      rafId = null;
     }
 
-    window.addEventListener('scroll', updateNavbar, { passive: true });
+    window.addEventListener('scroll', () => {
+      if (rafId === null) {
+        rafId = requestAnimationFrame(updateNavbar);
+      }
+    }, { passive: true });
+
     updateNavbar();
   }
 
@@ -91,12 +145,21 @@ import { SITE_CONFIG, CTA_TEXT } from '@/config/site';
 <style>
   #navbar {
     background: transparent;
+    transition:
+      background 400ms cubic-bezier(0.25, 0.1, 0.25, 1),
+      backdrop-filter 400ms cubic-bezier(0.25, 0.1, 0.25, 1),
+      box-shadow 400ms cubic-bezier(0.25, 0.1, 0.25, 1),
+      transform 400ms cubic-bezier(0.25, 0.1, 0.25, 1);
+  }
+
+  #navbar.navbar-hidden {
+    transform: translateY(-120%);
   }
 
   #navbar.navbar-scrolled {
-    background: rgba(13, 27, 42, 0.4);
-    backdrop-filter: blur(var(--blur-md));
-    -webkit-backdrop-filter: blur(var(--blur-md));
+    background: rgba(13, 27, 42, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05);
   }
 

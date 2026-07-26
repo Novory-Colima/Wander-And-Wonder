@@ -150,8 +150,10 @@
    ───────────────────────────────────────────── */
 
 :root {
-  /* ── Navbar ── */
+  /* ── Navbar & Topbar ── */
+  --topbar-height: 38px;
   --navbar-height: 5rem;
+  --chrome-height: calc(var(--topbar-height) + var(--navbar-height));
 
   /* ── Opacity Scale ── */
   --opacity-10: 0.1;
@@ -160,6 +162,12 @@
   --opacity-60: 0.6;
   --opacity-80: 0.8;
   --opacity-100: 1;
+}
+
+@media (max-width: 480px) {
+  :root {
+    --topbar-height: 34px;
+  }
 }
 
 /* ─────────────────────────────────────────────
@@ -184,7 +192,7 @@ html {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   scroll-behavior: smooth;
-  scroll-padding-top: 80px;
+  scroll-padding-top: var(--chrome-height);
   overflow-x: hidden;
 }
 

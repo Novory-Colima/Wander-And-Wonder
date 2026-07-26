@@ -97,6 +97,11 @@ const navSections = [
 </footer>
 
 <style>
+  footer {
+    isolation: isolate;
+    position: relative;
+  }
+
   /* Override global unlayered h3 styles to restore correct gold/sunset color */
   .footer-column-title {
     color: var(--color-sunset) !important;

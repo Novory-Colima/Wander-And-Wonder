@@ -2,9 +2,11 @@ import { gsap } from '@/lib/gsap';
 
 export const initHeroAnimation = () => {
   const heroSection = document.querySelector('#hero');
+  const heroParallax = document.querySelector('.hero-parallax');
   const heroCamera = document.querySelector('.hero-camera');
   const bgSharp = document.querySelector('.hero-bg-sharp');
   const atmosphere = document.querySelector('.hero-atmosphere');
+  const titleWrapper = document.querySelector('.hero-title-wrapper');
   const title = document.querySelector('.hero-title');
   const titleSpan = document.querySelector('.hero-title span');
   const manifesto = document.querySelector('.hero-manifesto');
@@ -84,20 +86,20 @@ export const initHeroAnimation = () => {
   });
 
   scrollTl
-    // Title sinks and blurs into the fog
-    .to(title, { 
-      y: '-20vh', 
-      scale: 0.85, 
+    // Title sinks and blurs rapidly into fog
+    .to(titleWrapper, { 
+      y: '-14vh', 
+      scale: 0.88, 
       opacity: 0, 
-      filter: 'blur(12px)', 
-      ease: 'none' 
+      filter: 'blur(16px)', 
+      ease: 'power1.in' 
     }, 0)
-    // Manifesto follows with a delay (parallax lag)
+    // Manifesto follows with a subtle offset and gentle fade out without overlapping
     .to(manifesto, { 
-      y: '-25vh', 
+      y: '-8vh', 
       opacity: 0, 
-      ease: 'none' 
-    }, 0)
+      ease: 'power2.in' 
+    }, 0.1)
     // Scroll indicator fades out fast
     .to(scrollIndicator, { 
       opacity: 0, 
@@ -110,7 +112,7 @@ export const initHeroAnimation = () => {
       ease: 'none' 
     }, 0)
     // Camera background moves slightly and fades out to create extreme depth and dark fade
-    .to(heroCamera, { 
+    .to(heroParallax, { 
       y: '15vh', 
       opacity: 0,
       ease: 'none' 
